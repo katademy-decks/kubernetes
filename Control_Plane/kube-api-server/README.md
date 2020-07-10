@@ -4,7 +4,7 @@
 <summary>
 <b>All API usage from nodes and pods terminate at the following control plane components:</b>
 </summary>
-<b>apiserver</b><div><div><hr><div>no other control plane components exposes remote services</div></div></div>
+<b>apiserver</b>>><hr>>no other control plane components exposes remote services
 </details>
 
 <details>
@@ -25,25 +25,25 @@ service account
 <summary>
 <b>The <b>kubernetes </b>service (in all namespaces) is configured with _____ that is redirected via _____ to the apiserver</b>
 </summary>
-a virtual IP address<div>
-</div><div>kube-proxy</div>
+a virtual IP address>
+>kube-proxy
 </details>
 
 <details>
 <summary>
 <b>the apiserver is configured to listen for remote connections on _____ with one or more forms of _____ enabled</b>
 </summary>
-a secure HTTPS port<div>
-</div><div>client authentication</div>
+a secure HTTPS port>
+>client authentication
 </details>
 
 <details>
 <summary>
-<b><div>apiserver to kubelet connections are used for</div></b>
+<b>>apiserver to kubelet connections are used for</b>
 </summary>
-Fetching pod logs<div>
-</div><div><b>kubectl attach</b>'ing into pods</div><div>
-</div><div><b>kubectl port-forward</b>'ing into pods</div>
+Fetching pod logs>
+><b>kubectl attach</b>'ing into pods>
+><b>kubectl port-forward</b>'ing into pods
 </details>
 
 <details>
@@ -57,23 +57,23 @@ the kubelet's HTTPS endpoint
 <summary>
 <b>Does the <b>apiserver</b> verify the <b>kubelet's</b> serving certificate by default?</b>
 </summary>
-No<div>-----</div><div>The connection is subject to MITM attacks by default</div>
+No>----->The connection is subject to MITM attacks by default
 </details>
 
 <details>
 <summary>
 <b>apiserver to kubelet connection can be verified via</b>
 </summary>
-<div>SSH tunneling</div><div>
-</div><div>OR&nbsp;</div><div>
-</div><b>apiserver --kubelet-certificate-authority</b>
+>SSH tunneling>
+>OR&nbsp;>
+<b>apiserver --kubelet-certificate-authority</b>
 </details>
 
 <details>
 <summary>
 <b>Are <b>apiserver</b>&nbsp;connections to <b>nodes, pods and services</b>&nbsp;authenticated or encrypted?</b>
 </summary>
-No :(<div>
-</div><div>They can be run over HTTPS but will not validate the certificate</div>
+No :(>
+>They can be run over HTTPS but will not validate the certificate
 </details>
 

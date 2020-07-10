@@ -18,8 +18,8 @@ Kubernetes control plane component that manages various aspects of nodes
 <summary>
 <b>The three roles of the <b>Node Controller </b>in a Node's life</b>
 </summary>
-<div><b>CIDR block assignment</b>
-</div><div>Assigns a CIDR block to each node upon registration (if enabled)</div><div><hr></div><div><b>List of nodes</b></div><div>Synchronizes the Node Controller's internal list of nodes with the <b>cloud provider</b>'s list of available machines</div><div><hr></div><div><b>Node health monitoring</b></div><div>Manages a node's&nbsp;<b>Ready</b>&nbsp;condition depending on reachability. Evicts the node's pods if it remains unreachable</div>
+><b>CIDR block assignment</b>
+>Assigns a CIDR block to each node upon registration (if enabled)><hr>><b>List of nodes</b>>Synchronizes the Node Controller's internal list of nodes with the <b>cloud provider</b>'s list of available machines><hr>><b>Node health monitoring</b>>Manages a node's&nbsp;<b>Ready</b>&nbsp;condition depending on reachability. Evicts the node's pods if it remains unreachable
 </details>
 
 <details>

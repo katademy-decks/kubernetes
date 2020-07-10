@@ -4,15 +4,15 @@
 <summary>
 <b>Control plane components</b>
 </summary>
-<div>Kubernetes Master&nbsp;
-</div><div>kubelets<div><div>etcd</div></div></div>
+>Kubernetes Master&nbsp;
+>kubelets>>etcd
 </details>
 
 <details>
 <summary>
 <b>All API usage from nodes and pods terminate at the following control plane components:</b>
 </summary>
-<b>apiserver</b><div><div><hr><div>no other control plane components exposes remote services</div></div></div>
+<b>apiserver</b>>><hr>>no other control plane components exposes remote services
 </details>
 
 <details>
@@ -33,25 +33,25 @@ service account
 <summary>
 <b>The <b>kubernetes </b>service (in all namespaces) is configured with _____ that is redirected via _____ to the apiserver</b>
 </summary>
-a virtual IP address<div>
-</div><div>kube-proxy</div>
+a virtual IP address>
+>kube-proxy
 </details>
 
 <details>
 <summary>
 <b>the apiserver is configured to listen for remote connections on _____ with one or more forms of _____ enabled</b>
 </summary>
-a secure HTTPS port<div>
-</div><div>client authentication</div>
+a secure HTTPS port>
+>client authentication
 </details>
 
 <details>
 <summary>
-<b><div>apiserver to kubelet connections are used for</div></b>
+<b>>apiserver to kubelet connections are used for</b>
 </summary>
-Fetching pod logs<div>
-</div><div><b>kubectl attach</b>'ing into pods</div><div>
-</div><div><b>kubectl port-forward</b>'ing into pods</div>
+Fetching pod logs>
+><b>kubectl attach</b>'ing into pods>
+><b>kubectl port-forward</b>'ing into pods
 </details>
 
 <details>
@@ -65,24 +65,24 @@ the kubelet's HTTPS endpoint
 <summary>
 <b>Does the <b>apiserver</b> verify the <b>kubelet's</b> serving certificate by default?</b>
 </summary>
-No<div>-----</div><div>The connection is subject to MITM attacks by default</div>
+No>----->The connection is subject to MITM attacks by default
 </details>
 
 <details>
 <summary>
 <b>apiserver to kubelet connection can be verified via</b>
 </summary>
-<div>SSH tunneling</div><div>
-</div><div>OR&nbsp;</div><div>
-</div><b>apiserver --kubelet-certificate-authority</b>
+>SSH tunneling>
+>OR&nbsp;>
+<b>apiserver --kubelet-certificate-authority</b>
 </details>
 
 <details>
 <summary>
 <b>Are <b>apiserver</b>&nbsp;connections to <b>nodes, pods and services</b>&nbsp;authenticated or encrypted?</b>
 </summary>
-No :(<div>
-</div><div>They can be run over HTTPS but will not validate the certificate</div>
+No :(>
+>They can be run over HTTPS but will not validate the certificate
 </details>
 
 <details>
@@ -96,9 +96,9 @@ cloud-controller-manager
 <summary>
 <b>Node controller</b>
 </summary>
-<b>Create / destroy nodes&nbsp;</b><div>when new servers are created and destroyed in your cloud infrastructure</div><div>
-</div><div><b>Annotate Nodes</b></div><div>with cloud-specific information, such as Region</div><div>
-</div><div><b>Get Node information</b></div><div>Hostname, address, health</div>
+<b>Create / destroy nodes&nbsp;</b>>when new servers are created and destroyed in your cloud infrastructure>
+><b>Annotate Nodes</b>>with cloud-specific information, such as Region>
+><b>Get Node information</b>>Hostname, address, health
 </details>
 
 <details>
@@ -119,20 +119,20 @@ Sets up Load Balancers and other infrastructure components needed by <b>Service 
 <summary>
 <b>cloud-controller-manager runs the following controllers:</b>
 </summary>
-<div>Node Controller
-</div><div>Route Controller</div><div>Volume Controller</div><div>Service Controller</div>
+>Node Controller
+>Route Controller>Volume Controller>Service Controller
 </details>
 
 <details>
 <summary>
 <b>kube-controller-manager</b>
 </summary>
-Daemon controlling core K8S control loops<div>
-</div><div>Node controller</div><div>Replication controller</div><div>Service account controller</div><div>Endpoints controller
-<div>Garbage collector (can be disabled)
-</div><div>
-</div><div>HPA
-</div><div>Leader election</div><div><div>Reconcilliation interval</div></div><div><div>Feature gates</div></div><div><div>Cluster CIDR</div><div>Pod CIDR</div></div></div>
+Daemon controlling core K8S control loops>
+>Node controller>Replication controller>Service account controller>Endpoints controller
+>Garbage collector (can be disabled)
+>
+>HPA
+>Leader election>>Reconcilliation interval>>Feature gates>>Cluster CIDR>Pod CIDR
 </details>
 
 <details>
@@ -150,9 +150,9 @@ Daemon controlling core K8S control loops<div>
 <summary>
 <b>Kubernetes Master</b>
 </summary>
-<div><div>kube-controller-manager
-kube-apiserver<div>kube-scheduler</div></div><div>
-</div>Uses and provides the following communication:
+>>kube-controller-manager
+kube-apiserver>kube-scheduler>
+Uses and provides the following communication:
 <ul><li>fetch pod logs.</li><li>kubectl-attach</li><li>kubectl port-forward</li><li>SSH tunnel</li></ul>
 </details>
 

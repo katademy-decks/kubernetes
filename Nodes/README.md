@@ -6,20 +6,20 @@
 </summary>
 <i>kubectl edit svc nginx</i>
 change the <i>spec.type </i>value to NodePort
-<i>spec:</i><div><i>&nbsp; type: NodePort</i>
+<i>spec:</i>><i>&nbsp; type: NodePort</i>
 Find the port and IP with
 <i>kubectl get svc</i>
 then hit the service with
-<i>wget -O- &lt;NodeIP&gt;:&lt;Port&gt;</i></div>
+<i>wget -O- &lt;NodeIP&gt;:&lt;Port&gt;</i>
 </details>
 
 <details>
 <summary>
-<b><div style="">List 3 components that every Kubernetes Node has</div></b>
+<b>style="">List 3 components that every Kubernetes Node has</b>
 </summary>
-<div style="">1. <b>kubelet</b>, a process responsible for communication between the Kubernetes Master and the Node; it manages the Pods and the containers running on a machine.
-2. <b>kube-proxy</b>, a proxy that maintains network rules on nodes.</div>3.&nbsp;<div style="display: inline !important;"><b>container runtime </b>(like Docker) responsible for pulling the container image from a registry, unpacking the container, and running the application.
-</div>
+style="">1. <b>kubelet</b>, a process responsible for communication between the Kubernetes Master and the Node; it manages the Pods and the containers running on a machine.
+2. <b>kube-proxy</b>, a proxy that maintains network rules on nodes.3.&nbsp; style="display: inline !important;"><b>container runtime </b>(like Docker) responsible for pulling the container image from a registry, unpacking the container, and running the application.
+
 <img src="paste-0d78f3f9993df127ff9365555478608a03a8904f.jpg">
 </details>
 
@@ -72,7 +72,7 @@ affinity:
 <summary>
 <b>How to add/remove taint to a node?</b>
 </summary>
-<strong>kubectl taint nodes docker-for-desktop dedicated=true:NoSchedule</strong><div><strong>kubectl taint nodes docker-for-desktop dedicated=true:NoSchedule-
+<strong>kubectl taint nodes docker-for-desktop dedicated=true:NoSchedule</strong>><strong>kubectl taint nodes docker-for-desktop dedicated=true:NoSchedule-
 </strong><b>
 </b>apiVersion: v1
 kind: Pod
@@ -83,8 +83,8 @@ spec:
  &nbsp;&nbsp;&nbsp;operator: "Equal"
  &nbsp;&nbsp;&nbsp;value: "true"
  &nbsp;&nbsp;&nbsp;effect: "NoSchedule"<b>
-</b><div><strong>
-</strong></div></div>
+</b>><strong>
+</strong>
 </details>
 
 <details>
@@ -98,8 +98,8 @@ Nodes
 <summary>
 <b>Are nodes virtual machines?</b>
 </summary>
-Not always<div>
-</div><div>They can be physical machines</div>
+Not always>
+>They can be physical machines
 </details>
 
 <details>
@@ -113,8 +113,7 @@ kubelet
 <summary>
 <b>To prevent a node from self-registering on the control-plane, you could...</b>
 </summary>
-<div>Pass this flag to the kubelet:</div><div><b>--register-node=false</b>
-</div>
+>Pass this flag to the kubelet:><b>--register-node=false</b>
 </details>
 
 <details>
@@ -128,36 +127,36 @@ Mark a node unschedulable
 <summary>
 <b>kubectl drain NODE</b>
 </summary>
-Cordons the node then evicts/deletes all pods.<div>
-</div><div>Does not deleted mirror pods or DaemonSet pods (DS controller ignores unschedulable markings)</div><div>
-</div><div><b>--ignore-daemonsets</b></div><div>Ignore DS managed pods</div><div>
-</div><div><b>--force</b></div><div>Continue even if there are dangling pods</div><div>
-</div><div><b>--delete-local-data</b></div><div>Continue even if there are pods with <b>EmptyDir</b>&nbsp;(local data that is removed upon draining)</div>
+Cordons the node then evicts/deletes all pods.>
+>Does not deleted mirror pods or DaemonSet pods (DS controller ignores unschedulable markings)>
+><b>--ignore-daemonsets</b>>Ignore DS managed pods>
+><b>--force</b>>Continue even if there are dangling pods>
+><b>--delete-local-data</b>>Continue even if there are pods with <b>EmptyDir</b>&nbsp;(local data that is removed upon draining)
 </details>
 
 <details>
 <summary>
 <b>kubectl taint (?)</b>
 </summary>
-<div>kubectl taint NODE KEY=VAL:EFFECT</div><div>
-</div><div><b>--overwrite</b></div>
+>kubectl taint NODE KEY=VAL:EFFECT>
+><b>--overwrite</b>
 </details>
 
 <details>
 <summary>
 <b>todo</b>
 </summary>
-<div>Sent by kubelets, help determine the availability of a node.&nbsp;</div><div>
-</div><div>1) updates of&nbsp;<code>NodeStatus</code>&nbsp;</div><div>2)&nbsp;<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#lease-v1-coordination-k8s-io">Lease object</a>.&nbsp;</div><div>
-</div><div>Each Node has an associated Lease object in the&nbsp;<code>kube-node-lease</code>&nbsp;<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces">namespace</a>&nbsp;which improves the performance of the node heartbeats as the cluster scales.</div>
+>Sent by kubelets, help determine the availability of a node.&nbsp;>
+>1) updates of&nbsp;<code>NodeStatus</code>&nbsp;>2)&nbsp;<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#lease-v1-coordination-k8s-io">Lease object</a>.&nbsp;>
+>Each Node has an associated Lease object in the&nbsp;<code>kube-node-lease</code>&nbsp;<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces">namespace</a>&nbsp;which improves the performance of the node heartbeats as the cluster scales.
 </details>
 
 <details>
 <summary>
 <b>What is Node Affinities?&nbsp;</b>
 </summary>
-<div>Schedule pods on selector'd nodes preferentially or not</div><div>
-</div><div><b>requiredDuringSchedulingIgnoredDuringExecution</b></div><div><b>preferredDuringSchedulingIgnoredDuringExecution</b>&nbsp;</div><div>
+>Schedule pods on selector'd nodes preferentially or not>
+><b>requiredDuringSchedulingIgnoredDuringExecution</b>><b>preferredDuringSchedulingIgnoredDuringExecution</b>&nbsp;>
 <b>spec:
  &nbsp;affinity:
  &nbsp;&nbsp;&nbsp;nodeAffinity:
@@ -167,17 +166,15 @@ Cordons the node then evicts/deletes all pods.<div>
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- key: "failure-domain.beta.kubernetes.io/zone"
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: In
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values: ["us-central1-a"]</b>
-</div>
 </details>
 
 <details>
 <summary>
 <b>Worker node components</b>
 </summary>
-<b>kubelet</b><div>Controls node, provides api for control plane</div><div>
-</div><div><b>kube-proxy</b></div><div>Configs iptables and virtual network</div><div>
-</div><div><b>Container runtime</b></div><div>Downloads and runs containers
-</div>
+<b>kubelet</b>>Controls node, provides api for control plane>
+><b>kube-proxy</b>>Configs iptables and virtual network>
+><b>Container runtime</b>>Downloads and runs containers
 </details>
 
 <details>
@@ -196,12 +193,12 @@ Display resource usage of nodes
 
 <details>
 <summary>
-<b>A node's status containts four domains of information.<div>These are...</div></b>
+<b>A node's status containts four domains of information.>These are...</b>
 </summary>
-Addresses<div>
-</div><div>Conditions</div><div>
-</div><div>Capacity and Allocatable</div><div>
-</div><div>Info</div>
+Addresses>
+>Conditions>
+>Capacity and Allocatable>
+>Info
 </details>
 
 <details>
@@ -222,19 +219,18 @@ your cloud provider or bare metal configuration
 <summary>
 <b>Addresses in a node's status include...</b>
 </summary>
-<div>ExternalIP
-</div><div>
-</div><div>InternalIP</div><div>
-</div><div>HostName
-</div>
+>ExternalIP
+>
+>InternalIP>
+>HostName
 </details>
 
 <details>
 <summary>
 <b>HostName</b>
 </summary>
-The hostname reported by the node's kernel<div>
-</div><div>Can be overridden via <b>--hostname-override</b></div>
+The hostname reported by the node's kernel>
+>Can be overridden via <b>--hostname-override</b>
 </details>
 
 <details>
@@ -255,31 +251,31 @@ The IP address of the node routable only from inside the cluster
 <summary>
 <b>Node <b>Info</b>&nbsp;status field describes general information about a node, such as:</b>
 </summary>
-OS Name<div>
-</div><div>kubelet, kube-proxy, docker versions</div>
+OS Name>
+>kubelet, kube-proxy, docker versions
 </details>
 
 <details>
 <summary>
 <b>Ready</b>
 </summary>
-<b>True</b><div>if the node is healthy and ready to accept pods</div><div><b>
-</b></div><div><b>False</b></div><div>if the node us unhealthy and is not accepting pods</div><div><b>
-</b></div><div><b>Unknown</b></div><div>If the node controller has not heard from the node in the last 40 seconds</div>
+<b>True</b>>if the node is healthy and ready to accept pods><b>
+</b>><b>False</b>>if the node us unhealthy and is not accepting pods><b>
+</b>><b>Unknown</b>>If the node controller has not heard from the node in the last 40 seconds
 </details>
 
 <details>
 <summary>
 <b>DiskPressure</b>
 </summary>
-<b>True</b><div>if the node's disk capacity is low</div>
+<b>True</b>>if the node's disk capacity is low
 </details>
 
 <details>
 <summary>
 <b>MemoryPressure</b>
 </summary>
-<b>True</b><div>if the node's memory is low</div>
+<b>True</b>>if the node's memory is low
 </details>
 
 <details>
@@ -312,8 +308,8 @@ OS Name<div>
 
 <details>
 <summary>
-<b>A node is reachable by the <b>API server </b>but its&nbsp;<b>Ready</b> condition has remained&nbsp;<b>False</b> or <b>Unknown</b> for longer than the <b>kube-controller-manager</b>'s&nbsp;<b>pod-eviction-timeout</b><div>
-</div><div>What happens to the Pods on the node?</div></b>
+<b>A node is reachable by the <b>API server </b>but its&nbsp;<b>Ready</b> condition has remained&nbsp;<b>False</b> or <b>Unknown</b> for longer than the <b>kube-controller-manager</b>'s&nbsp;<b>pod-eviction-timeout</b>>
+>What happens to the Pods on the node?</b>
 </summary>
 All Pods on the node are scheduled for deletion by the node controller
 </details>
@@ -322,7 +318,7 @@ All Pods on the node are scheduled for deletion by the node controller
 <summary>
 <b>Capacity</b>
 </summary>
-<div>Capacity fields describe the total amount of resources that a Node has</div>
+>Capacity fields describe the total amount of resources that a Node has
 </details>
 
 <details>
@@ -350,8 +346,8 @@ Kubernetes control plane component that manages various aspects of nodes
 <summary>
 <b>The three roles of the <b>Node Controller </b>in a Node's life</b>
 </summary>
-<div><b>CIDR block assignment</b>
-</div><div>Assigns a CIDR block to each node upon registration (if enabled)</div><div><hr></div><div><b>List of nodes</b></div><div>Synchronizes the Node Controller's internal list of nodes with the <b>cloud provider</b>'s list of available machines</div><div><hr></div><div><b>Node health monitoring</b></div><div>Manages a node's&nbsp;<b>Ready</b>&nbsp;condition depending on reachability. Evicts the node's pods if it remains unreachable</div>
+><b>CIDR block assignment</b>
+>Assigns a CIDR block to each node upon registration (if enabled)><hr>><b>List of nodes</b>>Synchronizes the Node Controller's internal list of nodes with the <b>cloud provider</b>'s list of available machines><hr>><b>Node health monitoring</b>>Manages a node's&nbsp;<b>Ready</b>&nbsp;condition depending on reachability. Evicts the node's pods if it remains unreachable
 </details>
 
 <details>
@@ -372,8 +368,8 @@ kubelet
 <summary>
 <b>Two types of node Heartbeats</b>
 </summary>
-1. updates of <b>NodeStatus</b><div>
-2. The <b>Lease Object</b></div>
+1. updates of <b>NodeStatus</b>>
+2. The <b>Lease Object</b>
 </details>
 
 <details>

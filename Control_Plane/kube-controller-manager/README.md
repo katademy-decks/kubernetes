@@ -4,11 +4,11 @@
 <summary>
 <b>kube-controller-manager</b>
 </summary>
-Daemon controlling core K8S control loops<div>
-</div><div>Node controller</div><div>Replication controller</div><div>Service account controller</div><div>Endpoints controller
-<div>Garbage collector (can be disabled)
-</div><div>
-</div><div>HPA
-</div><div>Leader election</div><div><div>Reconcilliation interval</div></div><div><div>Feature gates</div></div><div><div>Cluster CIDR</div><div>Pod CIDR</div></div></div>
+Daemon controlling core K8S control loops>
+>Node controller>Replication controller>Service account controller>Endpoints controller
+>Garbage collector (can be disabled)
+>
+>HPA
+>Leader election>>Reconcilliation interval>>Feature gates>>Cluster CIDR>Pod CIDR
 </details>
 

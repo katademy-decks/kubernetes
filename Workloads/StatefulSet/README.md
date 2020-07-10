@@ -5,14 +5,12 @@
 <b>StatefulSets</b>
 </summary>
 *&nbsp;Ability to start and stop Pods in a specific sequence.
-* Manages disk storage for their Pods, using a VolumeClaimTemplate object that automatically creates a PersistentVolumeClaim<div>* Each&nbsp;replica in a StatefulSet must be running and ready before Kubernetes starts the&nbsp;next one, and similarly when the StatefulSet is terminated, the replicas will be shut down in reverse order, waiting for each Pod to finish before moving on to the next.
-
-</div>
+* Manages disk storage for their Pods, using a VolumeClaimTemplate object that automatically creates a PersistentVolumeClaim>* Each&nbsp;replica in a StatefulSet must be running and ready before Kubernetes starts the&nbsp;next one, and similarly when the StatefulSet is terminated, the replicas will be shut down in reverse order, waiting for each Pod to finish before moving on to the next.
 </details>
 
 <details>
 <summary>
-<b><div>StatefulSet is the workload API object used to manage _____</div></b>
+<b>>StatefulSet is the workload API object used to manage _____</b>
 </summary>
 stateful applications
 </details>
@@ -33,8 +31,8 @@ sticky identity
 
 <details>
 <summary>
-<b><span style="color: rgb(34, 34, 34);">StatefulSet pods are created from the same spec, but are _____</span><div><span style="color: rgb(34, 34, 34);">
-</span></div><div><span style="color: rgb(34, 34, 34);">Each has a persistent identifier that it maintains across any rescheduling.</span></div></b>
+<b><span style="color: rgb(34, 34, 34);">StatefulSet pods are created from the same spec, but are _____</span>><span style="color: rgb(34, 34, 34);">
+</span>><span style="color: rgb(34, 34, 34);">Each has a persistent identifier that it maintains across any rescheduling.</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">interchangeable</span>
 </details>
@@ -48,7 +46,7 @@ sticky identity
 
 <details>
 <summary>
-<b>An application requires several of the following:<div><ul><li>Stable, unique network identifiers.</li><li>Stable, persistent storage.</li><li>Ordered, graceful deployment and scaling.</li><li>Ordered, automated rolling updates.</li></ul><div>Which workload object could work best?</div></div></b>
+<b>An application requires several of the following:><ul><li>Stable, unique network identifiers.</li><li>Stable, persistent storage.</li><li>Ordered, graceful deployment and scaling.</li><li>Ordered, automated rolling updates.</li></ul>>Which workload object could work best?</b>
 </summary>
 StatefulSet
 </details>
@@ -69,8 +67,8 @@ StatefulSet
 
 <details>
 <summary>
-<b><span style="color: rgb(34, 34, 34);">StatefulSets do not provide any guarantees on the termination of pods when a StatefulSet is deleted.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
-</span></div><div><span style="color: rgb(34, 34, 34);">To achieve ordered and graceful termination of the pods in the StatefulSet, it is possible to...</span></div></b>
+<b><span style="color: rgb(34, 34, 34);">StatefulSets do not provide any guarantees on the termination of pods when a StatefulSet is deleted.&nbsp;</span>><span style="color: rgb(34, 34, 34);">
+</span>><span style="color: rgb(34, 34, 34);">To achieve ordered and graceful termination of the pods in the StatefulSet, it is possible to...</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">scale the StatefulSet down to 0 prior to deletion</span>
 </details>

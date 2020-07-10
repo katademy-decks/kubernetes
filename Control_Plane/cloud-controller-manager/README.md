@@ -11,9 +11,9 @@ cloud-controller-manager
 <summary>
 <b>Node controller</b>
 </summary>
-<b>Create / destroy nodes&nbsp;</b><div>when new servers are created and destroyed in your cloud infrastructure</div><div>
-</div><div><b>Annotate Nodes</b></div><div>with cloud-specific information, such as Region</div><div>
-</div><div><b>Get Node information</b></div><div>Hostname, address, health</div>
+<b>Create / destroy nodes&nbsp;</b>>when new servers are created and destroyed in your cloud infrastructure>
+><b>Annotate Nodes</b>>with cloud-specific information, such as Region>
+><b>Get Node information</b>>Hostname, address, health
 </details>
 
 <details>
@@ -34,7 +34,7 @@ Sets up Load Balancers and other infrastructure components needed by <b>Service 
 <summary>
 <b>cloud-controller-manager runs the following controllers:</b>
 </summary>
-<div>Node Controller
-</div><div>Route Controller</div><div>Volume Controller</div><div>Service Controller</div>
+>Node Controller
+>Route Controller>Volume Controller>Service Controller
 </details>
 

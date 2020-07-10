@@ -46,8 +46,8 @@ PodPreset admission controller
 <summary>
 <b>How to&nbsp;disable Pod Preset for a Specific Pod</b>
 </summary>
-<span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">podpreset.admission.kubernetes.io/exclude: "true"</span><div><span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">
-</span></div><div>Add the above annotation in the Pod Spec<span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">
-</span></div>
+<span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">podpreset.admission.kubernetes.io/exclude: "true"</span>><span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">
+</span>>Add the above annotation in the Pod Spec<span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">
+</span>
 </details>
 

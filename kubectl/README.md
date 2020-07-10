@@ -39,19 +39,18 @@ kubectl config view
 
 <details>
 <summary>
-<b><div style="">Provide command to show merged kubeconfig settings.</div></b>
+<b>style="">Provide command to show merged kubeconfig settings.</b>
 </summary>
-<div style="">kubectl config view
+style="">kubectl config view
 
 <b><img src="0oTJPvbKuWTMMeQulKyLGTNY2RLARnDCp8zV2j-gIwfOsP7bZnuDrQefu_W2rTDZLULQ8xvesq6KAxLWM8eWcTwPK2Nt-GqTy2buW2SEXiJMUXlUuwjnlyCab3c5v1GAjNow.png"></b>
-</div>
 </details>
 
 <details>
 <summary>
-<b><div style="">What is kubectl?</div></b>
+<b>style="">What is kubectl?</b>
 </summary>
-<div style="">CLI for running commands against Kubernetes clusters</div><b>
+style="">CLI for running commands against Kubernetes clusters<b>
 <img src="isELrh5WNHvaPK4BHA8eIJFHKBon5EWZU_8Z16n3bUKaGm2XIEHp2Pk-8pLjEsyFP41Sq-kci93MS5K4mrWQ8bmsQHc5dcY6P9cQQ_UO8rLjCw1L2i7V1QAhyFgb4uoEG_S-.png"></b>
 </details>
 
@@ -93,22 +92,20 @@ bb sh
 <summary>
 <b>How to copy busybox utils to our container in DOCKERFILE, how to use it</b>
 </summary>
-FROM golang:1.11-alpine AS build&nbsp;<div>WORKDIR /src/&nbsp;</div><div>
-</div><div>COPY main.go go.* /src/&nbsp;</div><div>RUN CGO_ENABLED=0&nbsp;</div><div>go build -o /bin/demo&nbsp;</div><div>
-</div><div>FROM scratch COPY --from=build /bin/demo /bin/demo&nbsp;</div><div>COPY --from=busybox:1.28 /bin/busybox /bin/busybox<b>&nbsp;</b></div><div>ENTRYPOINT ["/bin/demo"]
-</div><div>
-</div><div>-----</div><div>use the utils from /bin/busybox</div><div><strong>kubectl exec -it POD_NAME /bin/busybox sh</strong>
-</div>
+FROM golang:1.11-alpine AS build&nbsp;>WORKDIR /src/&nbsp;>
+>COPY main.go go.* /src/&nbsp;>RUN CGO_ENABLED=0&nbsp;>go build -o /bin/demo&nbsp;>
+>FROM scratch COPY --from=build /bin/demo /bin/demo&nbsp;>COPY --from=busybox:1.28 /bin/busybox /bin/busybox<b>&nbsp;</b>>ENTRYPOINT ["/bin/demo"]
+>
+>----->use the utils from /bin/busybox><strong>kubectl exec -it POD_NAME /bin/busybox sh</strong>
 </details>
 
 <details>
 <summary>
 <b>A kubernetes context is a combination of a&nbsp;</b>
 </summary>
-<div>* authenticated user</div>* a cluster (could be more than one, but current cluster by default)<div>* namespace
-</div><div>
-</div><div>kubectl config get-contexts
-</div>
+>* authenticated user* a cluster (could be more than one, but current cluster by default)>* namespace
+>
+>kubectl config get-contexts
 </details>
 
 <details>
@@ -116,31 +113,29 @@ FROM golang:1.11-alpine AS build&nbsp;<div>WORKDIR /src/&nbsp;</div><div>
 <b>Contex specfic commands</b>
 </summary>
 <strong>kubectl config use-context gke</strong>
-<div><strong>kubectl config set-context myapp --cluster=gke --namespace=myapp</strong><strong>
-</strong></div><div><strong>kubectl config current-context</strong><strong>
-</strong></div><div><strong>
-</strong></div><div><strong>kubectx docker-for-desktop</strong> 
+><strong>kubectl config set-context myapp --cluster=gke --namespace=myapp</strong><strong>
+</strong>><strong>kubectl config current-context</strong><strong>
+</strong>><strong>
+</strong>><strong>kubectx docker-for-desktop</strong> 
 Switched to context "docker-for-desktop".
 <strong>
 </strong><strong>kubectx -</strong> Switched to context "gke". 
 <strong>kubectx -</strong> Switched to context "docker-for-desktop".<strong>
-</strong></div><div>
-</div>
+</strong>>
 </details>
 
 <details>
 <summary>
 <b>When to&nbsp;use Custom resource in Kubernetes?</b>
 </summary>
-<div>Use a custom resource (CRD or Aggregated API) if most of the following apply:</div>You want to use Kubernetes client libraries and CLIs to create and update the new resource.<div>You want top-level support from kubectl (for example:&nbsp;kubectl get my-object object-name).</div><div>You want to build new automation that watches for updates on the new object, and then CRUD other objects, or vice versa.</div><div>You want to write automation that handles updates to the object.</div><div>You want to use Kubernetes API conventions like&nbsp;.spec,&nbsp;.status, and&nbsp;.metadata.</div><div>You want the object to be an abstraction over a collection of controlled resources, or a summarization of other resources.
-</div>
+>Use a custom resource (CRD or Aggregated API) if most of the following apply:You want to use Kubernetes client libraries and CLIs to create and update the new resource.>You want top-level support from kubectl (for example:&nbsp;kubectl get my-object object-name).>You want to build new automation that watches for updates on the new object, and then CRUD other objects, or vice versa.>You want to write automation that handles updates to the object.>You want to use Kubernetes API conventions like&nbsp;.spec,&nbsp;.status, and&nbsp;.metadata.>You want the object to be an abstraction over a collection of controlled resources, or a summarization of other resources.
 </details>
 
 <details>
 <summary>
 <b>How to add the values from config.yaml into the data section of the pod manifest?</b>
 </summary>
-<div>How to achieve following::
+>How to achieve following::
 
 apiVersion: v1
 data:
@@ -154,13 +149,12 @@ kind: ConfigMap
 metadata:
 &nbsp;name: demo-config
 &nbsp;namespace: demo<strong>
-</strong></div><div><strong>
-</strong></div><div>--</div><div>
-</div><div>kubectl create configmap demo-config --namespace=demo --from-file=config.yaml configmap "demo-config" created
-</div><div>
-</div><div>kubectl get configmap/demo-config --namespace=demo --export -o yaml &gt;demo-config.yaml
-</div><div>
-</div>
+</strong>><strong>
+</strong>>-->
+>kubectl create configmap demo-config --namespace=demo --from-file=config.yaml configmap "demo-config" created
+>
+>kubectl get configmap/demo-config --namespace=demo --export -o yaml &gt;demo-config.yaml
+>
 </details>
 
 <details>
@@ -188,8 +182,8 @@ Create an external svc for the container
 <summary>
 <b>kubectl run --force</b>
 </summary>
-If grace-period=0. immediately remove resources from API and bypass graceful deletion.&nbsp;<div>
-</div><div>May result in inconsistency or data loss and requires confirmation.</div>
+If grace-period=0. immediately remove resources from API and bypass graceful deletion.&nbsp;>
+>May result in inconsistency or data loss and requires confirmation.
 </details>
 
 <details>
@@ -207,17 +201,17 @@ Can only be set to 0 when --force is true (force deletion).</td></tr><tr></tr></
 <summary>
 <b>Example of Labels usage in commands</b>
 </summary>
-<div>kubectl get pods --show-labels</div><div>
-</div>kubectl get pod --selector foo=bar<div>
-&nbsp;kubectl get pods -l foo!=bar</div><div>
-&nbsp;kubectl get pods -l <em style="">foo notin bar</em></div>
+>kubectl get pods --show-labels>
+kubectl get pod --selector foo=bar>
+&nbsp;kubectl get pods -l foo!=bar>
+&nbsp;kubectl get pods -l <em style="">foo notin bar</em>
 </details>
 
 <details>
 <summary>
-<b>kubectl get<div>--export</div></b>
+<b>kubectl get>--export</b>
 </summary>
-<div>Omit cluster-specific info</div>
+>Omit cluster-specific info
 </details>
 
 <details>
@@ -231,18 +225,18 @@ When printing, show all labels as the last column
 <summary>
 <b>kubectl proxy --port PORT</b>
 </summary>
-<div>Creates a proxy server or application-level gateway between localhost and the Kubernetes API Server.&nbsp;</div><div>
-</div><div>Allows serving static content over specified HTTP path.&nbsp;</div><div>
-</div><div>All incoming data enters through one port and gets forwarded to the remote kubernetes API Server port, except for the path matching the static content path.</div>
-<div>--www</div><div>also serve static files from a given directory</div>
+>Creates a proxy server or application-level gateway between localhost and the Kubernetes API Server.&nbsp;>
+>Allows serving static content over specified HTTP path.&nbsp;>
+>All incoming data enters through one port and gets forwarded to the remote kubernetes API Server port, except for the path matching the static content path.
+>--www>also serve static files from a given directory
 </details>
 
 <details>
 <summary>
 <b>kubectl config set-credentials</b>
 </summary>
-Sets a user in kubeconfig<div>
-</div><div>their certs</div><div>auth provider<div>environment</div></div><div>command</div>
+Sets a user in kubeconfig>
+>their certs>auth provider>environment>command
 </details>
 
 <details>
@@ -269,24 +263,24 @@ If not set, default to updating the existing annotation value only if one alread
 <summary>
 <b>kubectl label</b>
 </summary>
-<div>Adds or overwrites the labels on a resource.</div>
+>Adds or overwrites the labels on a resource.
 </details>
 
 <details>
 <summary>
 <b>kubectl replace -f FILENAME</b>
 </summary>
-<div>Replace a resource by filename or stdin.</div>
+>Replace a resource by filename or stdin.
 </details>
 
 <details>
 <summary>
 <b>kubectl auth reconcile -f rbac-rules.yaml</b>
 </summary>
-<div>Reconciles rules for&nbsp;</div><div>Role, RoleBinding, ClusterRole, and ClusterRoleBinding</div><div>
-</div><div>Missing objects/namespaces are created if required.</div><div>
-</div><div>Superior to 'applying' RBAC resources as it causes semantically-aware merging of rules and subjects.</div><div><b>
-</b></div><div></div><b>--remove-extra-permissions</b><div><b>--remove-extra-subjects</b></div><div><div>Removes extra perms/subjects added to roles</div></div>
+>Reconciles rules for&nbsp;>Role, RoleBinding, ClusterRole, and ClusterRoleBinding>
+>Missing objects/namespaces are created if required.>
+>Superior to 'applying' RBAC resources as it causes semantically-aware merging of rules and subjects.><b>
+</b>><b>--remove-extra-permissions</b>><b>--remove-extra-subjects</b>>>Removes extra perms/subjects added to roles
 </details>
 
 <details>
@@ -300,15 +294,15 @@ Displays clusters in kubeconfig
 <summary>
 <b>kubectl config set-context NAME</b>
 </summary>
-Sets a context entry in kubeconfig<div>
-</div><div>the context name</div><div>the user</div><div>the namespace</div>
+Sets a context entry in kubeconfig>
+>the context name>the user>the namespace
 </details>
 
 <details>
 <summary>
 <b>Check the status of the "hello" job</b>
 </summary>
-<i>kubectl get jobs</i><div><i>kubectl describe jobs hello</i></div><div><i>kubectl logs job/hello</i></div>
+<i>kubectl get jobs</i>><i>kubectl describe jobs hello</i>><i>kubectl logs job/hello</i>
 </details>
 
 <details>
@@ -331,17 +325,16 @@ Sets the current context in kubeconfig
 </summary>
 An expression&nbsp;that matches&nbsp;a label (or set of labels)
 
-<div><strong>kubectl get pods --all-namespaces --selector app=demo</strong>
-</div>
+><strong>kubectl get pods --all-namespaces --selector app=demo</strong>
 </details>
 
 <details>
 <summary>
 <b>kubectl config&nbsp;set-cluster NAME</b>
 </summary>
-Sets a cluster entry in kubeconfig<div>
-</div><div>--server</div><div>
-</div><div>--certificate-authority</div>
+Sets a cluster entry in kubeconfig>
+>--server>
+>--certificate-authority
 </details>
 
 <details>
@@ -356,34 +349,34 @@ kubectl rollout history deploy nginx</i>
 <summary>
 <b>kubectl patch --patch PATCH</b>
 </summary>
-<div>Update resource fields using either "json merge" or&nbsp; "strategic merge"</div><div>
-</div><div><b>--local</b></div><div>If true, patch will operate on the content of the file, not the server-side resource.</div>
+>Update resource fields using either "json merge" or&nbsp; "strategic merge">
+><b>--local</b>>If true, patch will operate on the content of the file, not the server-side resource.
 </details>
 
 <details>
 <summary>
 <b>kubectl diff</b>
 </summary>
-<div>Diff configurations specified by filename or stdin between the current online configuration, and the configuration as it would be if applied.</div><div>
-</div><div>Output is always YAML.
-</div><div><div>
-</div></div><div><b>--server-side</b></div><div>Run apply in-cluster, not local</div>
+>Diff configurations specified by filename or stdin between the current online configuration, and the configuration as it would be if applied.>
+>Output is always YAML.
+>>
+><b>--server-side</b>>Run apply in-cluster, not local
 </details>
 
 <details>
 <summary>
 <b>kubectl describe</b>
 </summary>
-<div>Print a detailed description of the selected resource/group of resources,&nbsp;</div><div>
-</div><div>Includies events or controllers.&nbsp;</div>
+>Print a detailed description of the selected resource/group of resources,&nbsp;>
+>Includies events or controllers.&nbsp;
 </details>
 
 <details>
 <summary>
 <b>kubectl cluster-info dump [--namespaces NAMESPACES]</b>
 </summary>
-Dumps debug cluster info and pod logs by namespace (default: kube-system)<div>
-</div><div>--all-namespaces</div><div>--output-directory</div><div>-o</div>
+Dumps debug cluster info and pod logs by namespace (default: kube-system)>
+>--all-namespaces>--output-directory>-o
 </details>
 
 <details>
@@ -406,18 +399,17 @@ the value will be base64 encoded, so decode it:
 <summary>
 <b>kubectl cluster-info</b>
 </summary>
-Display addresses of<div>
-</div><div>Master</div><div>KubeDNS</div><div>Metrics-Server
-<div>Services labelled&nbsp;<b>kubernetes.io/cluster-service=true</b>
-</div></div>
+Display addresses of>
+>Master>KubeDNS>Metrics-Server
+>Services labelled&nbsp;<b>kubernetes.io/cluster-service=true</b>
 </details>
 
 <details>
 <summary>
 <b>Create a new serviceaccount called 'myuser'</b>
 </summary>
-<i>kubectl create sa myuser --dry-run -o yaml &gt; serviceaccount.yaml</i><div>or get a template with
-<i>kubectl get sa default -o yaml --export &gt; sa.yaml</i></div>
+<i>kubectl create sa myuser --dry-run -o yaml &gt; serviceaccount.yaml</i>>or get a template with
+<i>kubectl get sa default -o yaml --export &gt; sa.yaml</i>
 </details>
 
 <details>
@@ -431,9 +423,8 @@ Display addresses of<div>
 <summary>
 <b>kubectl config set</b>
 </summary>
-Sets a value in kubeconfig<div>
-</div><div>kubectl config set clusters.my-cluster.server https://1.2.3.4
-</div>
+Sets a value in kubeconfig>
+>kubectl config set clusters.my-cluster.server https://1.2.3.4
 </details>
 
 <details>
@@ -447,12 +438,12 @@ List kubectl plugins
 <summary>
 <b>kubectl create</b>
 </summary>
-<div>Create a resource from a file or from stdin.</div><div>JSON and YAML formats are accepted.</div><h3>Usage</h3><div><code>$ create -f FILENAME</code></div>
+>Create a resource from a file or from stdin.>JSON and YAML formats are accepted.<h3>Usage</h3>><code>$ create -f FILENAME</code>
 </details>
 
 <details>
 <summary>
-<b>kubectl get<div>--field-selector</div></b>
+<b>kubectl get>--field-selector</b>
 </summary>
 Filter on object values rather than labels
 </details>
@@ -466,7 +457,7 @@ Prints context
 
 <details>
 <summary>
-<b><div>kubectl check if an action verb is allowed</div></b>
+<b>>kubectl check if an action verb is allowed</b>
 </summary>
 kubectl auth can-i VERB [TYPE TYPE/NAME]
 </details>

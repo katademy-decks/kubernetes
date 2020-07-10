@@ -35,17 +35,17 @@ Leaving out the <i>--restart </i>flag creates a deployment.
 <b>Get the IPs of the "foo" deployment. Create a temp busybox pod and try hitting them on port 8080</b>
 </summary>
 Getting pods with <i>-o wide</i>&nbsp;will show IPs:
-<i>kubectl get pods -l app=foo -o wide</i><div><i>
-</i></div><div>Start an interactive session to use wget:</div><div><i>kubectl run temppod --image=busybox --restart=Never --rm -it -- sh
+<i>kubectl get pods -l app=foo -o wide</i>><i>
+</i>>Start an interactive session to use wget:><i>kubectl run temppod --image=busybox --restart=Never --rm -it -- sh
 
-</i></div><div><i>wget -O- &lt;PodIP&gt;:8080</i></div><div><i>exit</i></div>
+</i>><i>wget -O- &lt;PodIP&gt;:8080</i>><i>exit</i>
 </details>
 
 <details>
 <summary>
 <b>Create a service that exposes the "foo" deployment on port 6262. Verify its existence, check the endpoints</b>
 </summary>
-<i>kubectl expose deploy foo --port=6262 --target-port=8080</i><div><i>kubectl get service foo</i></div><div><i>kubectl get endpoints foo</i></div>
+<i>kubectl expose deploy foo --port=6262 --target-port=8080</i>><i>kubectl get service foo</i>><i>kubectl get endpoints foo</i>
 </details>
 
 <details>
@@ -54,14 +54,14 @@ Getting pods with <i>-o wide</i>&nbsp;will show IPs:
 </summary>
 <i>kubectl run nginx --image=nginx --replicas=2 --port=80 --expose</i>
 Check the label selector the service uses for the pods with
-<i>kubectl describe svc nginx</i><div><i>
-</i><div>Create a NetworkPolicy YAML with <i>spec.podSelector.matchLabels </i>to assign the policy to the right pods, and <i>ingress.from.podSelector.matchLabels </i>to restrict which pods can access it.
+<i>kubectl describe svc nginx</i>><i>
+</i>>Create a NetworkPolicy YAML with <i>spec.podSelector.matchLabels </i>to assign the policy to the right pods, and <i>ingress.from.podSelector.matchLabels </i>to restrict which pods can access it.
 
-<i>spec:</i></div><div><i>&nbsp; podSelector:</i></div><div><i>&nbsp; &nbsp; matchLabels:</i></div><div><i>&nbsp; &nbsp; &nbsp; run: nginx</i></div><div><i>&nbsp; ingress:</i></div><div><i>&nbsp; - from:</i></div><div><i>&nbsp; &nbsp; - podSelector:</i></div><div><i>&nbsp; &nbsp; &nbsp; &nbsp; matchLabels:</i></div><div><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; access: 'true'
+<i>spec:</i>><i>&nbsp; podSelector:</i>><i>&nbsp; &nbsp; matchLabels:</i>><i>&nbsp; &nbsp; &nbsp; run: nginx</i>><i>&nbsp; ingress:</i>><i>&nbsp; - from:</i>><i>&nbsp; &nbsp; - podSelector:</i>><i>&nbsp; &nbsp; &nbsp; &nbsp; matchLabels:</i>><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; access: 'true'
 </i>
 (note we need to put quotes around true so it is accepted as a string rather than a bool)
 Apply the policy with
-<i>kubectl apply -f policy.yaml</i></div></div>
+<i>kubectl apply -f policy.yaml</i>
 </details>
 
 <details>
@@ -80,7 +80,7 @@ Apply the policy with
 
 <details>
 <summary>
-<b><div style="">Provide command to list all Kubernetes deployments in the namespace</div></b>
+<b>style="">Provide command to list all Kubernetes deployments in the namespace</b>
 </summary>
 kubectl get deployments
 
@@ -101,32 +101,30 @@ kubectl get deployments
 <b>How to compare with Kubernetes live with manifest configuration</b>
 </summary>
 kubectl diff&nbsp;(see&nbsp;“Diffing Resources”)
-<div>kubectl diff -f deployment.yaml
+>kubectl diff -f deployment.yaml
 
 &gt;&gt; - replicas: 10 
 &lt;&lt; + replicas: 5
-</div>
 </details>
 
 <details>
 <summary>
 <b>Running busybox Containers for Troubleshooting</b>
 </summary>
-kubctl run demo --image cloudnatived/demo:hello --expose --port 8888<div>service "demo" created 
+kubctl run demo --image cloudnatived/demo:hello --expose --port 8888>service "demo" created 
 deployment.apps "demo" created
 
-kubectl run nslookup --image=busybox:1.28 --rm -it --restart=Never \ --command -- nslookup demo&nbsp;</div><div>Server: 10.79.240.10 Address 1: 10.79.240.10 kube-dns.kube-system.svc.cluster.local&nbsp;</div><div>Name: demo Address 1: 10.79.242.119 demo.default.svc.cluster.local</div><div>
-</div><div>
-<div>kubectl run wget --image=busybox:1.28 --rm -it --restart=Never --command -- wget -qO- http://demo:8888
-</div></div>
+kubectl run nslookup --image=busybox:1.28 --rm -it --restart=Never \ --command -- nslookup demo&nbsp;>Server: 10.79.240.10 Address 1: 10.79.240.10 kube-dns.kube-system.svc.cluster.local&nbsp;>Name: demo Address 1: 10.79.242.119 demo.default.svc.cluster.local>
+>
+>kubectl run wget --image=busybox:1.28 --rm -it --restart=Never --command -- wget -qO- http://demo:8888
 </details>
 
 <details>
 <summary>
 <b>What is&nbsp;Deployments?</b>
 </summary>
-* Supervisor program, which continually checks that the container is running, and if it ever stops, starts it again immediately.<div>* On traditional servers, you can use a tool like&nbsp;systemd,&nbsp;runit, or&nbsp;supervisord&nbsp;to do this; On Kubernetes, it is Deployment
-* Kubernetes&nbsp;creates a corresponding Deployment object for each pods</div><div>&nbsp; * Deployment records some information about the program:&nbsp;</div><div>&nbsp; * Name of the container image</div><div>&nbsp; *&nbsp;The number of replicas you want to run</div><div>&nbsp; * Whatever else it needs to know to start the container.</div>
+* Supervisor program, which continually checks that the container is running, and if it ever stops, starts it again immediately.>* On traditional servers, you can use a tool like&nbsp;systemd,&nbsp;runit, or&nbsp;supervisord&nbsp;to do this; On Kubernetes, it is Deployment
+* Kubernetes&nbsp;creates a corresponding Deployment object for each pods>&nbsp; * Deployment records some information about the program:&nbsp;>&nbsp; * Name of the container image>&nbsp; *&nbsp;The number of replicas you want to run>&nbsp; * Whatever else it needs to know to start the container.
 </details>
 
 <details>
@@ -141,28 +139,28 @@ kubectl run nslookup --image=busybox:1.28 --rm -it --restart=Never \ --command -
 <summary>
 <b>kubectl rollout pause</b>
 </summary>
-<div>Mark the provided <b>deployment</b> as paused, not to be reconciled by a controller.&nbsp;</div><div>
-</div><div><b>kubectl rollout resume&nbsp;</b></div>
+>Mark the provided <b>deployment</b> as paused, not to be reconciled by a controller.&nbsp;>
+><b>kubectl rollout resume&nbsp;</b>
 </details>
 
 <details>
 <summary>
 <b>kubectl scale</b>
 </summary>
-<div>Set a new size for a Deployment, ReplicaSet, Replication Controller, or StatefulSet.</div><div>
-</div><div>Allows one or more preconditions for the scale action.</div><div>
-</div><div>If --current-replicas or --resource-version is specified, it is validated before the scale is attempted, and it is guaranteed that the precondition holds true when the scale is sent to the server.</div><div>
-</div><div>--replicas=N</div><div>
-</div><div>--timeout=Ns</div><div>Time to wait before giving up on a scaling (0 - don't wait)</div>
+>Set a new size for a Deployment, ReplicaSet, Replication Controller, or StatefulSet.>
+>Allows one or more preconditions for the scale action.>
+>If --current-replicas or --resource-version is specified, it is validated before the scale is attempted, and it is guaranteed that the precondition holds true when the scale is sent to the server.>
+>--replicas=N>
+>--timeout=Ns>Time to wait before giving up on a scaling (0 - don't wait)
 </details>
 
 <details>
 <summary>
 <b>kubectl set env</b>
 </summary>
-<div>kubectl set env deployment/sample-build foo-bar
-</div><div>
-</div><div>kubectl set env deployment/sample-build --list</div>
+>kubectl set env deployment/sample-build foo-bar
+>
+>kubectl set env deployment/sample-build --list
 </details>
 
 <details>
@@ -183,25 +181,25 @@ Number of old ReplicaSets to retain for rollback
 <summary>
 <b>deployment.spec.selector</b>
 </summary>
-Label selector for pods<div>
-</div><div>Must match pod template labels</div>
+Label selector for pods>
+>Must match pod template labels
 </details>
 
 <details>
 <summary>
 <b>deployment.spec.strategy</b>
 </summary>
-<b>Recreate</b><div><b>
-</b></div><div><b>RollingUpdate</b></div><div>maxSurge: max number / percentage of pods that can be scheduled above the desired number of pods</div><div>
-</div><div>maxUnavailable: max number of pods that can be unavailable during the update</div>
+<b>Recreate</b>><b>
+</b>><b>RollingUpdate</b>>maxSurge: max number / percentage of pods that can be scheduled above the desired number of pods>
+>maxUnavailable: max number of pods that can be unavailable during the update
 </details>
 
 <details>
 <summary>
 <b><span style="color: rgb(34, 34, 34);">If an application doesn't require any stable identifiers or ordered deployment, deletion, or scaling, you should deploy your application using...</span></b>
 </summary>
-<b>Deployment </b>or<b> Replicaset</b>&nbsp;<div><span style="color: rgb(34, 34, 34);">
-</span></div><div><span style="color: rgb(34, 34, 34);">a workload object that provides a set of stateless replicas.</span></div>
+<b>Deployment </b>or<b> Replicaset</b>&nbsp;><span style="color: rgb(34, 34, 34);">
+</span>><span style="color: rgb(34, 34, 34);">a workload object that provides a set of stateless replicas.</span>
 </details>
 
 <details>

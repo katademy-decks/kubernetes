@@ -15,9 +15,9 @@
 <summary>
 <b>Kubernetes Master</b>
 </summary>
-<div><div>kube-controller-manager
-kube-apiserver<div>kube-scheduler</div></div><div>
-</div>Uses and provides the following communication:
+>>kube-controller-manager
+kube-apiserver>kube-scheduler>
+Uses and provides the following communication:
 <ul><li>fetch pod logs.</li><li>kubectl-attach</li><li>kubectl port-forward</li><li>SSH tunnel</li></ul>
 </details>
 
