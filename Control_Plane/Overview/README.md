@@ -2,7 +2,7 @@
 
 <details>
 <summary>
-List processes running on every Kubernetes Master
+<b>List processes running on every Kubernetes Master</b>
 </summary>
 1. kube-apiserver
 2. kube-controller-manager
@@ -13,7 +13,7 @@ List processes running on every Kubernetes Master
 
 <details>
 <summary>
-Kubernetes Master
+<b>Kubernetes Master</b>
 </summary>
 <div><div>kube-controller-manager
 kube-apiserver<div>kube-scheduler</div></div><div>

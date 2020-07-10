@@ -2,95 +2,87 @@
 
 <details>
 <summary>
-Kubernetes Master controls...
+<b>Kubernetes Master controls...</b>
 </summary>
 Kubernetes nodes
 </details>
 
 <details>
 <summary>
-The format used for Kubernetes resource files.
+<b>The format used for Kubernetes resource files.</b>
 </summary>
 YAML
 </details>
 
 <details>
 <summary>
-The name of the Kubernetes Controller that provides declarative updates for pods.
+<b>The name of the Kubernetes Controller that provides declarative updates for pods.</b>
 </summary>
 Deployments
 </details>
 
 <details>
 <summary>
-The resource for storing sensitive information in Kubernetes.
+<b>The resource for storing sensitive information in Kubernetes.</b>
 </summary>
 Secrets
 </details>
 
 <details>
 <summary>
-A Kubernetes resource that exposes deployments.
+<b>A Kubernetes resource that exposes deployments.</b>
 </summary>
 Services
 </details>
 
 <details>
 <summary>
-Where do container images need to exist for Kubernetes to work with them?
+<b>Where do container images need to exist for Kubernetes to work with them?</b>
 </summary>
 A container registry.
 </details>
 
 <details>
 <summary>
-Kubernetes deployments can be in what states?&nbsp;
-
+<b>Kubernetes deployments can be in what states?&nbsp;</b>
 </summary>
-1.&nbsp;*Progressing*, which means the deployment is in the process of performing a task&nbsp;
-2.&nbsp;*Completed*, which means the rollout of containers is complete and all pods are running the latest version of containers&nbsp;
-3.&nbsp;*Failed*, which indicates the deployment process encountered a problem it could not recover from&nbsp;&nbsp;
+1.&nbsp;<b>Progressing</b>, which means the deployment is in the process of performing a task&nbsp;
+2.&nbsp;<b>Completed</b>, which means the rollout of containers is complete and all pods are running the latest version of containers&nbsp;
+3.&nbsp;<b>Failed</b>, which indicates the deployment process encountered a problem it could not recover from&nbsp;&nbsp;
 
 <img src="paste-b161711b323beee4f9321701871a89dbe94c759c.jpg">
 <img src="paste-eb67b2c5aa380b7fa66366a34219cd767c81a081.jpg">
 <img src="paste-3b99c3b118c2e59529bf12a6a554aa2c5c5bab73.jpg">
-
 </details>
 
 <details>
 <summary>
-In order to add a node to a cluster, you decide to edit the managed instance group of the cluster and enable autoscaling. Is that a valid approach?
-
+<b>In order to add a node to a cluster, you decide to edit the managed instance group of the cluster and enable autoscaling. Is that a valid approach?</b>
 </summary>
 No, because you should not manually manage the MIG behind a cluster.
 </details>
 
 <details>
 <summary>
-Which structure must be created before you can monitor a Kubernetes cluster with Stackdriver?
-
+<b>Which structure must be created before you can monitor a Kubernetes cluster with Stackdriver?</b>
 </summary>
 A workspace
 
-*<img src="nGFyNMS14MPw03_cnfdIJZ--s-jYpF7pLU2wkUVf9nvvzzflV3U6od1lDT-hHL85uWIqjkJwvn53Aqb2k01Mwi26NW3D0eGInXdh9D2gw9uH7Mr1yFo6jHMw6QhQuZ6YevJQ.png">*
-
+<b><img src="nGFyNMS14MPw03_cnfdIJZ--s-jYpF7pLU2wkUVf9nvvzzflV3U6od1lDT-hHL85uWIqjkJwvn53Aqb2k01Mwi26NW3D0eGInXdh9D2gw9uH7Mr1yFo6jHMw6QhQuZ6YevJQ.png"></b>
 </details>
 
 <details>
 <summary>
-What's the name of a Kubernetes entity that executes workloads?
-
+<b>What's the name of a Kubernetes entity that executes workloads?</b>
 </summary>
 Node
 
 <img src="paste-2dd3a0d3b489fe0cc29ee86ddb9283470450af35.jpg">
-
 </details>
 
 <details>
 <summary>
-What is a Kubernetes Service?
-
+<b>What is a Kubernetes Service?</b>
 </summary>
 <div style="">It's an abstraction which defines a logical set of Pods and a policy to acces them
 
@@ -102,18 +94,17 @@ What is a Kubernetes Service?
 
 <details>
 <summary>
-List functionalities of K8s *Service*
+<b>List functionalities of K8s <b>Service</b></b>
 </summary>
 1. It exposes Pods to external traffic
 2. It provides Load balancing traffic across multiple Pods
 3. It allows Pods to die and replicate without impacting the application
 <img src="paste-757549a455e7be1b4e5c13d62ef77db0233367a9.jpg">
-
 </details>
 
 <details>
 <summary>
-List possible ServiceTypes for Kubernetes Service
+<b>List possible ServiceTypes for Kubernetes Service</b>
 </summary>
 1. ClusterIP (default)
 2. NodePort
@@ -121,93 +112,86 @@ List possible ServiceTypes for Kubernetes Service
 4. ExternalName
 5. Headless
 
-6. Ingress (*not*&nbsp;technically a ServiceType - it's used to expose multiple services under the same IP adress)
+6. Ingress (<b>not</b>&nbsp;technically a ServiceType - it's used to expose multiple services under the same IP adress)
 
-*<img src="0x26uG-Rv4DcK-uh0Vlwsbr9vrbQSXUaSlgy5O5mBgdo50hlKMi7qQ2RSPHV0aqMx4P6M4eP9XLziphq2XFto9E8Wop_CEIysF2i3NgRplcKvohnsc44dVx6af1rRM_FswBx.png">*
+<b><img src="0x26uG-Rv4DcK-uh0Vlwsbr9vrbQSXUaSlgy5O5mBgdo50hlKMi7qQ2RSPHV0aqMx4P6M4eP9XLziphq2XFto9E8Wop_CEIysF2i3NgRplcKvohnsc44dVx6af1rRM_FswBx.png"></b>
 <img src="paste-6ee96b90dd90bcc12c5964bf7930e8f4afc8c2d4.jpg">
 </details>
 
 <details>
 <summary>
-Which *type *of Service makes it only reachable from within the cluster?
+<b>Which <b>type </b>of Service makes it only reachable from within the cluster?</b>
 </summary>
-*ClusterIP *(default ServiceType)
+<b>ClusterIP </b>(default ServiceType)
 
 <img src="paste-5591abe579a78ac5cfdd8e894ab1f587dc262e40.jpg">
-
 </details>
 
 <details>
 <summary>
-<div style="">What is a Kubernetes Namespace?</div>
+<b><div style="">What is a Kubernetes Namespace?</div></b>
 </summary>
 <div style="">An abstraction used to support multiple virtual Clusters on the same physical cluster</div>
-*<img src="m9Ge4aLkFv8EIStMhDpCp5mPo755jtUpjrdCykDG1_Citr7XFC4eMUkveG2hbJ6sMhsx63Eqtz73CCubJ9Wee2U44cPhKtCz3FWOo8jCT1khDkjFMsPsnlPv5jlYEmWW4CLX.png">
-**<img src="MX5J-ddeKxh4Xg18FH9NJm2SfzyHLFZ1xYNqNjWWHJx9j49M43TPh49kRu6WmRLdLPesU22KYlJNImKs-jKd8rSV4-Z1XzUAfokuyLm3aYTZauIDQJSmxDIPrAQEwtWvWU5Q.png">
-**<img src="UudM90ng9cbOx-42AN7L81z9Lizrls57-43R28cxJicVXMolOFzGzXgW83JQlhIOiydKaxle93AHcHeqhU24gjMKXMK2s1xOKYcdbAZmz386NAQWjjutSm0ccfmmyRnAoRAT.png">*
-
+<b><img src="m9Ge4aLkFv8EIStMhDpCp5mPo755jtUpjrdCykDG1_Citr7XFC4eMUkveG2hbJ6sMhsx63Eqtz73CCubJ9Wee2U44cPhKtCz3FWOo8jCT1khDkjFMsPsnlPv5jlYEmWW4CLX.png">
+</b><b><img src="MX5J-ddeKxh4Xg18FH9NJm2SfzyHLFZ1xYNqNjWWHJx9j49M43TPh49kRu6WmRLdLPesU22KYlJNImKs-jKd8rSV4-Z1XzUAfokuyLm3aYTZauIDQJSmxDIPrAQEwtWvWU5Q.png">
+</b><b><img src="UudM90ng9cbOx-42AN7L81z9Lizrls57-43R28cxJicVXMolOFzGzXgW83JQlhIOiydKaxle93AHcHeqhU24gjMKXMK2s1xOKYcdbAZmz386NAQWjjutSm0ccfmmyRnAoRAT.png"></b>
 </details>
 
 <details>
 <summary>
-<div style="">What is ClusterIP in Kubernetes?</div>
+<b><div style="">What is ClusterIP in Kubernetes?</div></b>
 </summary>
 <div style="">Service type, which exposes the service on a cluster-internal IP address. Choosing this method makes the service reachable only from within the cluster.</div>
-*<img src="LrIJFiLam2cpkcf5myVNScFXQXKuDfEwd0xSotjkLa7jqoX8JfB7LoKGcD4iEw4qlhg24NI7Jm-3jL73NszW-cek7bmMVY2vyjjUyGTb-9hEjUO2ipOf7gaMbnekRZP6Bmr5.png">
-**<img src="5wuy9L_oMBJcBsPsIwmD59ILSh7-t3ZNBKfhVkLapEWie2EGwgVThhPvePn4mGV_7ZCHNX8rWU2lbtoVuUC1kP23qsXGxYg_Z1ByEveznrWNR0vuezgVZCZSL4HSvLgtMtbY.png">*
-
+<b><img src="LrIJFiLam2cpkcf5myVNScFXQXKuDfEwd0xSotjkLa7jqoX8JfB7LoKGcD4iEw4qlhg24NI7Jm-3jL73NszW-cek7bmMVY2vyjjUyGTb-9hEjUO2ipOf7gaMbnekRZP6Bmr5.png">
+</b><b><img src="5wuy9L_oMBJcBsPsIwmD59ILSh7-t3ZNBKfhVkLapEWie2EGwgVThhPvePn4mGV_7ZCHNX8rWU2lbtoVuUC1kP23qsXGxYg_Z1ByEveznrWNR0vuezgVZCZSL4HSvLgtMtbY.png"></b>
 </details>
 
 <details>
 <summary>
-<div style="">Describe Service type LoadBalancer&nbsp;</div>
+<b><div style="">Describe Service type LoadBalancer&nbsp;</div></b>
 </summary>
 <div style="">LoadBalancer exposes the Service externally using a cloud provider’s load balancer</div>
 <img src="QnnXx8MGILXDCYsLAdngTctLUdjhhzbX9PRWiUfDI2UhhBMhYiWU-0Ysi-sitiPhgLNqp6wBPXHl9AAjL76Ov6_GgikVnJojpvi1UL_2NCZ-REKjEa_5cE20ckCHOdv7zZ1x.png">
 <img src="paste-b61642fa022fc52b5b490f29808fa0fa4061f4c7.jpg">
-
 </details>
 
 <details>
 <summary>
-<div style="">Describe Service type NodePort</div>
+<b><div style="">Describe Service type NodePort</div></b>
 </summary>
 <div style=""><div style="">NodePort exposes the Service on each Node’s IP at a static port (the NodePort). 
 A ClusterIP Service, to which the NodePort Service routes, is automatically created.&nbsp;
 
-*<img src="rAgf9__TwBFmrVUEUQ8lTsqkCFom_JxHss_iNB8eeZYIBGOW_rbIx4fZCr2S-glINvZNXzsY5q4OrT5VsjO4YxcOIrvHQsesmXb9XUQKEa0tY0IC-gxj4xAbbH1l5hB8YPJ6.png">
-**<img src="wK72ivZjNj6rt3AnkJgElc45Z12JhbUL1HkUIlM3XZdoGosqFZedTSbPMhHqrRbJzHcR3Sy0jAwk90lhARxQnIckVKPZF_0g80AUSfA-2pPDvpUA2pl7ur7z6baDnlIEXP6s.png">*
+<b><img src="rAgf9__TwBFmrVUEUQ8lTsqkCFom_JxHss_iNB8eeZYIBGOW_rbIx4fZCr2S-glINvZNXzsY5q4OrT5VsjO4YxcOIrvHQsesmXb9XUQKEa0tY0IC-gxj4xAbbH1l5hB8YPJ6.png">
+</b><b><img src="wK72ivZjNj6rt3AnkJgElc45Z12JhbUL1HkUIlM3XZdoGosqFZedTSbPMhHqrRbJzHcR3Sy0jAwk90lhARxQnIckVKPZF_0g80AUSfA-2pPDvpUA2pl7ur7z6baDnlIEXP6s.png"></b>
 </div></div>
 </details>
 
 <details>
 <summary>
-<div style="">Which Kubernetes entity does this picture represent?</div>
-<img src="paste-83b64e7181e7ef9182c3107e228e930f9a8beca3.jpg">
-
+<b><div style="">Which Kubernetes entity does this picture represent?</div>
+<img src="paste-83b64e7181e7ef9182c3107e228e930f9a8beca3.jpg"></b>
 </summary>
 NodePort Service
 
-*<img src="wK72ivZjNj6rt3AnkJgElc45Z12JhbUL1HkUIlM3XZdoGosqFZedTSbPMhHqrRbJzHcR3Sy0jAwk90lhARxQnIckVKPZF_0g80AUSfA-2pPDvpUA2pl7ur7z6baDnlIEXP6s.png">*
-
+<b><img src="wK72ivZjNj6rt3AnkJgElc45Z12JhbUL1HkUIlM3XZdoGosqFZedTSbPMhHqrRbJzHcR3Sy0jAwk90lhARxQnIckVKPZF_0g80AUSfA-2pPDvpUA2pl7ur7z6baDnlIEXP6s.png"></b>
 </details>
 
 <details>
 <summary>
-<div style="">Which Kubernetes ServiceType does this picture represent?
+<b><div style="">Which Kubernetes ServiceType does this picture represent?
 
-*<img src="8zMkWcUy-sQVvHu6EEgij-3E3MHgiG2OuGoKp6l88A2O-HQTo-OieuBw-5cjrmUAabVmjFYDkxoPxnccOBtwlR57iqlwtzW49febM9ghA480pvFdSILE7J1_zmJQi4qGyv__.png">*
-</div>
+<b><img src="8zMkWcUy-sQVvHu6EEgij-3E3MHgiG2OuGoKp6l88A2O-HQTo-OieuBw-5cjrmUAabVmjFYDkxoPxnccOBtwlR57iqlwtzW49febM9ghA480pvFdSILE7J1_zmJQi4qGyv__.png"></b>
+</div></b>
 </summary>
-*<div>ClusterIP</div>*
-*<img src="3FVc5EVpg7WzzWdGMov51g7LWETGHx5-Kv0Qt1Ti0VRXgHCHFA3EV1AIknarjMZIBfULfE9-UGbwJZyXUoxu3qs-qN1dUd436c6KqZ_JkvtsfLbolO2QW27cFPyt6UbMkx7d.png">
-**<img src="qCzpNHNAC2mCuaACHwq4u69BN05-Hfpwk4nvK6cbVV7WoiJlq8ak4clCabIpdgv_T0kumUklOv-qEGnVXnS-Y3dOqrr_ohT6sGM-ge7p6veBNytk8JJLCMjXPnxxTTQZFdnm.png">*
-
+<b><div>ClusterIP</div></b>
+<b><img src="3FVc5EVpg7WzzWdGMov51g7LWETGHx5-Kv0Qt1Ti0VRXgHCHFA3EV1AIknarjMZIBfULfE9-UGbwJZyXUoxu3qs-qN1dUd436c6KqZ_JkvtsfLbolO2QW27cFPyt6UbMkx7d.png">
+</b><b><img src="qCzpNHNAC2mCuaACHwq4u69BN05-Hfpwk4nvK6cbVV7WoiJlq8ak4clCabIpdgv_T0kumUklOv-qEGnVXnS-Y3dOqrr_ohT6sGM-ge7p6veBNytk8JJLCMjXPnxxTTQZFdnm.png"></b>
 </details>
 
 <details>
 <summary>
-When was container war was over?
+<b>When was container war was over?</b>
 </summary>
 By late 2017, the orchestration wars were over, and Kubernetes had won.&nbsp;
 Ref:&nbsp;https://learning.oreilly.com/library/view/cloud-native-devops/9781492040750/ch01.html
@@ -215,7 +199,7 @@ Ref:&nbsp;https://learning.oreilly.com/library/view/cloud-native-devops/97814920
 
 <details>
 <summary>
-What are all 10 tasks K8s can do
+<b>What are all 10 tasks K8s can do</b>
 </summary>
 Automation
 autoscaling
@@ -231,14 +215,14 @@ upgrading servers<div></div>
 
 <details>
 <summary>
-What is kubernetes is not fit
+<b>What is kubernetes is not fit</b>
 </summary>
 * Database, it has state and replicas (in state)
 </details>
 
 <details>
 <summary>
-kubernetes shell, ps1, log, data-stack-clic-shell
+<b>kubernetes shell, ps1, log, data-stack-clic-shell</b>
 </summary>
 kube-ps1 -&nbsp;&nbsp;If you use the&nbsp;bash&nbsp;or&nbsp;zsh&nbsp;shells, there’s a little&nbsp;utility&nbsp;that will add the current Kubernetes context to your prompt.
 <div>kube-shell -- provides a pop-up menu of possible completions for each command
@@ -249,15 +233,14 @@ kube-ps1 -&nbsp;&nbsp;If you use the&nbsp;bash&nbsp;or&nbsp;zsh&nbsp;shells, the
 
 <details>
 <summary>
-Resources allowed during exam
-
+<b>Resources allowed during exam</b>
 </summary>
 * https://kubernetes.io/docs/ and its subdomain<div>*&nbsp;https://github.com/kubernetes/</div><div>*&nbsp;https://kubernetes.io/blog/</div>
 </details>
 
 <details>
 <summary>
-cloudnatived/demo:hello deployment spec
+<b>cloudnatived/demo:hello deployment spec</b>
 </summary>
 spec:
  &nbsp;containers:
@@ -265,20 +248,18 @@ spec:
  &nbsp;&nbsp;&nbsp;image: cloudnatived/demo:hello
  &nbsp;&nbsp;&nbsp;ports:
  &nbsp;&nbsp;&nbsp;- containerPort: 8888
-
 </details>
 
 <details>
 <summary>
-Image Pull Policy by kubernetes to node
-
+<b>Image Pull Policy by kubernetes to node</b>
 </summary>
 * Always pull<div>* Never pull</div><div>* IfNotPresent pull (default)</div>
 </details>
 
 <details>
 <summary>
-How to set environment variablein k8s?
+<b>How to set environment variablein k8s?</b>
 </summary>
 containers:
 - name: demo
@@ -286,30 +267,28 @@ containers:
  &nbsp;env:
  &nbsp;- name: GREETING
  &nbsp;&nbsp;&nbsp;value: "Hello from the environment"
-
 </details>
 
 <details>
 <summary>
-How to harden the security of the container?
-
+<b>How to harden the security of the container?</b>
 </summary>
 <div>containers:
 - name: demo
  &nbsp;image: cloudnatived/demo:hello
-* &nbsp;securityContext:
-*<strong>&nbsp; &nbsp;<font color="#ab1aff">readOnlyRootFilesystem: true</font></strong>*<font color="#ab1aff">
-</font>*</div><div><strong>&nbsp; &nbsp;<i><font color="#ff5d83">runAsNonRoot: true</font></i></strong>*
- &nbsp;&nbsp;&nbsp;runAsUser: 1000*
-</div><div>&nbsp; &nbsp;# setuid&nbsp;mechanism can temporarily gain the privileges of the user that&nbsp;<em>owns</em>&nbsp;the binary*
-*</div><div>&nbsp; &nbsp;allowPrivilegeEscalation: false
+<b> &nbsp;securityContext:
+</b><strong>&nbsp; &nbsp;<font color="#ab1aff">readOnlyRootFilesystem: true</font></strong><b><font color="#ab1aff">
+</font></b></div><div><strong>&nbsp; &nbsp;<i><font color="#ff5d83">runAsNonRoot: true</font></i></strong><b>
+ &nbsp;&nbsp;&nbsp;runAsUser: 1000</b>
+</div><div>&nbsp; &nbsp;# setuid&nbsp;mechanism can temporarily gain the privileges of the user that&nbsp;<em>owns</em>&nbsp;the binary<b>
+</b></div><div>&nbsp; &nbsp;allowPrivilegeEscalation: false
 </div><div>&nbsp; &nbsp;capabilities:&nbsp;</div><div>&nbsp; &nbsp; &nbsp;drop: ["all"]&nbsp;</div><div>&nbsp; &nbsp; &nbsp;drop: ["CHOWN", "NET_RAW", "SETPCAP"]&nbsp;</div><div>&nbsp; &nbsp; &nbsp;add: ["NET_ADMIN"]<strong>
 </strong></div>
 </details>
 
 <details>
 <summary>
-Volume - storage - emptyDir&nbsp; ephemeral
+<b>Volume - storage - emptyDir&nbsp; ephemeral</b>
 </summary>
 * emptyDir - This is a piece of ephemeral storage<div><div>
 </div></div><div>
@@ -331,20 +310,18 @@ spec:
 
 <details>
 <summary>
-Container restart spec inside manifest - Restart Policies
+<b>Container restart spec inside manifest - Restart Policies</b>
 </summary>
 apiVersion: v1
 kind: Pod
 ...
 spec:
  &nbsp;restartPolicy: OnFailure|Never|Always
-
 </details>
 
 <details>
 <summary>
-What Are Labels?
-
+<b>What Are Labels?</b>
 </summary>
 * Labels are key/value pairs that are attached to objects, such as pods.
 <div>* They don't imply semantics to the core-system</div>
@@ -352,16 +329,14 @@ What Are Labels?
 
 <details>
 <summary>
-If two pods required to be on same node, what to do?
+<b>If two pods required to be on same node, what to do?</b>
 </summary>
 If the two Pods absolutely must be colocated, put their containers in the same Pod.&nbsp;
-
 </details>
 
 <details>
 <summary>
-Specify affinity that the&nbsp;server&nbsp;Pod is scheduled on the same node that is also running a Pod labeled&nbsp;cache
-
+<b>Specify affinity that the&nbsp;server&nbsp;Pod is scheduled on the same node that is also running a Pod labeled&nbsp;cache</b>
 </summary>
 <div>----</div><div>spec:
 </div> &nbsp;affinity:
@@ -373,21 +348,19 @@ Specify affinity that the&nbsp;server&nbsp;Pod is scheduled on the same node tha
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: In
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values: ["cache"]
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;topologyKey: kubernetes.io/hostname
-
 </details>
 
 <details>
 <summary>
-Why not use pod affinities?
+<b>Why not use pod affinities?</b>
 </summary>
 * Pod affinities restrict the scheduler’s freedom
 *&nbsp;Trading off one application against another.&nbsp;
-
 </details>
 
 <details>
 <summary>
-Why do you need&nbsp;Pod Controllers?
+<b>Why do you need&nbsp;Pod Controllers?</b>
 </summary>
 <div>If the container exits for some reason, you have to manually restart it.</div><div>
 </div><div>There’s only one replica of your container and no way to load-balance traffic across multiple replicas if you ran them manually.</div><div>
@@ -397,8 +370,7 @@ Why do you need&nbsp;Pod Controllers?
 
 <details>
 <summary>
-Horizontal Pod Autoscaler
-
+<b>Horizontal Pod Autoscaler</b>
 </summary>
 A Horizontal Pod Autoscaler (HPA) watches a specified Deployment, constantly monitoring a given metric to see if it needs to scale the number of replicas up or down.
 You can autoscale the Deployment based on this value: for example, you could create an HPA that targets 80% CPU utilization for the Pods. 
@@ -420,21 +392,18 @@ spec:
  &nbsp;&nbsp;&nbsp;resource:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: cpu
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;targetAverageUtilization: 80
-
 </details>
 
 <details>
 <summary>
-What is Custom resource in Kubernetes?
+<b>What is Custom resource in Kubernetes?</b>
 </summary>
 A&nbsp;<em>custom resource</em>&nbsp;is an extension of the Kubernetes API that is not necessarily available in a default Kubernetes installation. It represents a customization of a particular Kubernetes installation. However, many core Kubernetes functions are now built using custom resources, making Kubernetes more modular.
-
 </details>
 
 <details>
 <summary>
-Building Your Own Kubernetes Tools, How to list all the pods in your cluster using go?
-
+<b>Building Your Own Kubernetes Tools, How to list all the pods in your cluster using go?</b>
 </summary>
 Operators and Custom Resource Definitions (CRDs)
 
@@ -448,13 +417,11 @@ for _, i := range podList.Items {
  &nbsp;&nbsp;&nbsp;fmt.Println(i.ObjectMeta.Name)
 }
 ...
-
 </details>
 
 <details>
 <summary>
-Sample ingress routing?
-
+<b>Sample ingress routing?</b>
 </summary>
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -472,13 +439,11 @@ spec:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backend:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serviceName: goodbye
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servicePort: 80
-
 </details>
 
 <details>
 <summary>
-Ingress certificate configuration :: USING EXISTING TLS CERTIFICATES
-
+<b>Ingress certificate configuration :: USING EXISTING TLS CERTIFICATES</b>
 </summary>
 apiVersion: v1
 kind: Secret
@@ -488,12 +453,11 @@ metadata:
 data:
  &nbsp;tls.crt: LS0tLS1CRUdJTiBDRV...LS0tCg==
  &nbsp;tls.key: LS0tLS1CRUdJTiBSU0...LS0tCg==
-
 </details>
 
 <details>
 <summary>
-Two ways to configure the pod for dynamic values (password, dns=names)
+<b>Two ways to configure the pod for dynamic values (password, dns=names)</b>
 </summary>
 Pass values to the application via environment variables in the Pod spec. 
 
@@ -514,23 +478,19 @@ spec:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: "Such a sweet sorrow"
 
 Store configuration data directly in Kubernetes, using the ConfigMap and Secret objects.
-
 </details>
 
 <details>
 <summary>
-ConfigMaps
-
+<b>ConfigMaps</b>
 </summary>
 The ConfigMap is the primary object for storing configuration data in Kubernetes. 
 You can supply that data to an application either by creating a file in the Pod, or by injecting it into the Pod’s environment.
-
 </details>
 
 <details>
 <summary>
-How to Inject configMaps into environment
-
+<b>How to Inject configMaps into environment</b>
 </summary>
 deployment:
 apiVersion: v1
@@ -551,13 +511,11 @@ spec:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;configMapKeyRef:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: demo-config
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key: greeting
-
 </details>
 
 <details>
 <summary>
-How to Pass an environment variable to entrypoint? Where env varaible derived from configMaps
-
+<b>How to Pass an environment variable to entrypoint? Where env varaible derived from configMaps</b>
 </summary>
 spec:
  &nbsp;containers:
@@ -574,12 +532,11 @@ spec:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;configMapKeyRef:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: demo-config
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key: greeting
-
 </details>
 
 <details>
 <summary>
-How to create Config Files from ConfigMaps - configmap.yaml?
+<b>How to create Config Files from ConfigMaps - configmap.yaml?</b>
 </summary>
 <div><div>Looking at the&nbsp;volumes&nbsp;section,&nbsp;you can see that we create a Volume named&nbsp;demo-config-volume, from the existing&nbsp;demo-config&nbsp;ConfigMap.</div><div>In the container’s&nbsp;volumeMounts&nbsp;section,&nbsp;we mount this volume on the&nbsp;mountPath: /config/, select the key&nbsp;config, and write it to the path&nbsp;<em>demo.yaml</em>. The result of this will be that Kubernetes will create a file in the container at&nbsp;<em>/config/demo.yaml</em>, containing the&nbsp;demo-config&nbsp;data&nbsp;in YAML format:</div></div><div>
 </div><div>
@@ -630,8 +587,7 @@ spec:
 
 <details>
 <summary>
-Updating Pods on a Config Change
-
+<b>Updating Pods on a Config Change</b>
 </summary>
 <strong>checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}</strong>
 <div><strong>
@@ -641,7 +597,7 @@ Updating Pods on a Config Change
 
 <details>
 <summary>
-Create an nginx pod that mounts the secret mysecret2 in a volume on path /etc/foo
+<b>Create an nginx pod that mounts the secret mysecret2 in a volume on path /etc/foo</b>
 </summary>
 Edit standard pod YAML to add volumes with a <i>volumes.secret.secretName </i>value:<div>
 </div><div><i>spec:</i></div><div><i>&nbsp; volumes:</i></div><div><i>&nbsp; - name: foo</i></div><div><i>&nbsp; &nbsp; secret:</i></div><div><i>&nbsp; &nbsp; &nbsp; secretName: mysecret2</i></div><div><i>&nbsp; containers:</i></div><div><i>&nbsp; - image: nginx</i></div><div><i>&nbsp; &nbsp; volumeMounts:</i></div><div><i>&nbsp; &nbsp; - name: foo</i></div><div><i>&nbsp; &nbsp; &nbsp; mountPath: /etc/foo</i></div>
@@ -649,15 +605,14 @@ Edit standard pod YAML to add volumes with a <i>volumes.secret.secretName </i>va
 
 <details>
 <summary>
-OpenFaaS&nbsp;
-
+<b>OpenFaaS&nbsp;</b>
 </summary>
 Function as a service on Kubernetes
 </details>
 
 <details>
 <summary>
-Endpoint
+<b>Endpoint</b>
 </summary>
 A k8s API object created for you when deploying a service.<div>
 </div><div>Map to pods via selectors.</div>
@@ -665,7 +620,7 @@ A k8s API object created for you when deploying a service.<div>
 
 <details>
 <summary>
-Role
+<b>Role</b>
 </summary>
 A role contains a set of permissions<div>
 </div><div>Permissions are additivite (no "deny" rules)</div><div>
@@ -675,14 +630,14 @@ A role contains a set of permissions<div>
 
 <details>
 <summary>
-What is a headless service?
+<b>What is a headless service?</b>
 </summary>
 Without a ClusterIP. Directly access pods without a proxy.
 </details>
 
 <details>
 <summary>
-How would you improve Kubernetes security
+<b>How would you improve Kubernetes security</b>
 </summary>
 <div>Log everything in prod</div><div>
 </div><div>Alert and apply new CVE fixes</div><div>
@@ -705,7 +660,7 @@ How would you improve Kubernetes security
 
 <details>
 <summary>
-What is a Job? What are all the fields to control them?
+<b>What is a Job? What are all the fields to control them?</b>
 </summary>
 A Pod ran a specific number of completions or schedules&nbsp;<div>
 </div><div>with or without parallelism.<div>
@@ -729,7 +684,7 @@ spec:
 
 <details>
 <summary>
-What is ingress?
+<b>What is ingress?</b>
 </summary>
 An API object that manages external access to the services in a cluster, typically HTTP.
 
@@ -737,20 +692,18 @@ Ingress can provide load balancing, SSL termination and name-based virtual hosti
 
 Ingress as a load balancer that sits in front of a Service
 Ingress --&gt; Service =&gt; PODs^*
-
 </details>
 
 <details>
 <summary>
-What are taints and&nbsp;<strong>tolerations</strong>?
+<b>What are taints and&nbsp;<strong>tolerations</strong>?</b>
 </summary>
 <em>Taints</em>&nbsp;allow a node to repel a set of Pods, based on certain properties of the node.
-
 </details>
 
 <details>
 <summary>
-LoadBalancer Service
+<b>LoadBalancer Service</b>
 </summary>
 <div>L4</div><div>
 </div><div>Creates an external IP address</div><div>
@@ -761,7 +714,7 @@ LoadBalancer Service
 
 <details>
 <summary>
-Service
+<b>Service</b>
 </summary>
 A group of endpoints (usually pods)<div>
 </div><div>Provides stable Virtual IP address which automatically routes to backend pods.</div><div>
@@ -770,7 +723,7 @@ A group of endpoints (usually pods)<div>
 
 <details>
 <summary>
-Conditions
+<b>Conditions</b>
 </summary>
 Latest variable observations of an object's state.
 
@@ -781,7 +734,7 @@ Ready, ContainerReady, lastProbeTime, reason
 
 <details>
 <summary>
-Flat network space
+<b>Flat network space</b>
 </summary>
 Pods MUST be reachable across Nodes<div>
 </div><div>via L2, L3 or overlay</div><div>
@@ -790,7 +743,7 @@ Pods MUST be reachable across Nodes<div>
 
 <details>
 <summary>
-Kube DNS
+<b>Kube DNS</b>
 </summary>
 <div>Autoscalable deployment with a static virtual IP.</div><div>
 </div><div>Servers "A" and "SRV" records to access services and pods</div>
@@ -798,7 +751,7 @@ Kube DNS
 
 <details>
 <summary>
-kube-scheduler
+<b>kube-scheduler</b>
 </summary>
 Schedules pods on available worker nodes.<div>
 </div><div><div>Policy-rich</div><div>Topology-aware,&nbsp;</div><div>Improves impacts availability, performance, and capacity of nodes</div><div>

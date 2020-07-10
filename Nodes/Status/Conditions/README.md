@@ -2,73 +2,73 @@
 
 <details>
 <summary>
-Ready
+<b>Ready</b>
 </summary>
-*True*<div>if the node is healthy and ready to accept pods</div><div>*
-*</div><div>*False*</div><div>if the node us unhealthy and is not accepting pods</div><div>*
-*</div><div>*Unknown*</div><div>If the node controller has not heard from the node in the last 40 seconds</div>
+<b>True</b><div>if the node is healthy and ready to accept pods</div><div><b>
+</b></div><div><b>False</b></div><div>if the node us unhealthy and is not accepting pods</div><div><b>
+</b></div><div><b>Unknown</b></div><div>If the node controller has not heard from the node in the last 40 seconds</div>
 </details>
 
 <details>
 <summary>
-DiskPressure
+<b>DiskPressure</b>
 </summary>
-*True*<div>if the node's disk capacity is low</div>
+<b>True</b><div>if the node's disk capacity is low</div>
 </details>
 
 <details>
 <summary>
-MemoryPressure
+<b>MemoryPressure</b>
 </summary>
-*True*<div>if the node's memory is low</div>
+<b>True</b><div>if the node's memory is low</div>
 </details>
 
 <details>
 <summary>
-PIDPressure
+<b>PIDPressure</b>
 </summary>
-*True*&nbsp;if there are too many processes on the node
+<b>True</b>&nbsp;if there are too many processes on the node
 </details>
 
 <details>
 <summary>
-PIDPressure
+<b>PIDPressure</b>
 </summary>
-*True*&nbsp;if there are too many processes on the node
+<b>True</b>&nbsp;if there are too many processes on the node
 </details>
 
 <details>
 <summary>
-NetworkUnavailable
+<b>NetworkUnavailable</b>
 </summary>
-*True*&nbsp;if the network for the node is not correctly configured
+<b>True</b>&nbsp;if the network for the node is not correctly configured
 </details>
 
 <details>
 <summary>
-NetworkUnavailable
+<b>NetworkUnavailable</b>
 </summary>
-*True*&nbsp;if the network for the node is not correctly configured
+<b>True</b>&nbsp;if the network for the node is not correctly configured
 </details>
 
 <details>
 <summary>
-A node is reachable by the *API server *but its&nbsp;*Ready* condition has remained&nbsp;*False* or *Unknown* for longer than the *kube-controller-manager*'s&nbsp;*pod-eviction-timeout*<div>
-</div><div>What happens to the Pods on the node?</div>
+<b>A node is reachable by the <b>API server </b>but its&nbsp;<b>Ready</b> condition has remained&nbsp;<b>False</b> or <b>Unknown</b> for longer than the <b>kube-controller-manager</b>'s&nbsp;<b>pod-eviction-timeout</b><div>
+</div><div>What happens to the Pods on the node?</div></b>
 </summary>
 All Pods on the node are scheduled for deletion by the node controller
 </details>
 
 <details>
 <summary>
-Capacity
+<b>Capacity</b>
 </summary>
 <div>Capacity fields describe the total amount of resources that a Node has</div>
 </details>
 
 <details>
 <summary>
-Allocatable
+<b>Allocatable</b>
 </summary>
 Describes the amount of the Node's resources that are available to be consumed by Pods
 </details>

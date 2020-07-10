@@ -2,49 +2,49 @@
 
 <details>
 <summary>
-The *phase *of a pod is...
+<b>The <b>phase </b>of a pod is...</b>
 </summary>
 A high-level summary of where the pod is in its lifecycle
 </details>
 
 <details>
 <summary>
-*Pending* phase
+<b><b>Pending</b> phase</b>
 </summary>
 <table><tbody><tr><td>The Pod has been accepted by the Kubernetes system, but one or more of the Container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while.</td></tr><tr></tr></tbody></table>
 </details>
 
 <details>
 <summary>
-*Running*&nbsp;phase
+<b><b>Running</b>&nbsp;phase</b>
 </summary>
 <table><tbody><tr><td>The Pod has been bound to a node, and all of the Containers have been created. At least one Container is still running, or is in the process of starting or restarting.</td></tr><tr></tr></tbody></table>
 </details>
 
 <details>
 <summary>
-*Succeeded *phase
+<b><b>Succeeded </b>phase</b>
 </summary>
 <table><tbody><tr><td>All Containers in the Pod have terminated in success, and will not be restarted.</td></tr><tr></tr></tbody></table>
 </details>
 
 <details>
 <summary>
-*Failed *phase
+<b><b>Failed </b>phase</b>
 </summary>
 <table><tbody><tr><td>All Containers in the Pod have terminated, and at least one Container has terminated in failure. That is, the Container either exited with non-zero status or was terminated by the system.</td></tr><tr></tr></tbody></table>
 </details>
 
 <details>
 <summary>
-*Unknown *phase
+<b><b>Unknown </b>phase</b>
 </summary>
 For some reason the state of the Pod could not be obtained, typically due to an error in communicating with the host of the Pod.
 </details>
 
 <details>
 <summary>
-List all 5 Pod *phases*
+<b>List all 5 Pod <b>phases</b></b>
 </summary>
 Pending<div>
 </div><div>Running</div><div>
@@ -55,7 +55,7 @@ Pending<div>
 
 <details>
 <summary>
-List all six fields in a *PodCondition*
+<b>List all six fields in a <b>PodCondition</b></b>
 </summary>
 reason<div>
 </div><div>status</div><div>
@@ -67,132 +67,132 @@ reason<div>
 
 <details>
 <summary>
-The *lastProbeTime*&nbsp;condition field provides...
+<b>The <b>lastProbeTime</b>&nbsp;condition field provides...</b>
 </summary>
 A timestamp for when the Pod condition was last probed.
 </details>
 
 <details>
 <summary>
-The&nbsp;*lastTransitionTime*&nbsp;condition field provides...
+<b>The&nbsp;<b>lastTransitionTime</b>&nbsp;condition field provides...</b>
 </summary>
 a timestamp for when the Pod last transitioned from one status to another.
 </details>
 
 <details>
 <summary>
-The *message&nbsp;*condition field provides...
+<b>The <b>message&nbsp;</b>condition field provides...</b>
 </summary>
 a human-readable message indicating details about the transition from one status to another.
 </details>
 
 <details>
 <summary>
-The *reason&nbsp;*condition field provides...
+<b>The <b>reason&nbsp;</b>condition field provides...</b>
 </summary>
 a unique, one-word reason for the condition's last transition.
 </details>
 
 <details>
 <summary>
-The *status*&nbsp;condition field provides...
+<b>The <b>status</b>&nbsp;condition field provides...</b>
 </summary>
-<div>One of the following:</div><div>*
-*</div><div>*"True"*</div><div>*
-*</div><div>*"False"*</div><div>*
-*</div><div>"*Unknown"*</div>
+<div>One of the following:</div><div><b>
+</b></div><div><b>"True"</b></div><div><b>
+</b></div><div><b>"False"</b></div><div><b>
+</b></div><div>"<b>Unknown"</b></div>
 </details>
 
 <details>
 <summary>
-The *type*&nbsp;condition field provides...
+<b>The <b>type</b>&nbsp;condition field provides...</b>
 </summary>
 One of the following:<div>
-</div><div>*PodScheduled*</div><div>Pod has been scheduled to a node</div><div>*
-*</div><div>*Ready*</div><div>Pod is able to serve requests</div><div>*
-*</div><div>*Initialized*</div><div>All init containers have started successfully</div><div>*
-*</div><div>*ContainersReady*</div><div>All containers in the pod are ready</div>
+</div><div><b>PodScheduled</b></div><div>Pod has been scheduled to a node</div><div><b>
+</b></div><div><b>Ready</b></div><div>Pod is able to serve requests</div><div><b>
+</b></div><div><b>Initialized</b></div><div>All init containers have started successfully</div><div><b>
+</b></div><div><b>ContainersReady</b></div><div>All containers in the pod are ready</div>
 </details>
 
 <details>
 <summary>
-<div>A probe can have one of three results:</div>
+<b><div>A probe can have one of three results:</div></b>
 </summary>
-*Success*<div>The Container passed the diagnostic
-<div>*
-*</div><div>*Failure*</div><div>The Container failed the diagnostic</div><div>*
-*</div><div>*Unknown*</div></div><div>The diagnostic failed, so no action should be taken</div>
+<b>Success</b><div>The Container passed the diagnostic
+<div><b>
+</b></div><div><b>Failure</b></div><div>The Container failed the diagnostic</div><div><b>
+</b></div><div><b>Unknown</b></div></div><div>The diagnostic failed, so no action should be taken</div>
 </details>
 
 <details>
 <summary>
-A livenessProbe indicates whether a container is...
+<b>A livenessProbe indicates whether a container is...</b>
 </summary>
 running
 </details>
 
 <details>
 <summary>
-If a livenessProbe fails, the container...
+<b>If a livenessProbe fails, the container...</b>
 </summary>
-is killed by the kubelet, then subjected to the container's *restart policy*.
+is killed by the kubelet, then subjected to the container's <b>restart policy</b>.
 </details>
 
 <details>
 <summary>
-A container does not provide a livenessProbe, a readinessProbe nor a startupProbe<div>
-</div><div>What will be the state of each probe of the container?</div>
+<b>A container does not provide a livenessProbe, a readinessProbe nor a startupProbe<div>
+</div><div>What will be the state of each probe of the container?</div></b>
 </summary>
-*Success *on all of them
+<b>Success </b>on all of them
 </details>
 
 <details>
 <summary>
-readinessProbe indicates whether...
+<b>readinessProbe indicates whether...</b>
 </summary>
 a container is ready to service requests.
 </details>
 
 <details>
 <summary>
-If the readinessProbe fails, what happens?
+<b>If the readinessProbe fails, what happens?</b>
 </summary>
-The *endpoints controlller* removes the *Pod's IP address* from the endpoints of all *Services *that match the Pod
+The <b>endpoints controlller</b> removes the <b>Pod's IP address</b> from the endpoints of all <b>Services </b>that match the Pod
 </details>
 
 <details>
 <summary>
-A container's default readiness state before the initial delay is...
+<b>A container's default readiness state before the initial delay is...</b>
 </summary>
 Failure
 </details>
 
 <details>
 <summary>
-startupProbe indicates whether...
+<b>startupProbe indicates whether...</b>
 </summary>
 the application in the container has started.
 </details>
 
 <details>
 <summary>
-A startupProbe is provided to a container<div>
-</div><div>What happens to the other probes?</div>
+<b>A startupProbe is provided to a container<div>
+</div><div>What happens to the other probes?</div></b>
 </summary>
 All other probes are disabled until startupProbe succeeds.
 </details>
 
 <details>
 <summary>
-If the startupProbe fails, the container...
+<b>If the startupProbe fails, the container...</b>
 </summary>
-is killed by the kubelet, then subjected to the container's *restart policy*.
+is killed by the kubelet, then subjected to the container's <b>restart policy</b>.
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">A process in your Container is able to crash on its own whenever it encounters an issue or becomes unhealthy.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
-</span></div><div><span style="color: rgb(34, 34, 34);">Do you still need a livenessProbe?</span></div>
+<b><span style="color: rgb(34, 34, 34);">A process in your Container is able to crash on its own whenever it encounters an issue or becomes unhealthy.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
+</span></div><div><span style="color: rgb(34, 34, 34);">Do you still need a livenessProbe?</span></div></b>
 </summary>
 Not necessarily.&nbsp;<div>
 </div><div><span style="color: rgb(34, 34, 34);">The kubelet will automatically perform the correct action in accordance with the Pod's&nbsp;</span><code>restartPolicy</code><span style="color: rgb(34, 34, 34);">.</span>
@@ -201,29 +201,29 @@ Not necessarily.&nbsp;<div>
 
 <details>
 <summary>
-A container should be killed or restarted if a probe fails. What can be done to achieve this?
+<b>A container should be killed or restarted if a probe fails. What can be done to achieve this?</b>
 </summary>
-1. Specify a *livenessProbe&nbsp;*<div>
-</div><div>2. Add a *restartPolicy *of *Always *or *OnFailure*</div>
+1. Specify a <b>livenessProbe&nbsp;</b><div>
+</div><div>2. Add a <b>restartPolicy </b>of <b>Always </b>or <b>OnFailure</b></div>
 </details>
 
 <details>
 <summary>
-A Pod should only be sent traffic when a probe succeeds. What can achieve this?
+<b>A Pod should only be sent traffic when a probe succeeds. What can achieve this?</b>
 </summary>
 readinessProbe
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">A Container should be able to take itself down for maintenance. What can achieve this?</span>
+<b><span style="color: rgb(34, 34, 34);">A Container should be able to take itself down for maintenance. What can achieve this?</span></b>
 </summary>
-A *readinessProbe *that checks an endpoints specific to readiness that is different from the liveness probe.
+A <b>readinessProbe </b>that checks an endpoints specific to readiness that is different from the liveness probe.
 </details>
 
 <details>
 <summary>
-The three possible states of containers are...
+<b>The three possible states of containers are...</b>
 </summary>
 Waiting<div>
 </div><div>Running</div><div>
@@ -232,66 +232,66 @@ Waiting<div>
 
 <details>
 <summary>
-A container is *Waiting *when...
+<b>A container is <b>Waiting </b>when...</b>
 </summary>
-It is neither *Running *or *Terminated*<div>
-</div><div>A *Waiting *container still runs operations like pulling images, applying Secrets etc.</div>
+It is neither <b>Running </b>or <b>Terminated</b><div>
+</div><div>A <b>Waiting </b>container still runs operations like pulling images, applying Secrets etc.</div>
 </details>
 
 <details>
 <summary>
-How to tell why a container is in&nbsp;*Waiting *state?
+<b>How to tell why a container is in&nbsp;<b>Waiting </b>state?</b>
 </summary>
-Check the state's&nbsp;*Reason *field
+Check the state's&nbsp;<b>Reason </b>field
 </details>
 
 <details>
 <summary>
-A container is in the *Running *state when...
+<b>A container is in the <b>Running </b>state when...</b>
 </summary>
 It is executing without issues.
 </details>
 
 <details>
 <summary>
-Which hook is executed prior to a container entering its *Running *state?
+<b>Which hook is executed prior to a container entering its <b>Running </b>state?</b>
 </summary>
 postStart
 </details>
 
 <details>
 <summary>
-A container is in the *Terminated *state when...
+<b>A container is in the <b>Terminated </b>state when...</b>
 </summary>
 It has successfully or unsuccessfully completed execution.
 </details>
 
 <details>
 <summary>
-How to tell why a container is in *Terminated *state?
+<b>How to tell why a container is in <b>Terminated </b>state?</b>
 </summary>
-Check the state's *Reason *and *Exit Code* fields.
+Check the state's <b>Reason </b>and <b>Exit Code</b> fields.
 </details>
 
 <details>
 <summary>
-Which hook is executed before a container enters Terminated state?
+<b>Which hook is executed before a container enters Terminated state?</b>
 </summary>
 preStop
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Inject extra feedback or signals into PodStatus via...</span>
+<b><span style="color: rgb(34, 34, 34);">Inject extra feedback or signals into PodStatus via...</span></b>
 </summary>
-*Pod readiness*
+<b>Pod readiness</b>
 </details>
 
 <details>
 <summary>
-You can add *Pod readiness* into *PodStatus *by...
+<b>You can add <b>Pod readiness</b> into <b>PodStatus </b>by...</b>
 </summary>
-*readinessGates*<div>
+<b>readinessGates</b><div>
 </div><div>Add it into PodSpec to specify a list of extra conditions for the kubelet to evaluate</div><div>
 </div><div>Ex.:</div><div>
 </div><div><pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
@@ -317,15 +317,15 @@ You can add *Pod readiness* into *PodStatus *by...
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Readiness gates are determined by the current state of...</span>
+<b><span style="color: rgb(34, 34, 34);">Readiness gates are determined by the current state of...</span></b>
 </summary>
-*status.condition* fields for the Pod<div>
-</div><div>If such a field isn't found, the status of the condition defaults to *"False"*</div>
+<b>status.condition</b> fields for the Pod<div>
+</div><div>If such a field isn't found, the status of the condition defaults to <b>"False"</b></div>
 </details>
 
 <details>
 <summary>
-*restartPolicy *possible values are...
+<b><b>restartPolicy </b>possible values are...</b>
 </summary>
 Always<div>
 </div><div>Never</div><div>
@@ -334,35 +334,35 @@ Always<div>
 
 <details>
 <summary>
-Default restartPolicy is...
+<b>Default restartPolicy is...</b>
 </summary>
 Always
 </details>
 
 <details>
 <summary>
-Does a Pod's *restartPolicy *apply to all its containers?
+<b>Does a Pod's <b>restartPolicy </b>apply to all its containers?</b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-Once bound to a node, will a Pod ever rebound to another node?
+<b>Once bound to a node, will a Pod ever rebound to another node?</b>
 </summary>
 No
 </details>
 
 <details>
 <summary>
-Does<code> restartPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;only refer to restarts of the Containers by the kubelet on the same node?</span>
+<b>Does<code> restartPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;only refer to restarts of the Containers by the kubelet on the same node?</span></b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Exited Containers that are restarted by the kubelet are restarted with an _____ delay capped at _____ and is reset after ten minutes of successful execution.</span>
+<b><span style="color: rgb(34, 34, 34);">Exited Containers that are restarted by the kubelet are restarted with an _____ delay capped at _____ and is reset after ten minutes of successful execution.</span></b>
 </summary>
 exponential back-off<div>
 </div><div>5 minutes</div>
@@ -370,7 +370,7 @@ exponential back-off<div>
 
 <details>
 <summary>
-Example livenessProbe spec
+<b>Example livenessProbe spec</b>
 </summary>
 <pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
 </span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
@@ -401,48 +401,48 @@ Example livenessProbe spec
 
 <details>
 <summary>
-A pod has one container. The container exits with *success*.<div>
-</div><div>What happens depending on each possible *restartPolicy*?</div>
+<b>A pod has one container. The container exits with <b>success</b>.<div>
+</div><div>What happens depending on each possible <b>restartPolicy</b>?</div></b>
 </summary>
 <ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Pod&nbsp;<code>phase</code>&nbsp;becomes Succeeded.</li><li>Never: Pod&nbsp;<code>phase</code>&nbsp;becomes Succeeded.</li></ul>
 </details>
 
 <details>
 <summary>
-A pod has one container. The container exits with&nbsp;*failure*.<div>
-</div><div>What happens depending on each possible&nbsp;*restartPolicy*?</div>
+<b>A pod has one container. The container exits with&nbsp;<b>failure</b>.<div>
+</div><div>What happens depending on each possible&nbsp;<b>restartPolicy</b>?</div></b>
 </summary>
 <ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>Never: Pod&nbsp;<code>phase</code>&nbsp;becomes Failed.</li></ul>
 </details>
 
 <details>
 <summary>
-<div><div>Pod is running and has two Containers. Container 1 exits with *failure*.</div></div><div>
-</div><div>What happens depending on each possible&nbsp;*restartPolicy*?</div>
+<b><div><div>Pod is running and has two Containers. Container 1 exits with <b>failure</b>.</div></div><div>
+</div><div>What happens depending on each possible&nbsp;<b>restartPolicy</b>?</div></b>
 </summary>
 <ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>Never: Do not restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li></ul><div><span style="color: rgb(34, 34, 34);">If Container 1 is not running, and Container 2 exits:</span></div><div><ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>Never: Pod&nbsp;<code>phase</code>&nbsp;becomes Failed.</li></ul></div>
 </details>
 
 <details>
 <summary>
-<div><div><div>Pod is running and has one Container. Container runs *out of memory *(and terminates in failure)</div></div></div><div>
-</div><div>What happens depending on each possible&nbsp;*restartPolicy*?</div>
+<b><div><div><div>Pod is running and has one Container. Container runs <b>out of memory </b>(and terminates in failure)</div></div></div><div>
+</div><div>What happens depending on each possible&nbsp;<b>restartPolicy</b>?</div></b>
 </summary>
 <ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>Never: Log failure event; Pod&nbsp;<code>phase</code>&nbsp;becomes Failed.</li></ul>
 </details>
 
 <details>
 <summary>
-<div><div><div><div>Pod is running, and a disk dies.</div></div></div></div><div>
-</div><div>What happens?</div>
+<b><div><div><div><div>Pod is running, and a disk dies.</div></div></div></div><div>
+</div><div>What happens?</div></b>
 </summary>
 <ul><li>Kill all Containers.</li><li>Log appropriate event.</li><li>Pod&nbsp;<code>phase</code>&nbsp;becomes Failed.</li><li>If running under a controller, Pod is recreated elsewhere.</li></ul>
 </details>
 
 <details>
 <summary>
-<div><div><div><div><div>Pod is running, and its node is segmented out.</div></div></div></div></div><div>
-</div><div>What happens?</div>
+<b><div><div><div><div><div>Pod is running, and its node is segmented out.</div></div></div></div></div><div>
+</div><div>What happens?</div></b>
 </summary>
 <ul><li>Node controller waits for timeout.</li><li>Node controller sets Pod&nbsp;<code>phase</code>&nbsp;to Failed.</li><li>If running under a controller, Pod is recreated elsewhere.</li></ul>
 </details>

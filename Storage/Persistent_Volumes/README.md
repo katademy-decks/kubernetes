@@ -2,14 +2,14 @@
 
 <details>
 <summary>
-Create a PersistentVolume from a file and check the PersistentVolumes that exist on the cluster
+<b>Create a PersistentVolume from a file and check the PersistentVolumes that exist on the cluster</b>
 </summary>
 <i>kubectl create -f pv.yaml</i><div><i>kubectl get pv</i></div>
 </details>
 
 <details>
 <summary>
-<div></div> <div></div>&nbsp;Create a PersistentVolumeClaim for normal storage class, called mypvc, a request of 4Gi and an accessMode of ReadWriteOnce
+<b><div></div> <div></div>&nbsp;Create a PersistentVolumeClaim for normal storage class, called mypvc, a request of 4Gi and an accessMode of ReadWriteOnce</b>
 </summary>
 <div><i>kind: PersistentVolumeClaim</i></div><div><i>apiVersion: v1&nbsp;</i></div><div><i>metadata:</i></div><div><i>&nbsp; name: mypvc&nbsp;</i></div><div><i>spec:</i></div><div><i>&nbsp; storageClassName: normal</i></div><div><i>&nbsp; accessModes:</i></div><div><i>&nbsp; - ReadWriteOnce</i></div><div><i>&nbsp; resources:</i></div><div><i>&nbsp; &nbsp; requests:</i></div><div><i>&nbsp; &nbsp; &nbsp; storage: 4Gi</i>
 
@@ -18,14 +18,14 @@ Create a PersistentVolume from a file and check the PersistentVolumes that exist
 
 <details>
 <summary>
-Show that the PersistentVolumeClaims and the PersistentVolumes of the cluster are working.
+<b>Show that the PersistentVolumeClaims and the PersistentVolumes of the cluster are working.</b>
 </summary>
 <i>kubectl get pvc</i><div><i>kubectl get pv</i></div><div>Both should show as "Bound"</div>
 </details>
 
 <details>
 <summary>
-Create a busybox pod with command 'sleep 3600', and mount the PersistentVolumeClaim to '/etc/foo'. Connect to the 'busybox' pod, and copy the '/etc/passwd' file to '/etc/foo'.<div>Create a second pod which is identical with the one you just created. Connect to it and verify that '/etc/foo' contains the 'passwd' file.</div>
+<b>Create a busybox pod with command 'sleep 3600', and mount the PersistentVolumeClaim to '/etc/foo'. Connect to the 'busybox' pod, and copy the '/etc/passwd' file to '/etc/foo'.<div>Create a second pod which is identical with the one you just created. Connect to it and verify that '/etc/foo' contains the 'passwd' file.</div></b>
 </summary>
 Create a skeleton YAML file with:
 <i>kubectl run busybox --image=busybox --restart=Never -o yaml --dry-run -- /bin/sh -c 'sleep 3600' &gt; pod.yaml</i>

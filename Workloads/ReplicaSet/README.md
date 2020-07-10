@@ -2,14 +2,14 @@
 
 <details>
 <summary>
-Kubernetes replication controller ensures
+<b>Kubernetes replication controller ensures</b>
 </summary>
 a specific number of pod replicas are running at any one time across nodes
 </details>
 
 <details>
 <summary>
-<div style="">What will happen to ReplicaSet pods inside a node when that node gets deleted?</div>
+<b><div style="">What will happen to ReplicaSet pods inside a node when that node gets deleted?</div></b>
 </summary>
 These pods will be replaced on another node(s)
 

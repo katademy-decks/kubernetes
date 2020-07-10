@@ -2,9 +2,9 @@
 
 <details>
 <summary>
-Two types of node Heartbeats
+<b>Two types of node Heartbeats</b>
 </summary>
-1. updates of *NodeStatus*<div>
-2. The *Lease Object*</div>
+1. updates of <b>NodeStatus</b><div>
+2. The <b>Lease Object</b></div>
 </details>
 

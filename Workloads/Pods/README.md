@@ -2,17 +2,17 @@
 
 <details>
 <summary>
-<div>What’s a *Pod*</div>
+<b><div>What’s a <b>Pod</b></div></b>
 </summary>
-<div>A&nbsp;*Pod *is a group of one or more&nbsp;containers with shared storage/network, and a specification for how to run the containers.
+<div>A&nbsp;<b>Pod </b>is a group of one or more&nbsp;containers with shared storage/network, and a specification for how to run the containers.
 
-*<img src="m6OgY8HdeAOI59RmeT0Ue6ortvnFbTmq9hg2duJnAKD0WYGQpN1xDCWQ9_fNi3fbYYd4c0FESi-jtoTt2B4W7gsYqaYD2mrHIqt9T8OEItsIIJfKB_5cHdhvG5ULq_TOqCI1.png">*
+<b><img src="m6OgY8HdeAOI59RmeT0Ue6ortvnFbTmq9hg2duJnAKD0WYGQpN1xDCWQ9_fNi3fbYYd4c0FESi-jtoTt2B4W7gsYqaYD2mrHIqt9T8OEItsIIJfKB_5cHdhvG5ULq_TOqCI1.png"></b>
 </div>
 </details>
 
 <details>
 <summary>
-Create a temp busybox pod and connect via wget to the "foo" service. Verify that each time there's a different hostname returned (deployment with 3 replicas).
+<b>Create a temp busybox pod and connect via wget to the "foo" service. Verify that each time there's a different hostname returned (deployment with 3 replicas).</b>
 </summary>
 <div>Get the service ClusterIP
 <i>kubectl get svc</i></div><i>kubectl run temppod --image=busybox --restart=Never --rm -it -- sh</i>
@@ -24,7 +24,7 @@ wget -O- &lt;ServiceClusterIP&gt;:6262</i>
 
 <details>
 <summary>
-Create busybox pod with two containers, each one will have the image busybox and will run the 'sleep 3600' command. Make both containers mount an emptyDir at '/etc/foo'.
+<b>Create busybox pod with two containers, each one will have the image busybox and will run the 'sleep 3600' command. Make both containers mount an emptyDir at '/etc/foo'.</b>
 </summary>
 Best way to do this is create a YAML template (single-container pod) and duplicate the container definition (make sure to change the name of the second container).<div>
 </div><div><i>kubectl run busybox --image=busybox --restart=Never -o yaml --dry-run -- /bin/sh -c 'sleep 3600' &gt; pod.yaml</i>
@@ -39,8 +39,8 @@ emptyDir volume looks like:
 
 <details>
 <summary>
-You have a two-container pod with a shared volume at '/etc/foo' on both containers.
-Connect to the second busybox, write the first column of '/etc/passwd' file to '/etc/foo/passwd'. Connect to the first busybox and write '/etc/foo/passwd' file to standard output.
+<b>You have a two-container pod with a shared volume at '/etc/foo' on both containers.
+Connect to the second busybox, write the first column of '/etc/passwd' file to '/etc/foo/passwd'. Connect to the first busybox and write '/etc/foo/passwd' file to standard output.</b>
 </summary>
 Connect to the second container:
 <i>kubectl exec -it busybox -c busybox2 -- /bin/sh</i><div><div>/etc/passwd is colon delimited, use cut to get the first column</div><div><i>cut -f 1 -d ':' /etc/passwd &gt; /etc/foo/passwd</i></div><div><i>cat </i><i>/etc/foo/passwd</i></div><div><div><i>exit
@@ -52,7 +52,7 @@ Connect to the first container:
 
 <details>
 <summary>
-Create a busybox pod with 'sleep 3600' as arguments. Copy '/etc/passwd' from the pod to your local folder.
+<b>Create a busybox pod with 'sleep 3600' as arguments. Copy '/etc/passwd' from the pod to your local folder.</b>
 </summary>
 Use the <i>kubectl cp &lt;pod&gt;:&lt;path&gt; &lt;dest&gt; </i>command.
 
@@ -62,59 +62,54 @@ Use the <i>kubectl cp &lt;pod&gt;:&lt;path&gt; &lt;dest&gt; </i>command.
 
 <details>
 <summary>
-A Kubernetes concept that represents the smallest unit of deployment.
+<b>A Kubernetes concept that represents the smallest unit of deployment.</b>
 </summary>
 Pod
 </details>
 
 <details>
 <summary>
-Mounted directories that are accessible from inside containers.
+<b>Mounted directories that are accessible from inside containers.</b>
 </summary>
 Volumes
 </details>
 
 <details>
 <summary>
-The command to get Pod logs in Kubernetes.
+<b>The command to get Pod logs in Kubernetes.</b>
 </summary>
 `kubectl get logs`
 </details>
 
 <details>
 <summary>
-<div style="">Provide command to list all Kubernetes pods in the namespace</div>
+<b><div style="">Provide command to list all Kubernetes pods in the namespace</div></b>
 </summary>
 kubectl get pods
 
-*<img src="FezLZbLjz3LT7Bln0xYjl6Z10-ai2OT1U9S5LkMmhNtj-0QuEfayELPDmiiVMrzhrdywH9DUsygN-GFkm89DYnmUqp7Q306g7tdiyOkXuHWd6heoI5Ojy8EIDffXyG4NxzFJ.png">*
-
+<b><img src="FezLZbLjz3LT7Bln0xYjl6Z10-ai2OT1U9S5LkMmhNtj-0QuEfayELPDmiiVMrzhrdywH9DUsygN-GFkm89DYnmUqp7Q306g7tdiyOkXuHWd6heoI5Ojy8EIDffXyG4NxzFJ.png"></b>
 </details>
 
 <details>
 <summary>
-When annoying to have to keep typing&nbsp;kubectl get pods...&nbsp;every few seconds to see if anything’s happened.
-
+<b>When annoying to have to keep typing&nbsp;kubectl get pods...&nbsp;every few seconds to see if anything’s happened.</b>
 </summary>
 kubectl&nbsp;provides the&nbsp;--watch&nbsp;flag (-w&nbsp;for short)
 kubectl get pods --watch
-
 </details>
 
 <details>
 <summary>
-Can we edit live pod cofiguration?
+<b>Can we edit live pod cofiguration?</b>
 </summary>
 Yes, but not recommended due to out-of-syc
 
 <strong>kubectl edit deployments my-deployment</strong>
-
 </details>
 
 <details>
 <summary>
-How to execute Commands on Containers
-
+<b>How to execute Commands on Containers</b>
 </summary>
 kubectl container run --image alpaine --command -- sleep 999<div>kubectl get pods</div><div>
 </div><div>#NAME READY STATUS RESTARTS AGE&nbsp;</div><div>#alpine-7fd44fc4bf-7gl4n 1/1 Running 0 4s
@@ -127,7 +122,7 @@ kubectl container run --image alpaine --command -- sleep 999<div>kubectl get pod
 
 <details>
 <summary>
-What are PodPresets? Example of PodPresets
+<b>What are PodPresets? Example of PodPresets</b>
 </summary>
 <div>PodPresets:<strong>
 </strong></div><div>A&nbsp;Pod Preset&nbsp;is an API resource for injecting additional runtime requirements into a Pod at creation time. You use&nbsp;label selectors&nbsp;to specify the Pods to which a given Pod Preset applies.
@@ -145,17 +140,14 @@ What are PodPresets? Example of PodPresets
 
 <details>
 <summary>
-Can PodPresets override POD settings.
-
+<b>Can PodPresets override POD settings.</b>
 </summary>
 <div>PodPresets can’t be used to override a Pod’s own configuration, only to fill in settings which the Pod itself doesn’t specify. A Pod can opt out of being modified by PodPresets altogether, by setting the annotation:</div>podpreset.admission.kubernetes.io/exclude: "true"
-
 </details>
 
 <details>
 <summary>
-Everything about running Pod
-
+<b>Everything about running Pod</b>
 </summary>
 Labels are key-value pairs that identify resources, and can be used with selectors to match a specified group of resources.
 
@@ -188,19 +180,18 @@ Ingress resources route requests to different services, depending on a set of ru
 Istio is a tool that provides advanced networking features for microservice applications and can be installed, like any Kubernetes application, using Helm.
 
 Envoy provides more sophisticated load balancing features than standard cloud load balancers, as well as a service mesh facility.
-
 </details>
 
 <details>
 <summary>
-kubectl run --attach
+<b>kubectl run --attach</b>
 </summary>
 wait for the Pod to start running, and then attach to the Pod as if 'kubectl attach ...' were called.&nbsp;
 </details>
 
 <details>
 <summary>
-kubectl run --cascade
+<b>kubectl run --cascade</b>
 </summary>
 <div>(DEFAULT)</div><div>
 </div>Cascade the deletion of the resources managed by this resource (e.g. Pods created by a ReplicationController).&nbsp;
@@ -208,7 +199,7 @@ kubectl run --cascade
 
 <details>
 <summary>
-kubectl logs POD [-c CONTAINER]
+<b>kubectl logs POD [-c CONTAINER]</b>
 </summary>
 Print the logs of a container/resource.<div>
 </div><div>--follow</div><div>
@@ -223,10 +214,10 @@ Print the logs of a container/resource.<div>
 
 <details>
 <summary>
-kubectl port-forward POD LOCALPORT:REMOTEPORT
+<b>kubectl port-forward POD LOCALPORT:REMOTEPORT</b>
 </summary>
 <div>Forward one or more local ports to a pod.&nbsp;</div><div>
-</div><div>*--address&nbsp;*</div><div><table><tbody><tr><td>Localhost or IP address(es) to listen on (comma separated). 
+</div><div><b>--address&nbsp;</b></div><div><table><tbody><tr><td>Localhost or IP address(es) to listen on (comma separated). 
 
 When localhost is supplied, kubectl will try to bind on both 127.0.0.1 and ::1 and will fail if neither of these addresses are available to bind.</td></tr><tr></tr></tbody></table></div><div>
 </div><div>This command requires the node to have 'socat' installed.</div>
@@ -234,7 +225,7 @@ When localhost is supplied, kubectl will try to bind on both 127.0.0.1 and ::1 a
 
 <details>
 <summary>
-containers.imagePullPolicy
+<b>containers.imagePullPolicy</b>
 </summary>
 Always<div>
 </div><div>Never</div><div>
@@ -243,7 +234,7 @@ Always<div>
 
 <details>
 <summary>
-containers.args
+<b>containers.args</b>
 </summary>
 Arguments to the entrypoint<div>
 </div><div>Default: the image's CMD line</div><div>
@@ -252,7 +243,7 @@ Arguments to the entrypoint<div>
 
 <details>
 <summary>
-containers.command
+<b>containers.command</b>
 </summary>
 Entrypoint array<div>
 </div><div>Not executed in a shell</div><div>
@@ -262,7 +253,7 @@ Entrypoint array<div>
 
 <details>
 <summary>
-containers.env
+<b>containers.env</b>
 </summary>
 List of env vars<div>
 </div><div><font color="#ff0000">CANNOT BE UPDATED</font></div>
@@ -270,7 +261,7 @@ List of env vars<div>
 
 <details>
 <summary>
-containers.envFrom
+<b>containers.envFrom</b>
 </summary>
 List of sources to populate env vars<div>
 </div><div><font color="#ff0000">CANNOT BE UPDATED</font>
@@ -279,19 +270,19 @@ List of sources to populate env vars<div>
 
 <details>
 <summary>
-containers.image
+<b>containers.image</b>
 </summary>
 container image url
 </details>
 
 <details>
 <summary>
-containers.lifecycle
+<b>containers.lifecycle</b>
 </summary>
-Actions to take in response to lifecycle events<div>*
-*</div><div>*postStart*</div><div>Called after a container is created</div><div>
-</div><div>If it fails, container restarts according to restart policy</div><div>*
-*</div><div>*preStop*
+Actions to take in response to lifecycle events<div><b>
+</b></div><div><b>postStart</b></div><div>Called after a container is created</div><div>
+</div><div>If it fails, container restarts according to restart policy</div><div><b>
+</b></div><div><b>preStop</b>
 <div>Called before a container is terminated (not if it crashes/exits)</div><div>
 </div><div><font color="#ff0000">CANNOT BE UPDATED</font>
 </div></div>
@@ -299,7 +290,7 @@ Actions to take in response to lifecycle events<div>*
 
 <details>
 <summary>
-containers.livenessProbe
+<b>containers.livenessProbe</b>
 </summary>
 Periodic probe of container liveness<div>
 </div><div>Restart container if fails</div><div>
@@ -312,14 +303,14 @@ Periodic probe of container liveness<div>
 
 <details>
 <summary>
-containers.name
+<b>containers.name</b>
 </summary>
 Unique name of the container
 </details>
 
 <details>
 <summary>
-containers.ports
+<b>containers.ports</b>
 </summary>
 Ports to expose from container<div>
 </div><div>name:</div><div>
@@ -331,7 +322,7 @@ Ports to expose from container<div>
 
 <details>
 <summary>
-containers.readinessProbe
+<b>containers.readinessProbe</b>
 </summary>
 Periodic probe of container service readiness.<div>
 </div><div>Container removed from svc endpoints if probe fails</div><div>
@@ -344,7 +335,7 @@ Periodic probe of container service readiness.<div>
 
 <details>
 <summary>
-containers.securityContext
+<b>containers.securityContext</b>
 </summary>
 Container's security config<div>
 </div><div>runAsUser:</div><div>
@@ -361,7 +352,7 @@ Container's security config<div>
 
 <details>
 <summary>
-containers.VolumeMount
+<b>containers.VolumeMount</b>
 </summary>
 Mounting of a Volume in a container<div>
 </div><div>name: same as volume</div><div>
@@ -374,14 +365,14 @@ Mounting of a Volume in a container<div>
 
 <details>
 <summary>
-containers.workingDir
+<b>containers.workingDir</b>
 </summary>
 Container's working directory
 </details>
 
 <details>
 <summary>
-In terms of Docker constructs, a Pod is modelled as a group of Docker containers with shared _____ and shared _____
+<b>In terms of Docker constructs, a Pod is modelled as a group of Docker containers with shared _____ and shared _____</b>
 </summary>
 namespaces<div>
 </div><div>filesystem volumes</div>
@@ -389,21 +380,21 @@ namespaces<div>
 
 <details>
 <summary>
-Are pods intended to survive through scheduling failures, node failures or other evictions?
+<b>Are pods intended to survive through scheduling failures, node failures or other evictions?</b>
 </summary>
 No
 </details>
 
 <details>
 <summary>
-How can any container in a pod enable privileged mode?
+<b>How can any container in a pod enable privileged mode?</b>
 </summary>
-Using the *privileged*&nbsp;flag in the security context of the container spec.
+Using the <b>privileged</b>&nbsp;flag in the security context of the container spec.
 </details>
 
 <details>
 <summary>
-Why would you allow a container to run in privileged mode?
+<b>Why would you allow a container to run in privileged mode?</b>
 </summary>
 to allow Linux capabilities inside the container.<div>
 </div><div>-----</div><div>
@@ -413,21 +404,21 @@ to allow Linux capabilities inside the container.<div>
 
 <details>
 <summary>
-A pod represents _____ processes running in your cluster.
+<b>A pod represents _____ processes running in your cluster.</b>
 </summary>
 Processes
 </details>
 
 <details>
 <summary>
-A pod is the basic _____ unit of Kubernetes.
+<b>A pod is the basic _____ unit of Kubernetes.</b>
 </summary>
 execution
 </details>
 
 <details>
 <summary>
-A pod encapsulates an application's...
+<b>A pod encapsulates an application's...</b>
 </summary>
 container
 <hr>
@@ -440,42 +431,42 @@ storage resources
 
 <details>
 <summary>
-Do pods run a single container each?
+<b>Do pods run a single container each?</b>
 </summary>
 Not necessarily. They can run multiple containers.
 </details>
 
 <details>
 <summary>
-Are containers in a Pod automatically co-located and co-scheduled on the *same* physical or virtual machine in the cluster?
+<b>Are containers in a Pod automatically co-located and co-scheduled on the <b>same</b> physical or virtual machine in the cluster?</b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-Can a pod's containers share resources, dependensies, communicate with each other and coordinate their lifecycle?
+<b>Can a pod's containers share resources, dependensies, communicate with each other and coordinate their lifecycle?</b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-Example sidecar container pattern diagram
+<b>Example sidecar container pattern diagram</b>
 </summary>
 <img src="pod.svg">
 </details>
 
 <details>
 <summary>
-Do Pods each have a unique IP address?
+<b>Do Pods each have a unique IP address?</b>
 </summary>
 Yes, for each address family
 </details>
 
 <details>
 <summary>
-kubectl top pod
+<b>kubectl top pod</b>
 </summary>
 <div>Display Resource usage of pods.</div><div>
 </div><div>--containers</div><div>Print usage of containers in a pod</div>
@@ -483,7 +474,7 @@ kubectl top pod
 
 <details>
 <summary>
-Create a busybox pod (using kubectl command) that runs the command "env"
+<b>Create a busybox pod (using kubectl command) that runs the command "env"</b>
 </summary>
 <i>kubectl run busybox
  --image=busybox 
@@ -495,35 +486,35 @@ arguments after -- are commands
 
 <details>
 <summary>
-If a pod crashed and restarted, get logs about a previous instance
+<b>If a pod crashed and restarted, get logs about a previous instance</b>
 </summary>
 <i>kubectl logs mypod --previous</i>
 </details>
 
 <details>
 <summary>
-Open a shell session in a pod
+<b>Open a shell session in a pod</b>
 </summary>
 <i>kubectl exec -it mypod -- /bin/sh</i>
 </details>
 
 <details>
 <summary>
-show all labels of pods
+<b>show all labels of pods</b>
 </summary>
 <i>kubectl get pods --show-labels</i>
 </details>
 
 <details>
 <summary>
-Get a pod's YAML without cluster-specific information
+<b>Get a pod's YAML without cluster-specific information</b>
 </summary>
 use the <i>--export </i>flag<div><i>kubectl get pod mypod -o yaml --export</i></div>
 </details>
 
 <details>
 <summary>
-Get only the pods with label app=v2
+<b>Get only the pods with label app=v2</b>
 </summary>
 <i>kubectl get pods -l app=v2</i>
 or
@@ -532,16 +523,16 @@ or
 
 <details>
 <summary>
-kubectl attach POD -c container
+<b>kubectl attach POD -c container</b>
 </summary>
 Attach to a container's process.<div>
-</div><div>*--stdin*</div><div>Pass stdin to the container</div><div>
-</div><div>*--tty*</div><div>stdin is a tty</div>
+</div><div><b>--stdin</b></div><div>Pass stdin to the container</div><div>
+</div><div><b>--tty</b></div><div>stdin is a tty</div>
 </details>
 
 <details>
 <summary>
-Load a configmap "cmvolume" as a volume inside a pod, on the path "/etc/lala". Check this exists on the created pod.
+<b>Load a configmap "cmvolume" as a volume inside a pod, on the path "/etc/lala". Check this exists on the created pod.</b>
 </summary>
 Edit pod YAML, need to add <i>spec.volumes </i>and <i>containers.volumeMounts </i>like for loading any volume.
 
@@ -555,7 +546,7 @@ or spawn an interactive session
 
 <details>
 <summary>
-Create an nginx pod with a liveness probe that just runs the command 'ls'. Run it, check its probe status, delete it.
+<b>Create an nginx pod with a liveness probe that just runs the command 'ls'. Run it, check its probe status, delete it.</b>
 </summary>
 Add the <i>spec.containers.livenessProbe</i>&nbsp;section to the standard pod YAML:<div>
 </div><div><i>spec:</i></div><div><i>&nbsp; containers</i></div><div><i>&nbsp; - image: nginx</i></div><div><i>&nbsp; &nbsp; livenessProbe:</i></div><div><i>&nbsp; &nbsp; &nbsp; exec:</i></div><div><i>&nbsp; &nbsp; &nbsp; &nbsp; command:</i></div><div><i>&nbsp; &nbsp; &nbsp; &nbsp; - ls</i></div>
@@ -563,7 +554,7 @@ Add the <i>spec.containers.livenessProbe</i>&nbsp;section to the standard pod YA
 
 <details>
 <summary>
-Modify the liveness probe in the nginx pod so it starts after 5 seconds and probes every 10 seconds.
+<b>Modify the liveness probe in the nginx pod so it starts after 5 seconds and probes every 10 seconds.</b>
 </summary>
 Add the <i>spec.containers.livenessProbe.initialDelaySeconds and .periodSeconds </i>values:
 
@@ -572,7 +563,7 @@ Add the <i>spec.containers.livenessProbe.initialDelaySeconds and .periodSeconds 
 
 <details>
 <summary>
-Create a busybox pod that runs 'ls /notexist'. Determine if there's an error (of course there is), see it.&nbsp;
+<b>Create a busybox pod that runs 'ls /notexist'. Determine if there's an error (of course there is), see it.&nbsp;</b>
 </summary>
 <i>kubectl run mypod --image=busybox --restart=Never -- /bin/sh -c 'ls /notexist'</i>
 
@@ -582,7 +573,7 @@ show that there are errors
 
 <details>
 <summary>
-Create a pod that mounts the variable "username" from secret "mysecret2" into an env variable called USER
+<b>Create a pod that mounts the variable "username" from secret "mysecret2" into an env variable called USER</b>
 </summary>
 edit pod YAML to add the <i>spec.containers.env.valueFrom.secretKeyRef </i>section:
 
@@ -591,7 +582,7 @@ edit pod YAML to add the <i>spec.containers.env.valueFrom.secretKeyRef </i>secti
 
 <details>
 <summary>
-Create an nginx pod that uses 'myuser' as a service account
+<b>Create an nginx pod that uses 'myuser' as a service account</b>
 </summary>
 <i>kubectl run mypod --image=nginx --restart=Never --serviceaccount=myuser</i>
 
@@ -602,7 +593,7 @@ Or edit pod YAML to add the <i>spec.serviceAccountName </i>value
 
 <details>
 <summary>
-Create an nginx pod (that includes port 80) with an HTTP readinessProbe on path '/' on port 80.
+<b>Create an nginx pod (that includes port 80) with an HTTP readinessProbe on path '/' on port 80.</b>
 </summary>
 Create the pod including the <i>--port </i>flag<div><i>kubectl run mypod --image=nginx --restart=Never --port=80 --dry-run -o yaml &gt; pod.yaml</i>
 
@@ -612,56 +603,56 @@ Add the <i>readinessProbe.httpGet </i>section:
 
 <details>
 <summary>
-Delete the pod "mypod" forcefully with no grace period
+<b>Delete the pod "mypod" forcefully with no grace period</b>
 </summary>
 <i>kubectl delete pod mypod --force --grace-period=0</i>
 </details>
 
 <details>
 <summary>
-The *phase *of a pod is...
+<b>The <b>phase </b>of a pod is...</b>
 </summary>
 A high-level summary of where the pod is in its lifecycle
 </details>
 
 <details>
 <summary>
-*Pending* phase
+<b><b>Pending</b> phase</b>
 </summary>
 <table><tbody><tr><td>The Pod has been accepted by the Kubernetes system, but one or more of the Container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while.</td></tr><tr></tr></tbody></table>
 </details>
 
 <details>
 <summary>
-*Running*&nbsp;phase
+<b><b>Running</b>&nbsp;phase</b>
 </summary>
 <table><tbody><tr><td>The Pod has been bound to a node, and all of the Containers have been created. At least one Container is still running, or is in the process of starting or restarting.</td></tr><tr></tr></tbody></table>
 </details>
 
 <details>
 <summary>
-*Succeeded *phase
+<b><b>Succeeded </b>phase</b>
 </summary>
 <table><tbody><tr><td>All Containers in the Pod have terminated in success, and will not be restarted.</td></tr><tr></tr></tbody></table>
 </details>
 
 <details>
 <summary>
-*Failed *phase
+<b><b>Failed </b>phase</b>
 </summary>
 <table><tbody><tr><td>All Containers in the Pod have terminated, and at least one Container has terminated in failure. That is, the Container either exited with non-zero status or was terminated by the system.</td></tr><tr></tr></tbody></table>
 </details>
 
 <details>
 <summary>
-*Unknown *phase
+<b><b>Unknown </b>phase</b>
 </summary>
 For some reason the state of the Pod could not be obtained, typically due to an error in communicating with the host of the Pod.
 </details>
 
 <details>
 <summary>
-List all 5 Pod *phases*
+<b>List all 5 Pod <b>phases</b></b>
 </summary>
 Pending<div>
 </div><div>Running</div><div>
@@ -672,7 +663,7 @@ Pending<div>
 
 <details>
 <summary>
-List all six fields in a *PodCondition*
+<b>List all six fields in a <b>PodCondition</b></b>
 </summary>
 reason<div>
 </div><div>status</div><div>
@@ -684,132 +675,132 @@ reason<div>
 
 <details>
 <summary>
-The *lastProbeTime*&nbsp;condition field provides...
+<b>The <b>lastProbeTime</b>&nbsp;condition field provides...</b>
 </summary>
 A timestamp for when the Pod condition was last probed.
 </details>
 
 <details>
 <summary>
-The&nbsp;*lastTransitionTime*&nbsp;condition field provides...
+<b>The&nbsp;<b>lastTransitionTime</b>&nbsp;condition field provides...</b>
 </summary>
 a timestamp for when the Pod last transitioned from one status to another.
 </details>
 
 <details>
 <summary>
-The *message&nbsp;*condition field provides...
+<b>The <b>message&nbsp;</b>condition field provides...</b>
 </summary>
 a human-readable message indicating details about the transition from one status to another.
 </details>
 
 <details>
 <summary>
-The *reason&nbsp;*condition field provides...
+<b>The <b>reason&nbsp;</b>condition field provides...</b>
 </summary>
 a unique, one-word reason for the condition's last transition.
 </details>
 
 <details>
 <summary>
-The *status*&nbsp;condition field provides...
+<b>The <b>status</b>&nbsp;condition field provides...</b>
 </summary>
-<div>One of the following:</div><div>*
-*</div><div>*"True"*</div><div>*
-*</div><div>*"False"*</div><div>*
-*</div><div>"*Unknown"*</div>
+<div>One of the following:</div><div><b>
+</b></div><div><b>"True"</b></div><div><b>
+</b></div><div><b>"False"</b></div><div><b>
+</b></div><div>"<b>Unknown"</b></div>
 </details>
 
 <details>
 <summary>
-The *type*&nbsp;condition field provides...
+<b>The <b>type</b>&nbsp;condition field provides...</b>
 </summary>
 One of the following:<div>
-</div><div>*PodScheduled*</div><div>Pod has been scheduled to a node</div><div>*
-*</div><div>*Ready*</div><div>Pod is able to serve requests</div><div>*
-*</div><div>*Initialized*</div><div>All init containers have started successfully</div><div>*
-*</div><div>*ContainersReady*</div><div>All containers in the pod are ready</div>
+</div><div><b>PodScheduled</b></div><div>Pod has been scheduled to a node</div><div><b>
+</b></div><div><b>Ready</b></div><div>Pod is able to serve requests</div><div><b>
+</b></div><div><b>Initialized</b></div><div>All init containers have started successfully</div><div><b>
+</b></div><div><b>ContainersReady</b></div><div>All containers in the pod are ready</div>
 </details>
 
 <details>
 <summary>
-<div>A probe can have one of three results:</div>
+<b><div>A probe can have one of three results:</div></b>
 </summary>
-*Success*<div>The Container passed the diagnostic
-<div>*
-*</div><div>*Failure*</div><div>The Container failed the diagnostic</div><div>*
-*</div><div>*Unknown*</div></div><div>The diagnostic failed, so no action should be taken</div>
+<b>Success</b><div>The Container passed the diagnostic
+<div><b>
+</b></div><div><b>Failure</b></div><div>The Container failed the diagnostic</div><div><b>
+</b></div><div><b>Unknown</b></div></div><div>The diagnostic failed, so no action should be taken</div>
 </details>
 
 <details>
 <summary>
-A livenessProbe indicates whether a container is...
+<b>A livenessProbe indicates whether a container is...</b>
 </summary>
 running
 </details>
 
 <details>
 <summary>
-If a livenessProbe fails, the container...
+<b>If a livenessProbe fails, the container...</b>
 </summary>
-is killed by the kubelet, then subjected to the container's *restart policy*.
+is killed by the kubelet, then subjected to the container's <b>restart policy</b>.
 </details>
 
 <details>
 <summary>
-A container does not provide a livenessProbe, a readinessProbe nor a startupProbe<div>
-</div><div>What will be the state of each probe of the container?</div>
+<b>A container does not provide a livenessProbe, a readinessProbe nor a startupProbe<div>
+</div><div>What will be the state of each probe of the container?</div></b>
 </summary>
-*Success *on all of them
+<b>Success </b>on all of them
 </details>
 
 <details>
 <summary>
-readinessProbe indicates whether...
+<b>readinessProbe indicates whether...</b>
 </summary>
 a container is ready to service requests.
 </details>
 
 <details>
 <summary>
-If the readinessProbe fails, what happens?
+<b>If the readinessProbe fails, what happens?</b>
 </summary>
-The *endpoints controlller* removes the *Pod's IP address* from the endpoints of all *Services *that match the Pod
+The <b>endpoints controlller</b> removes the <b>Pod's IP address</b> from the endpoints of all <b>Services </b>that match the Pod
 </details>
 
 <details>
 <summary>
-A container's default readiness state before the initial delay is...
+<b>A container's default readiness state before the initial delay is...</b>
 </summary>
 Failure
 </details>
 
 <details>
 <summary>
-startupProbe indicates whether...
+<b>startupProbe indicates whether...</b>
 </summary>
 the application in the container has started.
 </details>
 
 <details>
 <summary>
-A startupProbe is provided to a container<div>
-</div><div>What happens to the other probes?</div>
+<b>A startupProbe is provided to a container<div>
+</div><div>What happens to the other probes?</div></b>
 </summary>
 All other probes are disabled until startupProbe succeeds.
 </details>
 
 <details>
 <summary>
-If the startupProbe fails, the container...
+<b>If the startupProbe fails, the container...</b>
 </summary>
-is killed by the kubelet, then subjected to the container's *restart policy*.
+is killed by the kubelet, then subjected to the container's <b>restart policy</b>.
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">A process in your Container is able to crash on its own whenever it encounters an issue or becomes unhealthy.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
-</span></div><div><span style="color: rgb(34, 34, 34);">Do you still need a livenessProbe?</span></div>
+<b><span style="color: rgb(34, 34, 34);">A process in your Container is able to crash on its own whenever it encounters an issue or becomes unhealthy.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
+</span></div><div><span style="color: rgb(34, 34, 34);">Do you still need a livenessProbe?</span></div></b>
 </summary>
 Not necessarily.&nbsp;<div>
 </div><div><span style="color: rgb(34, 34, 34);">The kubelet will automatically perform the correct action in accordance with the Pod's&nbsp;</span><code>restartPolicy</code><span style="color: rgb(34, 34, 34);">.</span>
@@ -818,29 +809,29 @@ Not necessarily.&nbsp;<div>
 
 <details>
 <summary>
-A container should be killed or restarted if a probe fails. What can be done to achieve this?
+<b>A container should be killed or restarted if a probe fails. What can be done to achieve this?</b>
 </summary>
-1. Specify a *livenessProbe&nbsp;*<div>
-</div><div>2. Add a *restartPolicy *of *Always *or *OnFailure*</div>
+1. Specify a <b>livenessProbe&nbsp;</b><div>
+</div><div>2. Add a <b>restartPolicy </b>of <b>Always </b>or <b>OnFailure</b></div>
 </details>
 
 <details>
 <summary>
-A Pod should only be sent traffic when a probe succeeds. What can achieve this?
+<b>A Pod should only be sent traffic when a probe succeeds. What can achieve this?</b>
 </summary>
 readinessProbe
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">A Container should be able to take itself down for maintenance. What can achieve this?</span>
+<b><span style="color: rgb(34, 34, 34);">A Container should be able to take itself down for maintenance. What can achieve this?</span></b>
 </summary>
-A *readinessProbe *that checks an endpoints specific to readiness that is different from the liveness probe.
+A <b>readinessProbe </b>that checks an endpoints specific to readiness that is different from the liveness probe.
 </details>
 
 <details>
 <summary>
-The three possible states of containers are...
+<b>The three possible states of containers are...</b>
 </summary>
 Waiting<div>
 </div><div>Running</div><div>
@@ -849,66 +840,66 @@ Waiting<div>
 
 <details>
 <summary>
-A container is *Waiting *when...
+<b>A container is <b>Waiting </b>when...</b>
 </summary>
-It is neither *Running *or *Terminated*<div>
-</div><div>A *Waiting *container still runs operations like pulling images, applying Secrets etc.</div>
+It is neither <b>Running </b>or <b>Terminated</b><div>
+</div><div>A <b>Waiting </b>container still runs operations like pulling images, applying Secrets etc.</div>
 </details>
 
 <details>
 <summary>
-How to tell why a container is in&nbsp;*Waiting *state?
+<b>How to tell why a container is in&nbsp;<b>Waiting </b>state?</b>
 </summary>
-Check the state's&nbsp;*Reason *field
+Check the state's&nbsp;<b>Reason </b>field
 </details>
 
 <details>
 <summary>
-A container is in the *Running *state when...
+<b>A container is in the <b>Running </b>state when...</b>
 </summary>
 It is executing without issues.
 </details>
 
 <details>
 <summary>
-Which hook is executed prior to a container entering its *Running *state?
+<b>Which hook is executed prior to a container entering its <b>Running </b>state?</b>
 </summary>
 postStart
 </details>
 
 <details>
 <summary>
-A container is in the *Terminated *state when...
+<b>A container is in the <b>Terminated </b>state when...</b>
 </summary>
 It has successfully or unsuccessfully completed execution.
 </details>
 
 <details>
 <summary>
-How to tell why a container is in *Terminated *state?
+<b>How to tell why a container is in <b>Terminated </b>state?</b>
 </summary>
-Check the state's *Reason *and *Exit Code* fields.
+Check the state's <b>Reason </b>and <b>Exit Code</b> fields.
 </details>
 
 <details>
 <summary>
-Which hook is executed before a container enters Terminated state?
+<b>Which hook is executed before a container enters Terminated state?</b>
 </summary>
 preStop
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Inject extra feedback or signals into PodStatus via...</span>
+<b><span style="color: rgb(34, 34, 34);">Inject extra feedback or signals into PodStatus via...</span></b>
 </summary>
-*Pod readiness*
+<b>Pod readiness</b>
 </details>
 
 <details>
 <summary>
-You can add *Pod readiness* into *PodStatus *by...
+<b>You can add <b>Pod readiness</b> into <b>PodStatus </b>by...</b>
 </summary>
-*readinessGates*<div>
+<b>readinessGates</b><div>
 </div><div>Add it into PodSpec to specify a list of extra conditions for the kubelet to evaluate</div><div>
 </div><div>Ex.:</div><div>
 </div><div><pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
@@ -934,15 +925,15 @@ You can add *Pod readiness* into *PodStatus *by...
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Readiness gates are determined by the current state of...</span>
+<b><span style="color: rgb(34, 34, 34);">Readiness gates are determined by the current state of...</span></b>
 </summary>
-*status.condition* fields for the Pod<div>
-</div><div>If such a field isn't found, the status of the condition defaults to *"False"*</div>
+<b>status.condition</b> fields for the Pod<div>
+</div><div>If such a field isn't found, the status of the condition defaults to <b>"False"</b></div>
 </details>
 
 <details>
 <summary>
-*restartPolicy *possible values are...
+<b><b>restartPolicy </b>possible values are...</b>
 </summary>
 Always<div>
 </div><div>Never</div><div>
@@ -951,35 +942,35 @@ Always<div>
 
 <details>
 <summary>
-Default restartPolicy is...
+<b>Default restartPolicy is...</b>
 </summary>
 Always
 </details>
 
 <details>
 <summary>
-Does a Pod's *restartPolicy *apply to all its containers?
+<b>Does a Pod's <b>restartPolicy </b>apply to all its containers?</b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-Once bound to a node, will a Pod ever rebound to another node?
+<b>Once bound to a node, will a Pod ever rebound to another node?</b>
 </summary>
 No
 </details>
 
 <details>
 <summary>
-Does<code> restartPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;only refer to restarts of the Containers by the kubelet on the same node?</span>
+<b>Does<code> restartPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;only refer to restarts of the Containers by the kubelet on the same node?</span></b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Exited Containers that are restarted by the kubelet are restarted with an _____ delay capped at _____ and is reset after ten minutes of successful execution.</span>
+<b><span style="color: rgb(34, 34, 34);">Exited Containers that are restarted by the kubelet are restarted with an _____ delay capped at _____ and is reset after ten minutes of successful execution.</span></b>
 </summary>
 exponential back-off<div>
 </div><div>5 minutes</div>
@@ -987,7 +978,7 @@ exponential back-off<div>
 
 <details>
 <summary>
-Example livenessProbe spec
+<b>Example livenessProbe spec</b>
 </summary>
 <pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
 </span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
@@ -1018,97 +1009,97 @@ Example livenessProbe spec
 
 <details>
 <summary>
-A pod has one container. The container exits with *success*.<div>
-</div><div>What happens depending on each possible *restartPolicy*?</div>
+<b>A pod has one container. The container exits with <b>success</b>.<div>
+</div><div>What happens depending on each possible <b>restartPolicy</b>?</div></b>
 </summary>
 <ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Pod&nbsp;<code>phase</code>&nbsp;becomes Succeeded.</li><li>Never: Pod&nbsp;<code>phase</code>&nbsp;becomes Succeeded.</li></ul>
 </details>
 
 <details>
 <summary>
-A pod has one container. The container exits with&nbsp;*failure*.<div>
-</div><div>What happens depending on each possible&nbsp;*restartPolicy*?</div>
+<b>A pod has one container. The container exits with&nbsp;<b>failure</b>.<div>
+</div><div>What happens depending on each possible&nbsp;<b>restartPolicy</b>?</div></b>
 </summary>
 <ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>Never: Pod&nbsp;<code>phase</code>&nbsp;becomes Failed.</li></ul>
 </details>
 
 <details>
 <summary>
-<div><div>Pod is running and has two Containers. Container 1 exits with *failure*.</div></div><div>
-</div><div>What happens depending on each possible&nbsp;*restartPolicy*?</div>
+<b><div><div>Pod is running and has two Containers. Container 1 exits with <b>failure</b>.</div></div><div>
+</div><div>What happens depending on each possible&nbsp;<b>restartPolicy</b>?</div></b>
 </summary>
 <ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>Never: Do not restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li></ul><div><span style="color: rgb(34, 34, 34);">If Container 1 is not running, and Container 2 exits:</span></div><div><ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>Never: Pod&nbsp;<code>phase</code>&nbsp;becomes Failed.</li></ul></div>
 </details>
 
 <details>
 <summary>
-<div><div><div>Pod is running and has one Container. Container runs *out of memory *(and terminates in failure)</div></div></div><div>
-</div><div>What happens depending on each possible&nbsp;*restartPolicy*?</div>
+<b><div><div><div>Pod is running and has one Container. Container runs <b>out of memory </b>(and terminates in failure)</div></div></div><div>
+</div><div>What happens depending on each possible&nbsp;<b>restartPolicy</b>?</div></b>
 </summary>
 <ul><li>Always: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>OnFailure: Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.</li><li>Never: Log failure event; Pod&nbsp;<code>phase</code>&nbsp;becomes Failed.</li></ul>
 </details>
 
 <details>
 <summary>
-<div><div><div><div>Pod is running, and a disk dies.</div></div></div></div><div>
-</div><div>What happens?</div>
+<b><div><div><div><div>Pod is running, and a disk dies.</div></div></div></div><div>
+</div><div>What happens?</div></b>
 </summary>
 <ul><li>Kill all Containers.</li><li>Log appropriate event.</li><li>Pod&nbsp;<code>phase</code>&nbsp;becomes Failed.</li><li>If running under a controller, Pod is recreated elsewhere.</li></ul>
 </details>
 
 <details>
 <summary>
-<div><div><div><div><div>Pod is running, and its node is segmented out.</div></div></div></div></div><div>
-</div><div>What happens?</div>
+<b><div><div><div><div><div>Pod is running, and its node is segmented out.</div></div></div></div></div><div>
+</div><div>What happens?</div></b>
 </summary>
 <ul><li>Node controller waits for timeout.</li><li>Node controller sets Pod&nbsp;<code>phase</code>&nbsp;to Failed.</li><li>If running under a controller, Pod is recreated elsewhere.</li></ul>
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">A PodPreset allows pod template authors to not have to explicitly provide all information for every pod.&nbsp;</span><span style="color: rgb(34, 34, 34);">PodPresets are objects for injecting&nbsp;</span><span style="color: rgb(34, 34, 34);">additional runtime requirements&nbsp;</span><span style="color: rgb(34, 34, 34);">into pods at _____</span>
+<b><span style="color: rgb(34, 34, 34);">A PodPreset allows pod template authors to not have to explicitly provide all information for every pod.&nbsp;</span><span style="color: rgb(34, 34, 34);">PodPresets are objects for injecting&nbsp;</span><span style="color: rgb(34, 34, 34);">additional runtime requirements&nbsp;</span><span style="color: rgb(34, 34, 34);">into pods at _____</span></b>
 </summary>
 creation time
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">You use _____</span><span style="color: rgb(34, 34, 34);">&nbsp;to specify the Pods to which a given PodPreset applies.</span>
+<b><span style="color: rgb(34, 34, 34);">You use _____</span><span style="color: rgb(34, 34, 34);">&nbsp;to specify the Pods to which a given PodPreset applies.</span></b>
 </summary>
 label selectors
 </details>
 
 <details>
 <summary>
-What applies Pod Presets to incoming pod creation requests?
+<b>What applies Pod Presets to incoming pod creation requests?</b>
 </summary>
 PodPreset admission controller
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">When a pod creation request occurs, the system does the following:</span>
+<b><span style="color: rgb(34, 34, 34);">When a pod creation request occurs, the system does the following:</span></b>
 </summary>
 <ol><li>Retrieve all&nbsp;<code>PodPresets</code>&nbsp;available for use.</li><li>Check if the label selectors of any&nbsp;<code>PodPreset</code>&nbsp;matches the labels on the pod being created.</li><li>Attempt to merge the various resources defined by the&nbsp;<code>PodPreset</code>&nbsp;into the Pod being created.</li><li>On error, throw an event documenting the merge error on the pod, and create the pod&nbsp;<em>without</em>&nbsp;any injected resources from the&nbsp;<code>PodPreset</code>.</li><li>Annotate the resulting modified Pod spec to indicate that it has been modified by a&nbsp;<code>PodPreset</code>. The annotation is of the form&nbsp;<code>podpreset.admission.kubernetes.io/podpreset-&lt;pod-preset name&gt;: "&lt;resource version&gt;"</code>.</li></ol>
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">&nbsp;When a&nbsp;</span><code>PodPreset</code><span style="color: rgb(34, 34, 34);">&nbsp;is applied to one or more Pods, Kubernetes modifies the _____</span>
+<b><span style="color: rgb(34, 34, 34);">&nbsp;When a&nbsp;</span><code>PodPreset</code><span style="color: rgb(34, 34, 34);">&nbsp;is applied to one or more Pods, Kubernetes modifies the _____</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">PodSpec</span>
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">For changes to&nbsp;</span><code>Env</code><span style="color: rgb(34, 34, 34);">,&nbsp;</span><code>EnvFrom</code><span style="color: rgb(34, 34, 34);">, and&nbsp;</span><code>VolumeMounts</code><span style="color: rgb(34, 34, 34);">, Kubernetes modifies _____</span>
+<b><span style="color: rgb(34, 34, 34);">For changes to&nbsp;</span><code>Env</code><span style="color: rgb(34, 34, 34);">,&nbsp;</span><code>EnvFrom</code><span style="color: rgb(34, 34, 34);">, and&nbsp;</span><code>VolumeMounts</code><span style="color: rgb(34, 34, 34);">, Kubernetes modifies _____</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">The pod's individual container specs</span>
 </details>
 
 <details>
 <summary>
-How to&nbsp;disable Pod Preset for a Specific Pod
+<b>How to&nbsp;disable Pod Preset for a Specific Pod</b>
 </summary>
 <span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">podpreset.admission.kubernetes.io/exclude: "true"</span><div><span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">
 </span></div><div>Add the above annotation in the Pod Spec<span style="color: rgb(34, 34, 34); background-color: rgba(0, 0, 0, 0.05);">
@@ -1117,18 +1108,18 @@ How to&nbsp;disable Pod Preset for a Specific Pod
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">You can use&nbsp;</span><em>topology spread constraints</em><span style="color: rgb(34, 34, 34);">&nbsp;to control...</span>
+<b><span style="color: rgb(34, 34, 34);">You can use&nbsp;</span><em>topology spread constraints</em><span style="color: rgb(34, 34, 34);">&nbsp;to control...</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">how Pods</span><span style="color: rgb(34, 34, 34);">&nbsp;are spread across your cluster among failure-domains.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">(regions, zones, nodes or user-defined domains)</span></div>
 </details>
 
 <details>
 <summary>
-<div><div>You have a 4-node cluster with the following labels:</div><pre><code>NAME    STATUS   ROLES    AGE     VERSION   LABELS
+<b><div><div>You have a 4-node cluster with the following labels:</div><pre><code>NAME    STATUS   ROLES    AGE     VERSION   LABELS
 node1   Ready    &lt;none&gt;   4m26s   v1.16.0   node=node1,zone=zoneA
 node2   Ready    &lt;none&gt;   3m58s   v1.16.0   node=node2,zone=zoneA
 node3   Ready    &lt;none&gt;   3m17s   v1.16.0   node=node3,zone=zoneB
-node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></pre></div><div>What would the cluster logically look like?</div>
+node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></pre></div><div>What would the cluster logically look like?</div></b>
 </summary>
 <pre><code>+---------------+---------------+
 |     zoneA     |     zoneB     |
@@ -1139,21 +1130,21 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Topology spread constraints rely on _____ to&nbsp;</span><span style="color: rgb(34, 34, 34);">identify the topology domain(s) that each Node is in.</span>
+<b><span style="color: rgb(34, 34, 34);">Topology spread constraints rely on _____ to&nbsp;</span><span style="color: rgb(34, 34, 34);">identify the topology domain(s) that each Node is in.</span></b>
 </summary>
 node labels
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">You can define one or multiple _____&nbsp;</span>to instruct the kube-scheduler how to place each incoming Pod in relation to the existing Pods across your cluster.
+<b><span style="color: rgb(34, 34, 34);">You can define one or multiple _____&nbsp;</span>to instruct the kube-scheduler how to place each incoming Pod in relation to the existing Pods across your cluster.</b>
 </summary>
 <code>topologySpreadConstraint</code>
 </details>
 
 <details>
 <summary>
-*topologySpreadConstraints *syntax
+<b><b>topologySpreadConstraints </b>syntax</b>
 </summary>
 <pre><code>apiVersion: v1
 kind: Pod
@@ -1169,7 +1160,7 @@ spec:
 
 <details>
 <summary>
-<strong>maxSkew</strong><span style="color: rgb(34, 34, 34);">&nbsp;describes...</span>
+<b><strong>maxSkew</strong><span style="color: rgb(34, 34, 34);">&nbsp;describes...</span></b>
 </summary>
 the degree to which Pods may be unevenly distributed.<div>
 </div><div><span style="color: rgb(34, 34, 34);">It's the maximum permitted difference between the number of matching Pods in any two topology domains of a given topology type.</span>
@@ -1180,16 +1171,16 @@ the degree to which Pods may be unevenly distributed.<div>
 
 <details>
 <summary>
-<strong>topologyKey</strong><span style="color: rgb(34, 34, 34);">&nbsp;is...</span>
+<b><strong>topologyKey</strong><span style="color: rgb(34, 34, 34);">&nbsp;is...</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">The key of node labels.&nbsp;</span>
 </details>
 
 <details>
 <summary>
-<div><div><span style="color: rgb(34, 34, 34);">If two Nodes are labelled with one *topologyKey *and have identical values for that label, the scheduler treats both Nodes as _____</span></div></div><div>
+<b><div><div><span style="color: rgb(34, 34, 34);">If two Nodes are labelled with one <b>topologyKey </b>and have identical values for that label, the scheduler treats both Nodes as _____</span></div></div><div>
 </div><div>
-</div>
+</div></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">Being in the same topology.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
 </span></div><div><span style="color: rgb(34, 34, 34);">The scheduler tries to place a balanced number of Pods into each topology domain</span><span style="color: rgb(34, 34, 34);">
@@ -1198,32 +1189,32 @@ the degree to which Pods may be unevenly distributed.<div>
 
 <details>
 <summary>
-<strong>whenUnsatisfiable</strong><span style="color: rgb(34, 34, 34);">&nbsp;indicates...</span>
+<b><strong>whenUnsatisfiable</strong><span style="color: rgb(34, 34, 34);">&nbsp;indicates...</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">How to deal with a Pod if it doesn't satisfy the spread constraint</span>
 </details>
 
 <details>
 <summary>
-*whenUnsatisfiable *possible values:
+<b><b>whenUnsatisfiable </b>possible values:</b>
 </summary>
-<div>*<code>DoNotSchedule</code><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">
-</span>*</div><div><span style="color: rgb(34, 34, 34);">tells the scheduler not to schedule it.</span><span style="color: rgb(34, 34, 34);">
+<div><b><code>DoNotSchedule</code><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">
+</span></b></div><div><span style="color: rgb(34, 34, 34);">tells the scheduler not to schedule it.</span><span style="color: rgb(34, 34, 34);">
 </span></div><div><span style="color: rgb(34, 34, 34);">
-</span></div><div>*<code>ScheduleAnyway</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>*<span style="color: rgb(34, 34, 34);">
+</span></div><div><b><code>ScheduleAnyway</code><span style="color: rgb(34, 34, 34);">&nbsp;</span></b><span style="color: rgb(34, 34, 34);">
 </span></div><div><span style="color: rgb(34, 34, 34);">tells the scheduler to still schedule it while prioritizing nodes that minimize the skew</span></div>
 </details>
 
 <details>
 <summary>
-<div><h3>Example: One TopologySpreadConstraint</h3></div><div>Suppose you have a 4-node cluster where 3 Pods labeled&nbsp;<code>foo:bar</code>&nbsp;are located in node1, node2 and node3 respectively (<code>P</code>&nbsp;represents Pod):</div><pre><code>+---------------+---------------+
+<b><div><h3>Example: One TopologySpreadConstraint</h3></div><div>Suppose you have a 4-node cluster where 3 Pods labeled&nbsp;<code>foo:bar</code>&nbsp;are located in node1, node2 and node3 respectively (<code>P</code>&nbsp;represents Pod):</div><pre><code>+---------------+---------------+
 |     zoneA     |     zoneB     |
 +-------+-------+-------+-------+
 | node1 | node2 | node3 | node4 |
 +-------+-------+-------+-------+
 |   P   |   P   |   P   |       |
 +-------+-------+-------+-------+
-</code></pre><div>If we want an incoming Pod to be evenly spread with existing Pods across zones, the spec can be given as:</div>
+</code></pre><div>If we want an incoming Pod to be evenly spread with existing Pods across zones, the spec can be given as:</div></b>
 </summary>
 <pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
 </span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
@@ -1261,14 +1252,14 @@ the degree to which Pods may be unevenly distributed.<div>
 
 <details>
 <summary>
-<h3>Example: Multiple TopologySpreadConstraints<a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#example-multiple-topologyspreadconstraints"></a></h3><div>&nbsp;Suppose you have a 4-node cluster where 3 Pods labeled&nbsp;<code>foo:bar</code>&nbsp;are located in node1, node2 and node3 respectively (<code>P</code>&nbsp;represents Pod):</div><pre><code>+---------------+---------------+
+<b><h3>Example: Multiple TopologySpreadConstraints<a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#example-multiple-topologyspreadconstraints"></a></h3><div>&nbsp;Suppose you have a 4-node cluster where 3 Pods labeled&nbsp;<code>foo:bar</code>&nbsp;are located in node1, node2 and node3 respectively (<code>P</code>&nbsp;represents Pod):</div><pre><code>+---------------+---------------+
 |     zoneA     |     zoneB     |
 +-------+-------+-------+-------+
 | node1 | node2 | node3 | node4 |
 +-------+-------+-------+-------+
 |   P   |   P   |   P   |       |
 +-------+-------+-------+-------+
-</code></pre><div>You can use 2 TopologySpreadConstraints to control the Pods spreading on both zone and node:</div>
+</code></pre><div>You can use 2 TopologySpreadConstraints to control the Pods spreading on both zone and node:</div></b>
 </summary>
 <pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
 </span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
@@ -1305,37 +1296,37 @@ the degree to which Pods may be unevenly distributed.<div>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Only the Pods holding the same _____ as the incoming Pod can be matching candidates</span>
+<b><span style="color: rgb(34, 34, 34);">Only the Pods holding the same _____ as the incoming Pod can be matching candidates</span></b>
 </summary>
 namespace
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Nodes without&nbsp;</span><code>topologySpreadConstraints[*].topologyKey</code><span style="color: rgb(34, 34, 34);">&nbsp;present will be...</span>
+<b><span style="color: rgb(34, 34, 34);">Nodes without&nbsp;</span><code>topologySpreadConstraints[*].topologyKey</code><span style="color: rgb(34, 34, 34);">&nbsp;present will be...</span></b>
 </summary>
-*bypassed*<div>*
-*</div><div>This implies that:
+<b>bypassed</b><div><b>
+</b></div><div>This implies that:
 <div><ol><li>the Pods located on those nodes do not impact&nbsp;<code>maxSkew</code>&nbsp;calculation - in the above example, suppose "node1" does not have label "zone", then the 2 Pods will be disregarded, hence the incomingPod will be scheduled into "zoneA".</li><li>the incoming Pod has no chances to be scheduled onto this kind of nodes - in the above example, suppose a "node5" carrying label&nbsp;<code>{zone-typo: zoneC}</code>&nbsp;joins the cluster, it will be bypassed due to the absence of label key "zone".</li></ol></div></div>
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">If the incoming Pod has&nbsp;</span><code>spec.nodeSelector</code><span style="color: rgb(34, 34, 34);">&nbsp;or&nbsp;</span><code>spec.affinity.nodeAffinity</code><span style="color: rgb(34, 34, 34);">&nbsp;defined, nodes not matching them will be...</span>
+<b><span style="color: rgb(34, 34, 34);">If the incoming Pod has&nbsp;</span><code>spec.nodeSelector</code><span style="color: rgb(34, 34, 34);">&nbsp;or&nbsp;</span><code>spec.affinity.nodeAffinity</code><span style="color: rgb(34, 34, 34);">&nbsp;defined, nodes not matching them will be...</span></b>
 </summary>
 bypassed
 </details>
 
 <details>
 <summary>
-<div>Suppose you have a 5-node cluster ranging from zoneA to zoneC:</div><pre><code>+---------------+---------------+-------+
+<b><div>Suppose you have a 5-node cluster ranging from zoneA to zoneC:</div><pre><code>+---------------+---------------+-------+
 |     zoneA     |     zoneB     | zoneC |
 +-------+-------+-------+-------+-------+
 | node1 | node2 | node3 | node4 | node5 |
 +-------+-------+-------+-------+-------+
 |   P   |   P   |   P   |       |       |
 +-------+-------+-------+-------+-------+
-</code></pre><div>and you know that "zoneC" must be excluded. In this case, you can compose the yaml as below, so that "mypod" will be placed onto "zoneB" instead of "zoneC". Similarly&nbsp;<code>spec.nodeSelector</code>&nbsp;is also respected.</div>
+</code></pre><div>and you know that "zoneC" must be excluded. In this case, you can compose the yaml as below, so that "mypod" will be placed onto "zoneB" instead of "zoneC". Similarly&nbsp;<code>spec.nodeSelector</code>&nbsp;is also respected.</div></b>
 </summary>
 <pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
 </span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
@@ -1367,8 +1358,8 @@ bypassed
 
 <details>
 <summary>
-<h2>Comparison of Topology with PodAffinity/PodAntiAffinity</h2><div><div>In Kubernetes, directives related to "Affinity" control how Pods are scheduled - more packed or more scattered.</div></div><div>
-</div><div><ul><li>For <font face="monospace">_____</font>, you can try to pack any number of Pods into qualifying topology domain(s)</li><li>For&nbsp;<font face="monospace">_____</font>, only one Pod can be scheduled into a single topology domain.</li></ul></div>
+<b><h2>Comparison of Topology with PodAffinity/PodAntiAffinity</h2><div><div>In Kubernetes, directives related to "Affinity" control how Pods are scheduled - more packed or more scattered.</div></div><div>
+</div><div><ul><li>For <font face="monospace">_____</font>, you can try to pack any number of Pods into qualifying topology domain(s)</li><li>For&nbsp;<font face="monospace">_____</font>, only one Pod can be scheduled into a single topology domain.</li></ul></div></b>
 </summary>
 PodAffinity<div>
 </div><div>PodAntiAffinity
@@ -1377,15 +1368,15 @@ PodAffinity<div>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">It is possible to set default topology spread constraints for a cluster.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
-</span></div><div><span style="color: rgb(34, 34, 34);">Default topology spread constraints are applied to a Pod if, and only if:</span></div>
+<b><span style="color: rgb(34, 34, 34);">It is possible to set default topology spread constraints for a cluster.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
+</span></div><div><span style="color: rgb(34, 34, 34);">Default topology spread constraints are applied to a Pod if, and only if:</span></div></b>
 </summary>
 <ul><li>It doesn't define any constraints in its&nbsp;<code>.spec.topologySpreadConstraints</code>.</li><li>It belongs to a service, replication controller, replica set or stateful set.</li></ul>
 </details>
 
 <details>
 <summary>
-<div>An example *KubeSchedulerConfiguration *configuration for cluster-level default constraints might look like...</div>
+<b><div>An example <b>KubeSchedulerConfiguration </b>configuration for cluster-level default constraints might look like...</div></b>
 </summary>
 <pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>kubescheduler.config.k8s.io/v1alpha2<span style="color: rgb(187, 187, 187);">
 </span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>KubeSchedulerConfiguration<span style="color: rgb(187, 187, 187);">
@@ -1402,26 +1393,25 @@ PodAffinity<div>
 
 <details>
 <summary>
-Does deleting deployments or pods bypass Pod Disruption Budgets?
-
+<b>Does deleting deployments or pods bypass Pod Disruption Budgets?</b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">A _____ limits the number of pods of a replicated application that are down simultaneously from voluntary disruptions.</span><div><span style="color: rgb(34, 34, 34);">
+<b><span style="color: rgb(34, 34, 34);">A _____ limits the number of pods of a replicated application that are down simultaneously from voluntary disruptions.</span><div><span style="color: rgb(34, 34, 34);">
 </span></div><div><span style="color: rgb(34, 34, 34);">Ex.:</span></div><div><span style="color: rgb(34, 34, 34);">A quorum-based application would like to ensure that the number of replicas running is never brought below the number needed for a quorum.&nbsp;</span></div><div><span style="color: rgb(34, 34, 34);">
 </span></div><div><span style="color: rgb(34, 34, 34);">A web front end might want to ensure that the number of replicas serving load never falls below a certain percentage of the total.</span><span style="color: rgb(34, 34, 34);">
-</span></div>
+</span></div></b>
 </summary>
 PodDisruptionBudget
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Cluster managers and hosting providers should use tools which respect Pod Disruption Budgets by calling _____&nbsp;</span><span style="color: rgb(34, 34, 34);">instead of directly deleting pods or deployments</span><div><span style="color: rgb(34, 34, 34);">
-</span></div><div><span style="color: rgb(34, 34, 34);">An example is the _____ command.</span></div>
+<b><span style="color: rgb(34, 34, 34);">Cluster managers and hosting providers should use tools which respect Pod Disruption Budgets by calling _____&nbsp;</span><span style="color: rgb(34, 34, 34);">instead of directly deleting pods or deployments</span><div><span style="color: rgb(34, 34, 34);">
+</span></div><div><span style="color: rgb(34, 34, 34);">An example is the _____ command.</span></div></b>
 </summary>
 the Eviction API<div>
 </div><div>kubectl drain</div>
@@ -1429,59 +1419,59 @@ the Eviction API<div>
 
 <details>
 <summary>
-A PodDisruptionBudget&nbsp;<span style="color: rgb(34, 34, 34);">specifies the number of _____ that an application can tolerate having, relative to how many it is intended to have.</span>
+<b>A PodDisruptionBudget&nbsp;<span style="color: rgb(34, 34, 34);">specifies the number of _____ that an application can tolerate having, relative to how many it is intended to have.</span></b>
 </summary>
 replicas
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">ADeployment has a&nbsp;</span><code>.spec.replicas: 5.&nbsp;</code><span style="color: rgb(34, 34, 34);">It is supposed to have 5 pods at any given time.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
-</span></div><div><span style="color: rgb(34, 34, 34);">If its PDB allows for there to be 4 at a time, then the Eviction API will allow voluntary disruption of how many pods at a time?</span></div>
+<b><span style="color: rgb(34, 34, 34);">ADeployment has a&nbsp;</span><code>.spec.replicas: 5.&nbsp;</code><span style="color: rgb(34, 34, 34);">It is supposed to have 5 pods at any given time.&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
+</span></div><div><span style="color: rgb(34, 34, 34);">If its PDB allows for there to be 4 at a time, then the Eviction API will allow voluntary disruption of how many pods at a time?</span></div></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">One</span>
 </details>
 
 <details>
 <summary>
-PodDisruptionBudgets cannot prevent involuntary disruptions from occurring.&nbsp;<div>
-</div><div>Do involuntary disruptions count against the budget?</div>
+<b>PodDisruptionBudgets cannot prevent involuntary disruptions from occurring.&nbsp;<div>
+</div><div>Do involuntary disruptions count against the budget?</div></b>
 </summary>
 No
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Do Pods which are deleted or unavailable due to a rolling upgrade to an application count against the disruption budget?</span>
+<b><span style="color: rgb(34, 34, 34);">Do Pods which are deleted or unavailable due to a rolling upgrade to an application count against the disruption budget?</span></b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-Are controllers (like deployment or statefulset) limited by PDBs when doing rolling updates?
+<b>Are controllers (like deployment or statefulset) limited by PDBs when doing rolling updates?</b>
 </summary>
-*No*<div>
+<b>No</b><div>
 </div><div><span style="color: rgb(34, 34, 34);">The handling of failures during application updates is configured in the controller spec. (Learn about&nbsp;</span><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment">updating a deployment</a><span style="color: rgb(34, 34, 34);">.)</span></div>
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">When a pod is evicted using the eviction API, is it gracefully terminated?</span>
+<b><span style="color: rgb(34, 34, 34);">When a pod is evicted using the eviction API, is it gracefully terminated?</span></b>
 </summary>
 Yes
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">An ephemeral container&nbsp; runs temporarily in an existing Pod&nbsp;</span><span style="color: rgb(34, 34, 34);">to accomplish...</span>
+<b><span style="color: rgb(34, 34, 34);">An ephemeral container&nbsp; runs temporarily in an existing Pod&nbsp;</span><span style="color: rgb(34, 34, 34);">to accomplish...</span></b>
 </summary>
-<div>*user-initiated actions*&nbsp;</div><div>Such as troubleshooting and inspecting services</div>
+<div><b>user-initiated actions</b>&nbsp;</div><div>Such as troubleshooting and inspecting services</div>
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Sometimes it's necessary to inspect the state of an existing Pod, however, for example to troubleshoot a hard-to-reproduce bug. In these cases you can run _____&nbsp;</span><span style="color: rgb(34, 34, 34);">in an existing Pod to _____</span>
+<b><span style="color: rgb(34, 34, 34);">Sometimes it's necessary to inspect the state of an existing Pod, however, for example to troubleshoot a hard-to-reproduce bug. In these cases you can run _____&nbsp;</span><span style="color: rgb(34, 34, 34);">in an existing Pod to _____</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">an ephemeral container&nbsp;</span><div><span style="color: rgb(34, 34, 34);">
 </span></div><div><span style="color: rgb(34, 34, 34);">inspect its state and run arbitrary commands</span>
@@ -1490,28 +1480,28 @@ Yes
 
 <details>
 <summary>
-Will an ephemeral container ever be automatically restarted?
+<b>Will an ephemeral container ever be automatically restarted?</b>
 </summary>
 No
 </details>
 
 <details>
 <summary>
-Do ephemeral containers have guaranteed resources?
+<b>Do ephemeral containers have guaranteed resources?</b>
 </summary>
 No
 </details>
 
 <details>
 <summary>
-Do ephemeral containers guarantee execution?
+<b>Do ephemeral containers guarantee execution?</b>
 </summary>
 No
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Ephemeral containers are described using...</span>
+<b><span style="color: rgb(34, 34, 34);">Ephemeral containers are described using...</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">the same&nbsp;</span><code>ContainerSpec</code><span style="color: rgb(34, 34, 34);">&nbsp;as regular containers</span><div><span style="color: rgb(34, 34, 34);">
 </span></div><div><span style="color: rgb(34, 34, 34);">However, many fields are incompatible and disallowed</span></div>
@@ -1519,27 +1509,26 @@ No
 
 <details>
 <summary>
-<div>You are trying to interactively troubleshoot a container.&nbsp;</div><div>
+<b><div>You are trying to interactively troubleshoot a container.&nbsp;</div><div>
 </div><div><code>kubectl exec</code>&nbsp;was insufficient because the container has crashed</div><div>
-</div><div>The container image is *minimal *and&nbsp;*distroless *and doesn't include debugging utilities.</div>
-<div>What can you use to troubleshoot?</div>
+</div><div>The container image is <b>minimal </b>and&nbsp;<b>distroless </b>and doesn't include debugging utilities.</div>
+<div>What can you use to troubleshoot?</div></b>
 </summary>
 Ephemeral containers
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">When using ephemeral containers, it's helpful to enable _____&nbsp;</span>so you can view processes in other containers.
-
+<b><span style="color: rgb(34, 34, 34);">When using ephemeral containers, it's helpful to enable _____&nbsp;</span>so you can view processes in other containers.</b>
 </summary>
 process namespace sharing
 </details>
 
 <details>
 <summary>
-<span style="color: rgb(34, 34, 34);">Ephemeral containers are created using the&nbsp;</span><code>ephemeralcontainers</code><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">subresource of Pod,&nbsp;</span><span style="color: rgb(34, 34, 34);">which can be demonstrated using&nbsp;</span><code>kubectl --raw.</code><div><code>
+<b><span style="color: rgb(34, 34, 34);">Ephemeral containers are created using the&nbsp;</span><code>ephemeralcontainers</code><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">subresource of Pod,&nbsp;</span><span style="color: rgb(34, 34, 34);">which can be demonstrated using&nbsp;</span><code>kubectl --raw.</code><div><code>
 </code></div><div>First describe the ephemeral container to add as an EphemeralContainers list:<code>
-</code></div>
+</code></div></b>
 </summary>
 <div>{
 </div><div><pre><code>    <span style="color: green; font-weight: 700;">"apiVersion"</span>: <span style="color: rgb(187, 68, 68);">"v1"</span>,

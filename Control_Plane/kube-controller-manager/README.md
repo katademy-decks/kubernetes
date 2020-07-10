@@ -2,7 +2,7 @@
 
 <details>
 <summary>
-kube-controller-manager
+<b>kube-controller-manager</b>
 </summary>
 Daemon controlling core K8S control loops<div>
 </div><div>Node controller</div><div>Replication controller</div><div>Service account controller</div><div>Endpoints controller
