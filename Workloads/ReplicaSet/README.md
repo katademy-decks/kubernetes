@@ -9,7 +9,7 @@ a specific number of pod replicas are running at any one time across nodes
 
 <details>
 <summary>
-<b>style="">What will happen to ReplicaSet pods inside a node when that node gets deleted?</b>
+<b>What will happen to ReplicaSet pods inside a node when that node gets deleted?</b>
 </summary>
 These pods will be replaced on another node(s)
 

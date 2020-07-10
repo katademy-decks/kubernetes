@@ -30,13 +30,13 @@ DaemonSet
 
 <details>
 <summary>
-<b>style="">Explain what DaemonSet and ReplicaSet have in common (and what are the differences)</b>
+<b>Explain what DaemonSet and ReplicaSet have in common (and what are the differences)</b>
 </summary>
 They are both Kubernetes Controllers and they are both related to count of pods inside the cluster.
- style=""><b>
+<b>
 ReplicaSet </b>makes sure that given amount of pods is always running in the cluster (<b>doesn't</b> matter in which worker node they are running!)<img src="paste-3dfda59e415fbe71f6a599a82a877ec60953f322.jpg">
 
- style="display: inline !important;"><b>DaemonSet </b>makes sure that all (or selected) nodes have a replica of given pod.
+<div style="display: inline !important;"><b>DaemonSet </b>makes sure that all (or selected) nodes have a replica of given pod.
 In most use cases, the number of nodes will be equal with number of pods<img src="paste-41a44af9a7651900a5b65dbf3ba95a1f3fa4eb3e.jpg">
 </details>
 
@@ -51,9 +51,9 @@ Yes
 
 <details>
 <summary>
-<b>style="">What will happen (by default) to DaemonSet pods inside a node when that node gets deleted?</b>
+<b>What will happen (by default) to DaemonSet pods inside a node when that node gets deleted?</b>
 </summary>
-style="">These pods will be garbage collected (deleted) as well<b><img src="lFn2VhS56EQ5e5HzPHY0ouWasNdxi6-R2XEOtnqIpKDTocCA4l-Sg6AfbKXHH9WIS1a8EMnYYEOiGyGJFioK-9qIZIH3sduMAborO6gXiCHw1Umz7OniapkRpRZdEZfQbEXv.png"></b>
+These pods will be garbage collected (deleted) as well<b><img src="lFn2VhS56EQ5e5HzPHY0ouWasNdxi6-R2XEOtnqIpKDTocCA4l-Sg6AfbKXHH9WIS1a8EMnYYEOiGyGJFioK-9qIZIH3sduMAborO6gXiCHw1Umz7OniapkRpRZdEZfQbEXv.png"></b>
 </details>
 
 <details>
@@ -62,6 +62,6 @@ style="">These pods will be garbage collected (deleted) as well<b><img src="lFn2
 </summary>
 * It runs one instance on *NODE*
 * Kubernetes DaemonSets run a&nbsp;<em>daemon</em>&nbsp;container on each node in the cluster.
->* The term&nbsp;<em>daemon</em>&nbsp;traditionally refers to long-running background processes on a server that handle things like logging, so by analogy,&nbsp;
+* The term&nbsp;<em>daemon</em>&nbsp;traditionally refers to long-running background processes on a server that handle things like logging, so by analogy,&nbsp;
 </details>
 

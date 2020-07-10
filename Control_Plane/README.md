@@ -4,15 +4,15 @@
 <summary>
 <b>Control plane components</b>
 </summary>
->Kubernetes Master&nbsp;
->kubelets>>etcd
+Kubernetes Master&nbsp;
+kubeletsetcd
 </details>
 
 <details>
 <summary>
 <b>All API usage from nodes and pods terminate at the following control plane components:</b>
 </summary>
-<b>apiserver</b>>><hr>>no other control plane components exposes remote services
+<b>apiserver</b><hr>no other control plane components exposes remote services
 </details>
 
 <details>
@@ -33,25 +33,25 @@ service account
 <summary>
 <b>The <b>kubernetes </b>service (in all namespaces) is configured with _____ that is redirected via _____ to the apiserver</b>
 </summary>
-a virtual IP address>
->kube-proxy
+a virtual IP address
+kube-proxy
 </details>
 
 <details>
 <summary>
 <b>the apiserver is configured to listen for remote connections on _____ with one or more forms of _____ enabled</b>
 </summary>
-a secure HTTPS port>
->client authentication
+a secure HTTPS port
+client authentication
 </details>
 
 <details>
 <summary>
-<b>>apiserver to kubelet connections are used for</b>
+<b>apiserver to kubelet connections are used for</b>
 </summary>
-Fetching pod logs>
-><b>kubectl attach</b>'ing into pods>
-><b>kubectl port-forward</b>'ing into pods
+Fetching pod logs
+<b>kubectl attach</b>'ing into pods
+<b>kubectl port-forward</b>'ing into pods
 </details>
 
 <details>
@@ -65,15 +65,15 @@ the kubelet's HTTPS endpoint
 <summary>
 <b>Does the <b>apiserver</b> verify the <b>kubelet's</b> serving certificate by default?</b>
 </summary>
-No>----->The connection is subject to MITM attacks by default
+No-----The connection is subject to MITM attacks by default
 </details>
 
 <details>
 <summary>
 <b>apiserver to kubelet connection can be verified via</b>
 </summary>
->SSH tunneling>
->OR&nbsp;>
+SSH tunneling
+OR&nbsp;
 <b>apiserver --kubelet-certificate-authority</b>
 </details>
 
@@ -81,8 +81,8 @@ No>----->The connection is subject to MITM attacks by default
 <summary>
 <b>Are <b>apiserver</b>&nbsp;connections to <b>nodes, pods and services</b>&nbsp;authenticated or encrypted?</b>
 </summary>
-No :(>
->They can be run over HTTPS but will not validate the certificate
+No :(
+They can be run over HTTPS but will not validate the certificate
 </details>
 
 <details>
@@ -96,9 +96,9 @@ cloud-controller-manager
 <summary>
 <b>Node controller</b>
 </summary>
-<b>Create / destroy nodes&nbsp;</b>>when new servers are created and destroyed in your cloud infrastructure>
-><b>Annotate Nodes</b>>with cloud-specific information, such as Region>
-><b>Get Node information</b>>Hostname, address, health
+<b>Create / destroy nodes&nbsp;</b>when new servers are created and destroyed in your cloud infrastructure
+<b>Annotate Nodes</b>with cloud-specific information, such as Region
+<b>Get Node information</b>Hostname, address, health
 </details>
 
 <details>
@@ -119,20 +119,20 @@ Sets up Load Balancers and other infrastructure components needed by <b>Service 
 <summary>
 <b>cloud-controller-manager runs the following controllers:</b>
 </summary>
->Node Controller
->Route Controller>Volume Controller>Service Controller
+Node Controller
+Route ControllerVolume ControllerService Controller
 </details>
 
 <details>
 <summary>
 <b>kube-controller-manager</b>
 </summary>
-Daemon controlling core K8S control loops>
->Node controller>Replication controller>Service account controller>Endpoints controller
->Garbage collector (can be disabled)
->
->HPA
->Leader election>>Reconcilliation interval>>Feature gates>>Cluster CIDR>Pod CIDR
+Daemon controlling core K8S control loops
+Node controllerReplication controllerService account controllerEndpoints controller
+Garbage collector (can be disabled)
+
+HPA
+Leader electionReconcilliation intervalFeature gatesCluster CIDRPod CIDR
 </details>
 
 <details>
@@ -150,8 +150,8 @@ Daemon controlling core K8S control loops>
 <summary>
 <b>Kubernetes Master</b>
 </summary>
->>kube-controller-manager
-kube-apiserver>kube-scheduler>
+kube-controller-manager
+kube-apiserverkube-scheduler
 Uses and provides the following communication:
 <ul><li>fetch pod logs.</li><li>kubectl-attach</li><li>kubectl port-forward</li><li>SSH tunnel</li></ul>
 </details>
