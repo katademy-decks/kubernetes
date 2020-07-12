@@ -2,15 +2,9 @@
 
 <details>
 <summary>
-<b>Convert the "nginx" ClusterIP service to NodePort and find the NodePort port. Hit it using Node's IP.</b>
+<b>Kubernetes Master controls...</b>
 </summary>
-<i>kubectl edit svc nginx</i>
-change the <i>spec.type </i>value to NodePort
-<i>spec:</i><i>&nbsp; type: NodePort</i>
-Find the port and IP with
-<i>kubectl get svc</i>
-then hit the service with
-<i>wget -O- &lt;NodeIP&gt;:&lt;Port&gt;</i>
+Kubernetes nodes
 </details>
 
 <details>
@@ -21,6 +15,15 @@ then hit the service with
 2. <b>kube-proxy</b>, a proxy that maintains network rules on nodes.3.&nbsp;<div style="display: inline !important;"><b>container runtime </b>(like Docker) responsible for pulling the container image from a registry, unpacking the container, and running the application.
 
 <img src="paste-0d78f3f9993df127ff9365555478608a03a8904f.jpg">
+</details>
+
+<details>
+<summary>
+<b>What's the name of a Kubernetes entity that executes workloads?</b>
+</summary>
+Node
+
+<img src="paste-2dd3a0d3b489fe0cc29ee86ddb9283470450af35.jpg">
 </details>
 
 <details>
@@ -44,13 +47,9 @@ then hit the service with
 
 <details>
 <summary>
-<b>To list your busiest nodes, by the number of Pods running on each:</b>
+<b>Image Pull Policy by kubernetes to node</b>
 </summary>
-kubectl get pods -o json --all-namespaces | 
-jq '.items | group_by(.spec.nodeName) | 
-map({"nodeName": .[0].spec.nodeName, "count": length}) | 
-sort_by(.count) | 
-reverse'
+* Always pull* Never pull* IfNotPresent pull (default)
 </details>
 
 <details>
@@ -66,25 +65,6 @@ affinity:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: In
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values: ["server"]
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;topologyKey: kubernetes.io/hostname
-</details>
-
-<details>
-<summary>
-<b>How to add/remove taint to a node?</b>
-</summary>
-<strong>kubectl taint nodes docker-for-desktop dedicated=true:NoSchedule</strong><strong>kubectl taint nodes docker-for-desktop dedicated=true:NoSchedule-
-</strong><b>
-</b>apiVersion: v1
-kind: Pod
-...
-spec:
- &nbsp;tolerations:
- &nbsp;- key: "dedicated"
- &nbsp;&nbsp;&nbsp;operator: "Equal"
- &nbsp;&nbsp;&nbsp;value: "true"
- &nbsp;&nbsp;&nbsp;effect: "NoSchedule"<b>
-</b><strong>
-</strong>
 </details>
 
 <details>
@@ -118,94 +98,12 @@ Pass this flag to the kubelet:<b>--register-node=false</b>
 
 <details>
 <summary>
-<b>kubectl cordon NODE</b>
-</summary>
-Mark a node unschedulable
-</details>
-
-<details>
-<summary>
-<b>kubectl drain NODE</b>
-</summary>
-Cordons the node then evicts/deletes all pods.
-Does not deleted mirror pods or DaemonSet pods (DS controller ignores unschedulable markings)
-<b>--ignore-daemonsets</b>Ignore DS managed pods
-<b>--force</b>Continue even if there are dangling pods
-<b>--delete-local-data</b>Continue even if there are pods with <b>EmptyDir</b>&nbsp;(local data that is removed upon draining)
-</details>
-
-<details>
-<summary>
-<b>kubectl taint (?)</b>
-</summary>
-kubectl taint NODE KEY=VAL:EFFECT
-<b>--overwrite</b>
-</details>
-
-<details>
-<summary>
-<b>todo</b>
-</summary>
-Sent by kubelets, help determine the availability of a node.&nbsp;
-1) updates of&nbsp;<code>NodeStatus</code>&nbsp;2)&nbsp;<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#lease-v1-coordination-k8s-io">Lease object</a>.&nbsp;
-Each Node has an associated Lease object in the&nbsp;<code>kube-node-lease</code>&nbsp;<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces">namespace</a>&nbsp;which improves the performance of the node heartbeats as the cluster scales.
-</details>
-
-<details>
-<summary>
-<b>What is Node Affinities?&nbsp;</b>
-</summary>
-Schedule pods on selector'd nodes preferentially or not
-<b>requiredDuringSchedulingIgnoredDuringExecution</b><b>preferredDuringSchedulingIgnoredDuringExecution</b>&nbsp;
-<b>spec:
- &nbsp;affinity:
- &nbsp;&nbsp;&nbsp;nodeAffinity:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requiredDuringSchedulingIgnoredDuringExecution:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nodeSelectorTerms:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- matchExpressions:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- key: "failure-domain.beta.kubernetes.io/zone"
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: In
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values: ["us-central1-a"]</b>
-</details>
-
-<details>
-<summary>
-<b>Worker node components</b>
-</summary>
-<b>kubelet</b>Controls node, provides api for control plane
-<b>kube-proxy</b>Configs iptables and virtual network
-<b>Container runtime</b>Downloads and runs containers
-</details>
-
-<details>
-<summary>
-<b>kubectl uncordon</b>
-</summary>
-Mark a node schedulable
-</details>
-
-<details>
-<summary>
-<b>kubectl top node NODE_NAME</b>
-</summary>
-Display resource usage of nodes
-</details>
-
-<details>
-<summary>
 <b>A node's status containts four domains of information.These are...</b>
 </summary>
 Addresses
 Conditions
 Capacity and Allocatable
 Info
-</details>
-
-<details>
-<summary>
-<b>kubectl command to view a Node's status and other details</b>
-</summary>
-<b>kubectl describe node &lt;node-name&gt;</b>
 </details>
 
 <details>
@@ -245,14 +143,6 @@ The IP address of the node available from outside the cluster
 <b>InternalIP</b>
 </summary>
 The IP address of the node routable only from inside the cluster
-</details>
-
-<details>
-<summary>
-<b>Node <b>Info</b>&nbsp;status field describes general information about a node, such as:</b>
-</summary>
-OS Name
-kubelet, kube-proxy, docker versions
 </details>
 
 <details>
@@ -352,20 +242,6 @@ Assigns a CIDR block to each node upon registration (if enabled)<hr><b>List of n
 
 <details>
 <summary>
-<b>Node heartbeats are sent by...</b>
-</summary>
-kubelet
-</details>
-
-<details>
-<summary>
-<b>Node heartbeats are sent by...</b>
-</summary>
-kubelet
-</details>
-
-<details>
-<summary>
 <b>Two types of node Heartbeats</b>
 </summary>
 1. updates of <b>NodeStatus</b>
@@ -374,8 +250,79 @@ kubelet
 
 <details>
 <summary>
+<b>Node heartbeats are sent by...</b>
+</summary>
+kubelet
+</details>
+
+<details>
+<summary>
+<b>Node heartbeats are sent by...</b>
+</summary>
+kubelet
+</details>
+
+<details>
+<summary>
+<b>Node <b>Info</b>&nbsp;status field describes general information about a node, such as:</b>
+</summary>
+OS Name
+kubelet, kube-proxy, docker versions
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">This namespace for the lease objects associated with each node which improves the performance of the node heartbeats as the cluster scales is...</span></b>
+</summary>
+kube-node-lease
+</details>
+
+<details>
+<summary>
+<b>todo</b>
+</summary>
+Sent by kubelets, help determine the availability of a node.&nbsp;
+1) updates of&nbsp;<code>NodeStatus</code>&nbsp;2)&nbsp;<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#lease-v1-coordination-k8s-io">Lease object</a>.&nbsp;
+Each Node has an associated Lease object in the&nbsp;<code>kube-node-lease</code>&nbsp;<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces">namespace</a>&nbsp;which improves the performance of the node heartbeats as the cluster scales.
+</details>
+
+<details>
+<summary>
 <b>CAdvisor</b>
 </summary>
 A daemon in the kubelet that discovers, monitors and exports data on containers
+</details>
+
+<details>
+<summary>
+<b>What is Node Affinities?&nbsp;</b>
+</summary>
+Schedule pods on selector'd nodes preferentially or not
+<b>requiredDuringSchedulingIgnoredDuringExecution</b><b>preferredDuringSchedulingIgnoredDuringExecution</b>&nbsp;
+<b>spec:
+ &nbsp;affinity:
+ &nbsp;&nbsp;&nbsp;nodeAffinity:
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requiredDuringSchedulingIgnoredDuringExecution:
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nodeSelectorTerms:
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- matchExpressions:
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- key: "failure-domain.beta.kubernetes.io/zone"
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: In
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values: ["us-central1-a"]</b>
+</details>
+
+<details>
+<summary>
+<b>Worker node components</b>
+</summary>
+<b>kubelet</b>Controls node, provides api for control plane
+<b>kube-proxy</b>Configs iptables and virtual network
+<b>Container runtime</b>Downloads and runs containers
+</details>
+
+<details>
+<summary>
+<b>What are taints and&nbsp;<strong>tolerations</strong>?</b>
+</summary>
+<em>Taints</em>&nbsp;allow a node to repel a set of Pods, based on certain properties of the node.
 </details>
 

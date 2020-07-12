@@ -2,10 +2,13 @@
 
 <details>
 <summary>
-<b>Control plane components</b>
+<b>List processes running on every Kubernetes Master</b>
 </summary>
-Kubernetes Master&nbsp;
-kubeletsetcd
+1. kube-apiserver
+2. kube-controller-manager
+3. kube-scheduler
+
+<img src="paste-d842301571ce981466b41d198776a3b6b0df20e8.jpg">
 </details>
 
 <details>
@@ -43,15 +46,6 @@ kube-proxy
 </summary>
 a secure HTTPS port
 client authentication
-</details>
-
-<details>
-<summary>
-<b>apiserver to kubelet connections are used for</b>
-</summary>
-Fetching pod logs
-<b>kubectl attach</b>'ing into pods
-<b>kubectl port-forward</b>'ing into pods
 </details>
 
 <details>
@@ -117,6 +111,14 @@ Sets up Load Balancers and other infrastructure components needed by <b>Service 
 
 <details>
 <summary>
+<b>Control plane components</b>
+</summary>
+Kubernetes Master&nbsp;
+kubeletsetcd
+</details>
+
+<details>
+<summary>
 <b>cloud-controller-manager runs the following controllers:</b>
 </summary>
 Node Controller
@@ -137,22 +139,10 @@ Leader electionReconcilliation intervalFeature gatesCluster CIDRPod CIDR
 
 <details>
 <summary>
-<b>List processes running on every Kubernetes Master</b>
+<b>kube-scheduler</b>
 </summary>
-1. kube-apiserver
-2. kube-controller-manager
-3. kube-scheduler
-
-<img src="paste-d842301571ce981466b41d198776a3b6b0df20e8.jpg">
-</details>
-
-<details>
-<summary>
-<b>Kubernetes Master</b>
-</summary>
-kube-controller-manager
-kube-apiserverkube-scheduler
-Uses and provides the following communication:
-<ul><li>fetch pod logs.</li><li>kubectl-attach</li><li>kubectl port-forward</li><li>SSH tunnel</li></ul>
+Schedules pods on available worker nodes.
+Policy-richTopology-aware,&nbsp;Improves impacts availability, performance, and capacity of nodes
+Considers individual / collective resource needs, QoS requirements, hardware/software/policy/affinity constraints, data locality, inter-workload interference, deadlines.
 </details>
 
