@@ -2,20 +2,9 @@
 
 <details>
 <summary>
-<b>List processes running on every Kubernetes Master</b>
+<b>Control plane components</b>
 </summary>
-1. kube-apiserver
-2. kube-controller-manager
-3. kube-scheduler
-
-<img src="paste-d842301571ce981466b41d198776a3b6b0df20e8.jpg">
-</details>
-
-<details>
-<summary>
-<b>All API usage from nodes and pods terminate at the following control plane components:</b>
-</summary>
-<b>apiserver</b><hr>no other control plane components exposes remote services
+kubelets, master, etcd
 </details>
 
 <details>
@@ -111,18 +100,13 @@ Sets up Load Balancers and other infrastructure components needed by <b>Service 
 
 <details>
 <summary>
-<b>Control plane components</b>
+<b>List processes running on every Kubernetes Master</b>
 </summary>
-Kubernetes Master&nbsp;
-kubeletsetcd
-</details>
+1. kube-apiserver
+2. kube-controller-manager
+3. kube-scheduler
 
-<details>
-<summary>
-<b>cloud-controller-manager runs the following controllers:</b>
-</summary>
-Node Controller
-Route ControllerVolume ControllerService Controller
+<img src="paste-d842301571ce981466b41d198776a3b6b0df20e8.jpg">
 </details>
 
 <details>
@@ -139,10 +123,8 @@ Leader electionReconcilliation intervalFeature gatesCluster CIDRPod CIDR
 
 <details>
 <summary>
-<b>kube-scheduler</b>
+<b>All API usage from nodes and pods terminate at the following control plane components:</b>
 </summary>
-Schedules pods on available worker nodes.
-Policy-richTopology-aware,&nbsp;Improves impacts availability, performance, and capacity of nodes
-Considers individual / collective resource needs, QoS requirements, hardware/software/policy/affinity constraints, data locality, inter-workload interference, deadlines.
+<b>apiserver</b><hr>no other control plane components exposes remote services
 </details>
 

@@ -1,45 +1,4 @@
-# Syntax 
-
-<details>
-<summary>
-<b>&nbsp;Create a PersistentVolumeClaim for normal storage class, called mypvc, a request of 4Gi and an accessMode of ReadWriteOnce</b>
-</summary>
-<i>kind: PersistentVolumeClaim</i><i>apiVersion: v1&nbsp;</i><i>metadata:</i><i>&nbsp; name: mypvc&nbsp;</i><i>spec:</i><i>&nbsp; storageClassName: normal</i><i>&nbsp; accessModes:</i><i>&nbsp; - ReadWriteOnce</i><i>&nbsp; resources:</i><i>&nbsp; &nbsp; requests:</i><i>&nbsp; &nbsp; &nbsp; storage: 4Gi</i>
-
-<i>kubectl create -f pvc.yaml</i>
-</details>
-
-<details>
-<summary>
-<b>Volume - storage - emptyDir&nbsp; ephemeral</b>
-</summary>
-* emptyDir - This is a piece of ephemeral storage
-
-apiVersion: v1
-kind: Pod
-...
-spec:
- &nbsp;volumes:
- &nbsp;- name: cache-volume
- &nbsp;&nbsp;&nbsp;emptyDir: {}
- &nbsp;containers:
- &nbsp;- name: demo
- &nbsp;&nbsp;&nbsp;image: cloudnatived/demo:hello
- &nbsp;&nbsp;&nbsp;volumeMounts:
- &nbsp;&nbsp;&nbsp;- mountPath: /cache
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: cache-volume
-</details>
-
-<details>
-<summary>
-<b>Container restart spec inside manifest - Restart Policies</b>
-</summary>
-apiVersion: v1
-kind: Pod
-...
-spec:
- &nbsp;restartPolicy: OnFailure|Never|Always
-</details>
+# Exercises 
 
 <details>
 <summary>
@@ -88,28 +47,6 @@ spec:
 
 <details>
 <summary>
-<b>Sample ingress routing?</b>
-</summary>
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
- &nbsp;name: fanout-ingress
-spec:
- &nbsp;rules:
- &nbsp;- http:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;paths:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- path: /hello
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backend:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serviceName: hello
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servicePort: 80
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- path: /goodbye
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backend:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serviceName: goodbye
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servicePort: 80
-</details>
-
-<details>
-<summary>
 <b>Ingress certificate configuration :: USING EXISTING TLS CERTIFICATES</b>
 </summary>
 apiVersion: v1
@@ -124,69 +61,15 @@ data:
 
 <details>
 <summary>
-<b>Two ways to configure the pod for dynamic values (password, dns=names)</b>
+<b>How to Pass an environment variable to entrypoint? Where env varaible derived from configMaps</b>
 </summary>
-Pass values to the application via environment variables in the Pod spec. 
-
-apiVersion: v1
-kind: Pod
-metadata:
- &nbsp;name: envar-demo
- &nbsp;labels:
- &nbsp;&nbsp;&nbsp;purpose: demonstrate-envars
-spec:
- &nbsp;containers:
- &nbsp;- name: envar-demo-container
- &nbsp;&nbsp;&nbsp;image: gcr.io/google-samples/node-hello:1.0
- &nbsp;&nbsp;&nbsp;env:
- &nbsp;&nbsp;&nbsp;- name: DEMO_GREETING
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: "Hello from the environment"
- &nbsp;&nbsp;&nbsp;- name: DEMO_FAREWELL
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: "Such a sweet sorrow"
-
-Store configuration data directly in Kubernetes, using the ConfigMap and Secret objects.
-</details>
-
-<details>
-<summary>
-<b>How to add the values from config.yaml into the data section of the pod manifest?</b>
-</summary>
-How to achieve following::
-
-apiVersion: v1
-data:
-&nbsp;config.yaml: |
-&nbsp;&nbsp;&nbsp;autoSaveInterval: 60
-&nbsp;&nbsp;&nbsp;batchSize: 128
-&nbsp;&nbsp;&nbsp;protocols:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- http
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- https
-kind: ConfigMap
-metadata:
-&nbsp;name: demo-config
-&nbsp;namespace: demo<strong>
-</strong><strong>
-</strong>--
-kubectl create configmap demo-config --namespace=demo --from-file=config.yaml configmap "demo-config" created
-
-kubectl get configmap/demo-config --namespace=demo --export -o yaml &gt;demo-config.yaml
-</details>
-
-<details>
-<summary>
-<b>How to Inject configMaps into environment</b>
-</summary>
-deployment:
-apiVersion: v1
-kind: ConfigMap
-metadata:
- &nbsp;name: demo-config
-data:
- &nbsp;greeting: Hola
 spec:
  &nbsp;containers:
  &nbsp;&nbsp;&nbsp;- name: demo
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image: cloudnatived/demo:hello-config-env
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image: cloudnatived/demo:hello-config-args
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;args:
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "-greeting"
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "$(GREETING)"
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ports:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- containerPort: 8888
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env:
@@ -195,56 +78,6 @@ spec:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;configMapKeyRef:
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: demo-config
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key: greeting
-</details>
-
-<details>
-<summary>
-<b>How to create Config Files from ConfigMaps - configmap.yaml?</b>
-</summary>
-Looking at the&nbsp;volumes&nbsp;section,&nbsp;you can see that we create a Volume named&nbsp;demo-config-volume, from the existing&nbsp;demo-config&nbsp;ConfigMap.In the container’s&nbsp;volumeMounts&nbsp;section,&nbsp;we mount this volume on the&nbsp;mountPath: /config/, select the key&nbsp;config, and write it to the path&nbsp;<em>demo.yaml</em>. The result of this will be that Kubernetes will create a file in the container at&nbsp;<em>/config/demo.yaml</em>, containing the&nbsp;demo-config&nbsp;data&nbsp;in YAML format:
-
---configmap.yaml
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
- &nbsp;name: demo-config
-data:
- &nbsp;config: |
- &nbsp;&nbsp;&nbsp;greeting: Buongiorno
-
---deployment.yaml
-
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
- &nbsp;name: demo
-spec:
- &nbsp;replicas: 1
- &nbsp;selector:
- &nbsp;&nbsp;&nbsp;matchLabels:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;app: demo
- &nbsp;template:
- &nbsp;&nbsp;&nbsp;metadata:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labels:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;app: demo
- &nbsp;&nbsp;&nbsp;spec:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containers:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: &nbsp;demo
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image: cloudnatived/demo:hello-config-file
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ports:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- containerPort: 8888
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;volumeMounts:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- mountPath: /config/
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: demo-config-volume
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;readOnly: true
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;volumes:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: demo-config-volume
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;configMap:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: demo-config
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- key: config
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path: demo.yaml
 </details>
 
 <details>
@@ -657,5 +490,175 @@ spec:
 </span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">ports</span>:<span style="color: rgb(187, 187, 187);">
 </span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">protocol</span>:<span style="color: rgb(187, 187, 187);"> </span>TCP<span style="color: rgb(187, 187, 187);">
 </span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">port</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(102, 102, 102);">5978</span></code></pre>
+</details>
+
+<details>
+<summary>
+<b>configmap syntax</b>
+</summary>
+<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>ConfigMap<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>game-demo<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">data</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(0, 136, 0); font-style: italic;"># property-like keys; each key maps to a simple value</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">player_initial_lives</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"3"</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">ui_properties_file_name</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"user-interface.properties"</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(0, 136, 0); font-style: italic;">#</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(0, 136, 0); font-style: italic;"># file-like keys</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">game.properties</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68); font-style: italic;">|
+</span><span style="color: rgb(187, 68, 68); font-style: italic;">    enemy.types=aliens,monsters</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span>player.maximum-lives=<span style="color: rgb(102, 102, 102);">5</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">user-interface.properties</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68); font-style: italic;">|
+</span><span style="color: rgb(187, 68, 68); font-style: italic;">    color.good=purple</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span>color.bad=yellow<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span>allow.textmode=<span style="color: rgb(170, 34, 255); font-weight: 700;">true</span></code></pre>
+</details>
+
+<details>
+<summary>
+<b>Pod with configmaps syntax</b>
+</summary>
+<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>configmap-demo-pod<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">spec</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">containers</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>demo<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">image</span>:<span style="color: rgb(187, 187, 187);"> </span>game.example/demo-game<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">env</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(0, 136, 0); font-style: italic;"># Define the environment variable</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>PLAYER_INITIAL_LIVES<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(0, 136, 0); font-style: italic;"># Notice that the case is different here</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">                                     </span><span style="color: rgb(0, 136, 0); font-style: italic;"># from the key name in the ConfigMap.</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">          </span><span style="color: rgb(170, 34, 255); font-weight: 700;">valueFrom</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">            </span><span style="color: rgb(170, 34, 255); font-weight: 700;">configMapKeyRef</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">              </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>game-demo<span style="color: rgb(187, 187, 187);">           </span><span style="color: rgb(0, 136, 0); font-style: italic;"># The ConfigMap this value comes from.</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">              </span><span style="color: rgb(170, 34, 255); font-weight: 700;">key</span>:<span style="color: rgb(187, 187, 187);"> </span>player_initial_lives<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(0, 136, 0); font-style: italic;"># The key to fetch.</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>UI_PROPERTIES_FILE_NAME<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">          </span><span style="color: rgb(170, 34, 255); font-weight: 700;">valueFrom</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">            </span><span style="color: rgb(170, 34, 255); font-weight: 700;">configMapKeyRef</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">              </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>game-demo<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">              </span><span style="color: rgb(170, 34, 255); font-weight: 700;">key</span>:<span style="color: rgb(187, 187, 187);"> </span>ui_properties_file_name<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeMounts</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">      </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>config<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(170, 34, 255); font-weight: 700;">mountPath</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"/config"</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(170, 34, 255); font-weight: 700;">readOnly</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(170, 34, 255); font-weight: 700;">true</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumes</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(0, 136, 0); font-style: italic;"># You set volumes at the Pod level, then mount them into containers inside that Pod</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>config<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">configMap</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(0, 136, 0); font-style: italic;"># Provide the name of the ConfigMap you want to mount.</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>game-demo<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(0, 136, 0); font-style: italic;"># An array of keys from the ConfigMap to create as files</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(170, 34, 255); font-weight: 700;">items</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">key</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"game.properties"</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">          </span><span style="color: rgb(170, 34, 255); font-weight: 700;">path</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"game.properties"</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">key</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"user-interface.properties"</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">          </span><span style="color: rgb(170, 34, 255); font-weight: 700;">path</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"user-interface.properties"</span></code></pre>
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">Pod that mounts a ConfigMap in a volume syntax</span></b>
+</summary>
+<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>mypod<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">spec</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">containers</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>mypod<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">image</span>:<span style="color: rgb(187, 187, 187);"> </span>redis<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeMounts</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>foo<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">mountPath</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"/etc/foo"</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">readOnly</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(170, 34, 255); font-weight: 700;">true</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumes</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>foo<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">configMap</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>myconfigmap</code></pre>
+</details>
+
+<details>
+<summary>
+<b>immutable configmap syntax</b>
+</summary>
+<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>ConfigMap<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span>...<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">data</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span>...<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">immutable</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(170, 34, 255); font-weight: 700;">true</span></code></pre>
+</details>
+
+<details>
+<summary>
+<b>Secret syntax</b>
+</summary>
+<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Secret<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>mysecret<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">type</span>:<span style="color: rgb(187, 187, 187);"> </span>Opaque<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">data</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">username</span>:<span style="color: rgb(187, 187, 187);"> </span>YWRtaW4=<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">password</span>:<span style="color: rgb(187, 187, 187);"> </span>MWYyZDFlMmU2N2Rm</code></pre>
+</details>
+
+<details>
+<summary>
+<b>RuntimeClass syntax</b>
+</summary>
+<pre><code>---<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>RuntimeClass<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>node.k8s.io/v1beta1<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>kata-fc<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">handler</span>:<span style="color: rgb(187, 187, 187);"> </span>kata-fc<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">overhead</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">podFixed</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(170, 34, 255); font-weight: 700;">memory</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"120Mi"</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(170, 34, 255); font-weight: 700;">cpu</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"250m"</span></code></pre>
+</details>
+
+<details>
+<summary>
+<b>PriorityClass syntax</b>
+</summary>
+<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>scheduling.k8s.io/v1<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>PriorityClass<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>high-priority<span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">value</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(102, 102, 102);">1000000</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">globalDefault</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(170, 34, 255); font-weight: 700;">false</span><span style="color: rgb(187, 187, 187);">
+</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">description</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"This priority class should be used for XYZ service pods only."</span></code></pre>
+</details>
+
+<details>
+<summary>
+<b>Create an nginx pod with a liveness probe that just runs the command 'ls'. Run it, check its probe status, delete it.</b>
+</summary>
+Add the <i>spec.containers.livenessProbe</i>&nbsp;section to the standard pod YAML:
+<i>spec:</i><i>&nbsp; containers</i><i>&nbsp; - image: nginx</i><i>&nbsp; &nbsp; livenessProbe:</i><i>&nbsp; &nbsp; &nbsp; exec:</i><i>&nbsp; &nbsp; &nbsp; &nbsp; command:</i><i>&nbsp; &nbsp; &nbsp; &nbsp; - ls</i>
+</details>
+
+<details>
+<summary>
+<b>Modify the liveness probe in the nginx pod so it starts after 5 seconds and probes every 10 seconds.</b>
+</summary>
+Add the <i>spec.containers.livenessProbe.initialDelaySeconds and .periodSeconds </i>values:
+
+<i>spec:</i><i>&nbsp; containers:</i><i>&nbsp; - image: nginx</i><i>&nbsp; &nbsp; livenessProbe:</i><i>&nbsp; &nbsp; &nbsp; initialDelaySeconds: 5</i><i>&nbsp; &nbsp; &nbsp; periodSeconds: 10</i>
+</details>
+
+<details>
+<summary>
+<b>Create a pod that mounts the variable "username" from secret "mysecret2" into an env variable called USER</b>
+</summary>
+edit pod YAML to add the <i>spec.containers.env.valueFrom.secretKeyRef </i>section:
+
+<i>spec:</i><i>&nbsp; containers:</i><i>&nbsp; - image: nginx</i><i>&nbsp; &nbsp; env:</i><i>&nbsp; &nbsp; - name: USER</i><i>&nbsp; &nbsp; &nbsp; valueFrom:</i><i>&nbsp; &nbsp; &nbsp; &nbsp; secretKeyRef:</i><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; name: mysecret2</i><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; key: username</i>
 </details>
 

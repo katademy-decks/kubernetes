@@ -1068,38 +1068,87 @@ process namespace sharing
 
 <details>
 <summary>
-<b>Create an nginx pod with a liveness probe that just runs the command 'ls'. Run it, check its probe status, delete it.</b>
+<b><span style="color: rgb(34, 34, 34);">_____ indicates the importance of a Pod relative to other Pods.</span></b>
 </summary>
-Add the <i>spec.containers.livenessProbe</i>&nbsp;section to the standard pod YAML:
-<i>spec:</i><i>&nbsp; containers</i><i>&nbsp; - image: nginx</i><i>&nbsp; &nbsp; livenessProbe:</i><i>&nbsp; &nbsp; &nbsp; exec:</i><i>&nbsp; &nbsp; &nbsp; &nbsp; command:</i><i>&nbsp; &nbsp; &nbsp; &nbsp; - ls</i>
+<span style="color: rgb(34, 34, 34);">Priority</span>
 </details>
 
 <details>
 <summary>
-<b>Modify the liveness probe in the nginx pod so it starts after 5 seconds and probes every 10 seconds.</b>
+<b><span style="color: rgb(34, 34, 34);">If a Pod cannot be scheduled, the scheduler tries to preempt (evict) lower _____ Pods to make scheduling of the pending Pod possible.</span></b>
 </summary>
-Add the <i>spec.containers.livenessProbe.initialDelaySeconds and .periodSeconds </i>values:
-
-<i>spec:</i><i>&nbsp; containers:</i><i>&nbsp; - image: nginx</i><i>&nbsp; &nbsp; livenessProbe:</i><i>&nbsp; &nbsp; &nbsp; initialDelaySeconds: 5</i><i>&nbsp; &nbsp; &nbsp; periodSeconds: 10</i>
+<span style="color: rgb(34, 34, 34);">priority</span>
 </details>
 
 <details>
 <summary>
-<b>Create a pod that mounts the variable "username" from secret "mysecret2" into an env variable called USER</b>
+<b>A malicious user could create Pods at the highest possible priorities, causing other Pods to be evicted/not get scheduled. An administrator can use _____ to prevent users from creating pods at high priorities.</b>
 </summary>
-edit pod YAML to add the <i>spec.containers.env.valueFrom.secretKeyRef </i>section:
-
-<i>spec:</i><i>&nbsp; containers:</i><i>&nbsp; - image: nginx</i><i>&nbsp; &nbsp; env:</i><i>&nbsp; &nbsp; - name: USER</i><i>&nbsp; &nbsp; &nbsp; valueFrom:</i><i>&nbsp; &nbsp; &nbsp; &nbsp; secretKeyRef:</i><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; name: mysecret2</i><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; key: username</i>
+ResourceQuota
 </details>
 
 <details>
 <summary>
-<b>Conditions</b>
+<b>To use priority and preemption:<ol><li>Add one or more _____</li><li>Create Pods with<font face="monospace">&nbsp;_____</font>&nbsp;set to one of them. Of course you do not need to create the Pods directly; normally you would add&nbsp;<font face="monospace">_____&nbsp;</font>to the Pod template of a collection object like a Deployment.</li></ol></b>
 </summary>
-Latest variable observations of an object's state.
+PriorityClasses
+priorityClassName
+</details>
 
-Ready, ContainerReady, lastProbeTime, reason
-</font><span style="color: rgb(36, 41, 46);">
-</span><span style="color: rgb(36, 41, 46);">Used when the details of an observation are not known apriori known or would not apply to all instances of a given Kind.&nbsp;</span>
+<details>
+<summary>
+<b>Kubernetes already ships with two PriorityClasses: _____ and _____. These are common classes and are used to ensure that critical components are always scheduled first.</b>
+</summary>
+system-cluster-critical
+system-node-critical
+</details>
+
+<details>
+<summary>
+<b>Critical pods rely on scheduler _____ to be scheduled when a cluster is under resource pressure. For this reason, it is not recommended to disable it.</b>
+</summary>
+preemption
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">A _____ is a non-namespaced object that defines a mapping from a priority class name to the integer value of the priority.</span></b>
+</summary>
+<span style="color: rgb(34, 34, 34);">PriorityClass</span>
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">The </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">field indicates that the value of this PriorityClass should be used for Pods without a&nbsp;</span><code>priorityClassName</code><span style="color: rgb(34, 34, 34);">.&nbsp;</span><span style="color: rgb(34, 34, 34);">Only one such PriorityClass </span><span style="color: rgb(34, 34, 34);">can exist in the system.</span></b>
+</summary>
+<code>globalDefault</code>
+</details>
+
+<details>
+<summary>
+<b>Pods with <font face="monospace">_____</font>&nbsp;will be placed in the scheduling queue ahead of lower-priority pods, but they cannot preempt other pods. A non-preempting pod waiting to be scheduled will stay in the scheduling queue, until sufficient resources are free, and it can be scheduled. Non-preempting pods, like other pods, are subject to scheduler back-off. This means that if the scheduler tries these pods and they cannot be scheduled, they will be retried with lower frequency, allowing other pods with lower priority to be scheduled before them.Non-preempting pods may still be preempted by other, high-priority pods.</b>
+</summary>
+PreemptionPolicy: Never
+</details>
+
+<details>
+<summary>
+<b><code>PreemptionPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;defaults to&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">, which will allow pods of that PriorityClass to preempt lower-priority pods (as is existing default behavior).&nbsp;</span></b>
+</summary>
+PreemptLowerPriority
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">An example use case for data science workloads: A user may submit a job that they want to be prioritized above other workloads, but do not wish to discard existing work by preempting running pods. The high priority job with </span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">&nbsp;will be scheduled ahead of other queued pods, as soon as sufficient cluster resources "naturally" become free.</span></b>
+</summary>
+PreemptionPolicy: Never
+</details>
+
+<details>
+<summary>
+<b>Ready, ContainerReady, lastProbeTime, reason. These are the available Latest variable observations of an object's state, used when the details of an observation are not known apriori known or would not apply to all instances of a given Kind, are called _____</b>
+</summary>
+Conditions
 </details>
 

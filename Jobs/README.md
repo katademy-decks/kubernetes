@@ -103,26 +103,3 @@ startingDeadlineSeconds&nbsp;
 .spec.completions
 </details>
 
-<details>
-<summary>
-<b>What is a Job? What are all the fields to control them?</b>
-</summary>
-A Pod ran a specific number of completions or schedules&nbsp;
-with or without parallelism.
-spec:
- &nbsp;completions: 1
- &nbsp;parallelism: 10
- &nbsp;template:
- &nbsp;&nbsp;&nbsp;metadata:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: queue-worker
- &nbsp;&nbsp;&nbsp;spec:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containers:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
-
-spec:
- &nbsp;schedule: "*/1 * * * *"
- &nbsp;jobTemplate:
- &nbsp;&nbsp;&nbsp;spec:&nbsp; &nbsp; &nbsp;containers:
-&nbsp; &nbsp; &nbsp; ...
-</details>
-

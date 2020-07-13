@@ -2,6 +2,13 @@
 
 <details>
 <summary>
+<b>Worker node components</b>
+</summary>
+kubelet, kube-proxy, container runtime
+</details>
+
+<details>
+<summary>
 <b>Kubernetes Master controls...</b>
 </summary>
 Kubernetes nodes
@@ -279,50 +286,15 @@ kube-node-lease
 
 <details>
 <summary>
-<b>todo</b>
+<b>_____ allow a node to repel a set of Pods, based on certain properties of the node.</b>
 </summary>
-Sent by kubelets, help determine the availability of a node.&nbsp;
-1) updates of&nbsp;<code>NodeStatus</code>&nbsp;2)&nbsp;<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#lease-v1-coordination-k8s-io">Lease object</a>.&nbsp;
-Each Node has an associated Lease object in the&nbsp;<code>kube-node-lease</code>&nbsp;<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces">namespace</a>&nbsp;which improves the performance of the node heartbeats as the cluster scales.
+Taints
 </details>
 
 <details>
 <summary>
-<b>CAdvisor</b>
+<b>A daemon in the kubelet that discovers, monitors and exports data on containers is...</b>
 </summary>
-A daemon in the kubelet that discovers, monitors and exports data on containers
-</details>
-
-<details>
-<summary>
-<b>What is Node Affinities?&nbsp;</b>
-</summary>
-Schedule pods on selector'd nodes preferentially or not
-<b>requiredDuringSchedulingIgnoredDuringExecution</b><b>preferredDuringSchedulingIgnoredDuringExecution</b>&nbsp;
-<b>spec:
- &nbsp;affinity:
- &nbsp;&nbsp;&nbsp;nodeAffinity:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requiredDuringSchedulingIgnoredDuringExecution:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nodeSelectorTerms:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- matchExpressions:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- key: "failure-domain.beta.kubernetes.io/zone"
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: In
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values: ["us-central1-a"]</b>
-</details>
-
-<details>
-<summary>
-<b>Worker node components</b>
-</summary>
-<b>kubelet</b>Controls node, provides api for control plane
-<b>kube-proxy</b>Configs iptables and virtual network
-<b>Container runtime</b>Downloads and runs containers
-</details>
-
-<details>
-<summary>
-<b>What are taints and&nbsp;<strong>tolerations</strong>?</b>
-</summary>
-<em>Taints</em>&nbsp;allow a node to repel a set of Pods, based on certain properties of the node.
+CAdvisor
 </details>
 

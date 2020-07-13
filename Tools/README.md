@@ -1,4 +1,4 @@
-# kubectl 
+# Tools 
 
 <details>
 <summary>
@@ -365,17 +365,6 @@ bb sh
 
 <details>
 <summary>
-<b>How to copy busybox utils to our container in DOCKERFILE, how to use it</b>
-</summary>
-FROM golang:1.11-alpine AS build&nbsp;WORKDIR /src/&nbsp;
-COPY main.go go.* /src/&nbsp;RUN CGO_ENABLED=0&nbsp;go build -o /bin/demo&nbsp;
-FROM scratch COPY --from=build /bin/demo /bin/demo&nbsp;COPY --from=busybox:1.28 /bin/busybox /bin/busybox<b>&nbsp;</b>ENTRYPOINT ["/bin/demo"]
-
------use the utils from /bin/busybox<strong>kubectl exec -it POD_NAME /bin/busybox sh</strong>
-</details>
-
-<details>
-<summary>
 <b>A kubernetes context is a combination of a&nbsp;</b>
 </summary>
 * authenticated user* a cluster (could be more than one, but current cluster by default)* namespace
@@ -615,6 +604,13 @@ Ephemeral containers
 <b>Restart a pod</b>
 </summary>
 kubectl&nbsp;get&nbsp;pod&nbsp;PODNAME&nbsp;-n&nbsp;NAMESPACE&nbsp;-o&nbsp;yaml&nbsp;|&nbsp;kubectl&nbsp;replace&nbsp;--force&nbsp;-f&nbsp;-
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">By default, the&nbsp;</span><code>kubectl</code><span style="color: rgb(34, 34, 34);">&nbsp;command-line tool uses parameters from the&nbsp;</span><em>current _____&nbsp;</em><span style="color: rgb(34, 34, 34);">to communicate with the cluster.</span></b>
+</summary>
+context
 </details>
 
 <details>
@@ -904,6 +900,14 @@ Kubectl set image command is
 </summary>
 <i>kubectl rollout resume deploy nginx
 kubectl rollout history deploy nginx</i>
+</details>
+
+<details>
+<summary>
+<b>Kubeconfig</b>
+</summary>
+Information about 
+clusters, users, authentication
 </details>
 
 <details>

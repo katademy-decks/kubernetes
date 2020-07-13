@@ -450,33 +450,6 @@ Yes - via enabling IPv4/IPv6 dual-stack.
 
 <details>
 <summary>
-<b>Endpoint</b>
-</summary>
-A k8s API object created for you when deploying a service.
-Map to pods via selectors.
-</details>
-
-<details>
-<summary>
-<b>What is a headless service?</b>
-</summary>
-Without a ClusterIP. Directly access pods without a proxy.
-</details>
-
-<details>
-<summary>
-<b>What is ingress?</b>
-</summary>
-An API object that manages external access to the services in a cluster, typically HTTP.
-
-Ingress can provide load balancing, SSL termination and name-based virtual hosting.
-
-Ingress as a load balancer that sits in front of a Service
-Ingress --&gt; Service =&gt; PODs^*
-</details>
-
-<details>
-<summary>
 <b>LoadBalancer Service</b>
 </summary>
 L4
@@ -484,22 +457,5 @@ Creates an external IP address
 Only knows node IPs, not pods IPs. It chooses a node to send a packet to.
 iptables in the node tells the packet where to actually go.
 OnlyLocal annotation removes the double-hop problem by allowing users to define their own balancing.
-</details>
-
-<details>
-<summary>
-<b>Service</b>
-</summary>
-A group of endpoints (usually pods)
-Provides stable Virtual IP address which automatically routes to backend pods.
-Clients only need the Virtual IP to connect to, which doesn't change.
-</details>
-
-<details>
-<summary>
-<b>Kube DNS</b>
-</summary>
-Autoscalable deployment with a static virtual IP.
-Servers "A" and "SRV" records to access services and pods
 </details>
 
