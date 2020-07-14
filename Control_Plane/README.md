@@ -2,13 +2,6 @@
 
 <details>
 <summary>
-<b>Control plane components</b>
-</summary>
-kubelets, master, etcd
-</details>
-
-<details>
-<summary>
 <b>Nodes should be provisioned with _____ for the cluster such that they can connect securely to the apiserver along with valid client credentials</b>
 </summary>
 public root certificate
@@ -100,17 +93,6 @@ Sets up Load Balancers and other infrastructure components needed by <b>Service 
 
 <details>
 <summary>
-<b>List processes running on every Kubernetes Master</b>
-</summary>
-1. kube-apiserver
-2. kube-controller-manager
-3. kube-scheduler
-
-<img src="paste-d842301571ce981466b41d198776a3b6b0df20e8.jpg">
-</details>
-
-<details>
-<summary>
 <b>kube-controller-manager</b>
 </summary>
 Daemon controlling core K8S control loops
@@ -123,8 +105,22 @@ Leader electionReconcilliation intervalFeature gatesCluster CIDRPod CIDR
 
 <details>
 <summary>
+<b>The three main control plane components are...</b>
+</summary>
+kubelets, master, etcd
+</details>
+
+<details>
+<summary>
 <b>All API usage from nodes and pods terminate at the following control plane components:</b>
 </summary>
-<b>apiserver</b><hr>no other control plane components exposes remote services
+apiserver only.
+</details>
+
+<details>
+<summary>
+<b>The Kubernetes Master is a collection of three processes that run on a single node in your cluster. These processes are...</b>
+</summary>
+apiserver, scheduler, controller-manager
 </details>
 

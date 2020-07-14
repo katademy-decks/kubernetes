@@ -87,31 +87,6 @@ volumes
 
 <details>
 <summary>
-<b>configmap volume syntax&nbsp;
-The&nbsp;<a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/"><code>configMap</code></a>&nbsp;resource provides a way to inject configuration data into Pods. The data stored in a&nbsp;<code>ConfigMap</code>&nbsp;object can be referenced in a volume of type&nbsp;<code>configMap</code>&nbsp;and then consumed by containerized applications running in a Pod.When referencing a&nbsp;<code>configMap</code>&nbsp;object, you can simply provide its name in the volume to reference it. You can also customize the path to use for a specific entry in the ConfigMap. For example, to mount the&nbsp;<code>log-config</code>&nbsp;ConfigMap onto a Pod called&nbsp;<code>configmap-pod</code>, you might use the YAML below:</b>
-</summary>
-<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>configmap-pod<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">spec</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">containers</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>test<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">image</span>:<span style="color: rgb(187, 187, 187);"> </span>busybox<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeMounts</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">        </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>config-vol<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">          </span><span style="color: rgb(170, 34, 255); font-weight: 700;">mountPath</span>:<span style="color: rgb(187, 187, 187);"> </span>/etc/config<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumes</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>config-vol<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">      </span><span style="color: rgb(170, 34, 255); font-weight: 700;">configMap</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>log-config<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">        </span><span style="color: rgb(170, 34, 255); font-weight: 700;">items</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">          </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">key</span>:<span style="color: rgb(187, 187, 187);"> </span>log_level<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">            </span><span style="color: rgb(170, 34, 255); font-weight: 700;">path</span>:<span style="color: rgb(187, 187, 187);"> </span>log_level</code></pre>
-</details>
-
-<details>
-<summary>
 <b><span style="color: rgb(34, 34, 34);">Managing storage is a distinct problem from managing compute instances. The PersistentVolume subsystem provides an API for users and administrators that abstracts details of how storage is provided from how it is consumed. To do this, we introduce two new API resources: _____ and _____.</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">PersistentVolume&nbsp;</span><span style="color: rgb(34, 34, 34);">
@@ -268,30 +243,6 @@ Pods
 <b>Can you resize an in-use PVC?</b>
 </summary>
 Yes - since Kubernetes 1.15.&nbsp;<span style="color: rgb(136, 136, 136);">The&nbsp;</span><code>ExpandInUsePersistentVolumes</code>&nbsp;feature must be enabled.
-</details>
-
-<details>
-<summary>
-<b>PersistentVolume syntax</b>
-</summary>
-<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>PersistentVolume<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>pv0003<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">spec</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">capacity</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">storage</span>:<span style="color: rgb(187, 187, 187);"> </span>5Gi<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeMode</span>:<span style="color: rgb(187, 187, 187);"> </span>Filesystem<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">accessModes</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- ReadWriteOnce<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">persistentVolumeReclaimPolicy</span>:<span style="color: rgb(187, 187, 187);"> </span>Recycle<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">storageClassName</span>:<span style="color: rgb(187, 187, 187);"> </span>slow<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">mountOptions</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- hard<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- nfsvers=<span style="color: rgb(102, 102, 102);">4.1</span><span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">nfs</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">path</span>:<span style="color: rgb(187, 187, 187);"> </span>/tmp<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">server</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(102, 102, 102);">172.17.0.2</span></code></pre>
 </details>
 
 <details>
@@ -606,40 +557,6 @@ readyToUse or aborted.
 
 <details>
 <summary>
-<b><span style="color: rgb(34, 34, 34);">VolumeSnapshot syntax</span></b>
-</summary>
-<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>snapshot.storage.k8s.io/v1beta1<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>VolumeSnapshot<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>new-snapshot-test<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">spec</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeSnapshotClassName</span>:<span style="color: rgb(187, 187, 187);"> </span>csi-hostpath-snapclass<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">source</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">persistentVolumeClaimName</span>:<span style="color: rgb(187, 187, 187);"> </span>pvc-test</code></pre>
-</details>
-
-<details>
-<summary>
-<b><code>VolumeSnapshotContent</code><span style="color: rgb(34, 34, 34);">&nbsp; syntax</span></b>
-</summary>
-<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>snapshot.storage.k8s.io/v1beta1<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>VolumeSnapshotContent<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>snapcontent-72d9a349-aacd-42d2-a240-d775650d2455<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">spec</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">deletionPolicy</span>:<span style="color: rgb(187, 187, 187);"> </span>Delete<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">driver</span>:<span style="color: rgb(187, 187, 187);"> </span>hostpath.csi.k8s.io<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">source</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeHandle</span>:<span style="color: rgb(187, 187, 187);"> </span>ee0cfb94-f8d4<span style="color: rgb(102, 102, 102);">-11e9</span>-b2d8-0242ac110002<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeSnapshotClassName</span>:<span style="color: rgb(187, 187, 187);"> </span>csi-hostpath-snapclass<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeSnapshotRef</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>new-snapshot-test<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">namespace</span>:<span style="color: rgb(187, 187, 187);"> </span>default<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">uid</span>:<span style="color: rgb(187, 187, 187);"> </span>72d9a349-aacd-42d2-a240-d775650d2455</code></pre>
-</details>
-
-<details>
-<summary>
 <b><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">is the unique identifier of the volume created on the storage backend and returned by the CSI driver during the volume creation. This field is required for dynamically provisioning a snapshot. It specifies the volume source of the snapshot.</span></b>
 </summary>
 <code>volumeHandle</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
@@ -650,24 +567,6 @@ readyToUse or aborted.
 <b><span style="color: rgb(34, 34, 34);">You can provision a new volume, pre-populated with data from a snapshot, by using the </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">field in the&nbsp;</span><code>PersistentVolumeClaim</code><span style="color: rgb(34, 34, 34);">&nbsp;object.</span></b>
 </summary>
 <em>dataSource</em><span style="color: rgb(34, 34, 34);">&nbsp;</span>
-</details>
-
-<details>
-<summary>
-<b>StorageClass syntax</b>
-</summary>
-<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>storage.k8s.io/v1<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>StorageClass<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>standard<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">provisioner</span>:<span style="color: rgb(187, 187, 187);"> </span>kubernetes.io/aws-ebs<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">parameters</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">type</span>:<span style="color: rgb(187, 187, 187);"> </span>gp2<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">reclaimPolicy</span>:<span style="color: rgb(187, 187, 187);"> </span>Retain<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">allowVolumeExpansion</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(170, 34, 255); font-weight: 700;">true</span><span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">mountOptions</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span>- debug<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">volumeBindingMode</span>:<span style="color: rgb(187, 187, 187);"> </span>Immediate</code></pre>
 </details>
 
 <details>

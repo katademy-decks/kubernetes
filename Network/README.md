@@ -408,34 +408,6 @@ localhost, hostname and IPv4/IPv6 boilerplates.
 
 <details>
 <summary>
-<b>HostAliases syntax</b>
-</summary>
-<pre><code><span style="color: rgb(170, 34, 255); font-weight: 700;">apiVersion</span>:<span style="color: rgb(187, 187, 187);"> </span>v1<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">kind</span>:<span style="color: rgb(187, 187, 187);"> </span>Pod<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">metadata</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>hostaliases-pod<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);"></span><span style="color: rgb(170, 34, 255); font-weight: 700;">spec</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">restartPolicy</span>:<span style="color: rgb(187, 187, 187);"> </span>Never<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">hostAliases</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">ip</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"127.0.0.1"</span><span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">hostnames</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(187, 68, 68);">"foo.local"</span><span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(187, 68, 68);">"bar.local"</span><span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">ip</span>:<span style="color: rgb(187, 187, 187);"> </span><span style="color: rgb(187, 68, 68);">"10.1.2.3"</span><span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">hostnames</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(187, 68, 68);">"foo.remote"</span><span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(187, 68, 68);">"bar.remote"</span><span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span><span style="color: rgb(170, 34, 255); font-weight: 700;">containers</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">  </span>- <span style="color: rgb(170, 34, 255); font-weight: 700;">name</span>:<span style="color: rgb(187, 187, 187);"> </span>cat-hosts<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">image</span>:<span style="color: rgb(187, 187, 187);"> </span>busybox<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">command</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- cat<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span><span style="color: rgb(170, 34, 255); font-weight: 700;">args</span>:<span style="color: rgb(187, 187, 187);">
-</span><span style="color: rgb(187, 187, 187);">    </span>- <span style="color: rgb(187, 68, 68);">"/etc/hosts"</span></code></pre>
-</details>
-
-<details>
-<summary>
 <b>The kubelet manages the _____ file for each container of the Pod to prevent Docker from modifying the file after the containers have already been started.&nbsp;If you make manual changes to the it, those changes are lost when the container exits.</b>
 </summary>
 hosts

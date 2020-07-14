@@ -2,7 +2,7 @@
 
 <details>
 <summary>
-<b>Worker node components</b>
+<b>The kubernetes components inside a worker node are...</b>
 </summary>
 kubelet, kube-proxy, container runtime
 </details>
@@ -16,12 +16,33 @@ Kubernetes nodes
 
 <details>
 <summary>
+<b>A Kubernetes cluster consists of two types of resources...</b>
+</summary>
+Master and Nodes
+</details>
+
+<details>
+<summary>
+<b>A _____ is a VM or a physical computer that serves as a worker machine in a Kubernetes cluster.</b>
+</summary>
+Node
+</details>
+
+<details>
+<summary>
 <b>List 3 components that every Kubernetes Node has</b>
 </summary>
 1. <b>kubelet</b>, a process responsible for communication between the Kubernetes Master and the Node; it manages the Pods and the containers running on a machine.
 2. <b>kube-proxy</b>, a proxy that maintains network rules on nodes.3.&nbsp;<div style="display: inline !important;"><b>container runtime </b>(like Docker) responsible for pulling the container image from a registry, unpacking the container, and running the application.
 
 <img src="paste-0d78f3f9993df127ff9365555478608a03a8904f.jpg">
+</details>
+
+<details>
+<summary>
+<b>Each Kubernetes Node is managed by the....</b>
+</summary>
+Master
 </details>
 
 <details>
@@ -289,12 +310,5 @@ kube-node-lease
 <b>_____ allow a node to repel a set of Pods, based on certain properties of the node.</b>
 </summary>
 Taints
-</details>
-
-<details>
-<summary>
-<b>A daemon in the kubelet that discovers, monitors and exports data on containers is...</b>
-</summary>
-CAdvisor
 </details>
 
