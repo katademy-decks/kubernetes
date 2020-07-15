@@ -18,6 +18,14 @@ Pod
 
 <details>
 <summary>
+<b>Containers within a single {{c2::pod}} share {{c1::storage and network resources (IP address and port space)}}
+<img src="paste-4a2866ebe8cac19809f8cc3915104dd1f2423b01.jpg"></b>
+</summary>
+
+</details>
+
+<details>
+<summary>
 <b>How to set environment variablein k8s?</b>
 </summary>
 containers:
@@ -26,22 +34,6 @@ containers:
  &nbsp;env:
  &nbsp;- name: GREETING
  &nbsp;&nbsp;&nbsp;value: "Hello from the environment"
-</details>
-
-<details>
-<summary>
-<b>Specify affinity that the&nbsp;server&nbsp;Pod is scheduled on the same node that is also running a Pod labeled&nbsp;cache</b>
-</summary>
-----spec:
- &nbsp;affinity:
- &nbsp;&nbsp;&nbsp;podAffinity:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requiredDuringSchedulingIgnoredDuringExecution:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labelSelector:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- matchExpressions:
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- key: app
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: In
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values: ["cache"]
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;topologyKey: kubernetes.io/hostname
 </details>
 
 <details>
@@ -1147,7 +1139,14 @@ PreemptionPolicy: Never
 
 <details>
 <summary>
-<b>Ready, ContainerReady, lastProbeTime, reason. These are the available Latest variable observations of an object's state, used when the details of an observation are not known apriori known or would not apply to all instances of a given Kind, are called _____</b>
+<b>Identical Pods in a deployment are referred to as...</b>
+</summary>
+Replicas
+</details>
+
+<details>
+<summary>
+<b>Ready, ContainerReady, lastProbeTime, reason. These are the types of latest variable observations of an object's state called _____, used when the details of an observation are not known apriori, or would not apply to all instances of a given Kind.</b>
 </summary>
 Conditions
 </details>

@@ -2,71 +2,6 @@
 
 <details>
 <summary>
-<b><span style="color: rgb(34, 34, 34);">When a config map currently consumed in a volume is updated, are projected keys inside the Pods eventually updated as well?</span></b>
-</summary>
-Yes
-<span style="color: rgb(34, 34, 34);">The kubelet checks whether the mounted config map is fresh on every periodic sync. However, the kubelet also uses its local configurable cache for getting the current value of the ConfigMap.&nbsp;</span>
-</details>
-
-<details>
-<summary>
-<b>Make a cluster faster by setting configmaps or secrets as _____, which&nbsp;improves performance of your cluster by significantly reducing load on kube-apiserver, by closing watches for secrets or config maps.</b>
-</summary>
-immutable
-</details>
-
-<details>
-<summary>
-<b>Do containers run with unbounded compute resources on a Kubernetes cluster?</b>
-</summary>
-By default - yes. Limits and ResourceQuotas are recommended.
-</details>
-
-<details>
-<summary>
-<b>You can enforce minimum and maximum compute resources usage per Pod or Container in a namespace using a...</b>
-</summary>
-LimitRange
-</details>
-
-<details>
-<summary>
-<b>You can&nbsp;<span style="background-color: rgb(255, 255, 255);">enforce minimum and maximum storage request per PersistentVolumeClaim in a namespace using a...</span></b>
-</summary>
-LimitRange
-</details>
-
-<details>
-<summary>
-<b>You can enforce a ratio between request and limit for a resource in a namespace using a...</b>
-</summary>
-LimitRange
-</details>
-
-<details>
-<summary>
-<b>You can set default request/limit for compute resources in a namespace and automatically inject them to Containers at runtime using a...</b>
-</summary>
-LimitRange
-</details>
-
-<details>
-<summary>
-<b>When you run a Pod on a Node, the Pod itself takes an amount of system resources. These resources are additional to the resources needed to run the container(s) inside the Pod.&nbsp;<i>_____&nbsp;</i>is a feature for accounting for the resources consumed by the Pod infrastructure on top of the container requests &amp; limits.</b>
-</summary>
-Pod Overhead
-</details>
-
-<details>
-<summary>
-<b>Pod Overhead It is set at _____&nbsp;time according to the overhead associated with the Pod's _____. When enabled, it is considered in addition to the sum of container resource requests when scheduling a Pod. Similarly, Kubelet will include the Pod overhead when sizing the Pod cgroup, and when carrying out Pod eviction ranking.</b>
-</summary>
-admission
-RuntimeClass
-</details>
-
-<details>
-<summary>
 <b>How would you improve Kubernetes security</b>
 </summary>
 Log everything in prod
@@ -86,60 +21,6 @@ Disallow sudo
 Use kata containers&nbsp;
 
 gVisorAppArmor (lockbox)seccomp (lockbox)SELinux
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">If the node where a Pod is running has enough of a resource available, it's possible (and allowed) for a container to use more resource than its </span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">&nbsp;for that resource specifies. However, a container is not allowed to use more than its resource&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">.</span></b>
-</summary>
-request
-limit
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">When a process in the container tries to consume more than the allowed amount of memory, the system kernel _____ the process that attempted the allocation, with an _____ error</span></b>
-</summary>
-<span style="color: rgb(34, 34, 34);">terminates</span>
-
-OOM (Out of Memory)
-</details>
-
-<details>
-<summary>
-<b>Limits and requests for CPU resources are measured in&nbsp;<em>cpu</em>&nbsp;units. One cpu, in Kubernetes, is equivalent to&nbsp;<strong>1 _____</strong>&nbsp;for cloud providers and&nbsp;<strong>1 _____&nbsp;</strong>on bare-metal Intel processors.</b>
-</summary>
-<strong>vCPU/Core</strong><strong>
-</strong><strong>hyperthread</strong>&nbsp;<strong>
-</strong>
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">The scheduler ensures that, for each resource type, the sum of the resource requests of the scheduled Containers is _____ than the capacity of the node.</span></b>
-</summary>
-<span style="color: rgb(34, 34, 34);">less</span>
-</details>
-
-<details>
-<summary>
-<b>Suppose you have several clusters, and your users and components authenticate in a variety of ways. For example:<ul><li>A running kubelet might authenticate using certificates.</li><li>A user might authenticate using tokens.</li><li>Administrators might have sets of certificates that they provide to individual users.</li></ul>With _____ files, you can organize your clusters, users, contexts, and namespaces.</b>
-</summary>
-kubeconfig
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">A </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">element in a kubeconfig file is used to group access parameters under a convenient name.</span></b>
-</summary>
-context
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">Each context has three parameters:&nbsp;</span></b>
-</summary>
-<span style="color: rgb(34, 34, 34);">cluster, namespace, and user.&nbsp;</span>
 </details>
 
 <details>
@@ -193,6 +74,34 @@ Key/value pairs that are attached to objects, such as pods.
 
 <details>
 <summary>
+<b>One cpu, in Kubernetes request/limit terms, is equivalent to&nbsp;<strong>1 _____</strong>&nbsp;on bare-metal Intel processors.</b>
+</summary>
+<strong>hyperthread</strong>&nbsp;
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">The scheduler ensures that, for each resource type, the sum of the resource requests of the scheduled Containers is _____ than the capacity of the node.</span></b>
+</summary>
+<span style="color: rgb(34, 34, 34);">less</span>
+</details>
+
+<details>
+<summary>
+<b>Suppose you have several clusters, and your users and components authenticate in a variety of ways. For example:<ul><li>A running kubelet might authenticate using certificates.</li><li>A user might authenticate using tokens.</li><li>Administrators might have sets of certificates that they provide to individual users.</li></ul>With _____ files, you can organize your clusters, users, contexts, and namespaces.</b>
+</summary>
+kubeconfig
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">Each context has three parameters:&nbsp;</span></b>
+</summary>
+<span style="color: rgb(34, 34, 34);">cluster, namespace, and user.&nbsp;</span>
+</details>
+
+<details>
+<summary>
 <b><span style="color: rgb(34, 34, 34);">There is a concern that one Pod or Container could monopolize all available resources. A _____ is a policy to constrain resource allocations (to Pods or Containers) in a namespace.</span></b>
 </summary>
 <span style="color: rgb(34, 34, 34);">LimitRange</span>
@@ -203,6 +112,48 @@ Key/value pairs that are attached to objects, such as pods.
 <b><span style="color: rgb(34, 34, 34);">A </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">provides constraints that limit aggregate resource consumption per namespace. It can limit the quantity of objects that can be created in a namespace by type, as well as the total amount of compute resources that may be consumed by resources in that project.</span></b>
 </summary>
 <code>ResourceQuota</code>
+</details>
+
+<details>
+<summary>
+<b>Do containers run with unbounded compute resources on a Kubernetes cluster?</b>
+</summary>
+By default - yes. Limits and ResourceQuotas are recommended.
+</details>
+
+<details>
+<summary>
+<b>You can enforce minimum and maximum compute resources usage per Pod or Container in a namespace using a...</b>
+</summary>
+LimitRange
+</details>
+
+<details>
+<summary>
+<b>You can&nbsp;<span style="background-color: rgb(255, 255, 255);">enforce minimum and maximum storage request per PersistentVolumeClaim in a namespace using a...</span></b>
+</summary>
+LimitRange
+</details>
+
+<details>
+<summary>
+<b>You can enforce a ratio between request and limit for a resource in a namespace using a...</b>
+</summary>
+LimitRange
+</details>
+
+<details>
+<summary>
+<b>You can set default request/limit for compute resources in a namespace and automatically inject them to Containers at runtime using a...</b>
+</summary>
+LimitRange
+</details>
+
+<details>
+<summary>
+<b>When you run a Pod on a Node, the Pod itself takes an amount of system resources. These resources are additional to the resources needed to run the container(s) inside the Pod.&nbsp;<i>_____&nbsp;</i>is a feature for accounting for the resources consumed by the Pod infrastructure on top of the container requests &amp; limits.</b>
+</summary>
+Pod Overhead
 </details>
 
 <details>
@@ -222,9 +173,31 @@ Immutable Secrets and ConfigMaps
 
 <details>
 <summary>
+<b>You can significantly reduce load on kube-apiserver and improve cluster performance by closing watches for secrets or config maps and, setting them as _____.</b>
+</summary>
+immutable
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">If the node where a Pod is running has enough of a resource available, it's allowed for a container to use more resources than defined in its resource&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">. However, a container is not allowed to use more than its resource&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">.</span></b>
+</summary>
+request
+limit
+</details>
+
+<details>
+<summary>
 <b>A file that is used to configure access to clusters is called a _____ file</b>
 </summary>
 kubeconfig
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">A </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">element in a kubeconfig file is used to group access parameters under a convenient name.</span></b>
+</summary>
+context
 </details>
 
 <details>
@@ -265,6 +238,21 @@ ResourceQuota
 
 <details>
 <summary>
+<b>Pod Overhead is set at _____&nbsp;time according to the overhead associated with the Pod's _____. When enabled, it is considered in addition to the sum of container resource requests when scheduling a Pod. Similarly, Kubelet will include the Pod overhead when sizing the Pod cgroup, and when carrying out Pod eviction ranking.</b>
+</summary>
+admission
+RuntimeClass
+</details>
+
+<details>
+<summary>
+<b>One cpu, in Kubernetes request/limit terms, is equivalent to&nbsp;<strong>1 _____</strong>&nbsp;for cloud providers.</b>
+</summary>
+core
+</details>
+
+<details>
+<summary>
 <b>What is Custom resource in Kubernetes?</b>
 </summary>
 A&nbsp;<em>custom resource</em>&nbsp;is an extension of the Kubernetes API. Many core Kubernetes functions are now built using custom resources, making Kubernetes more modular.
@@ -272,9 +260,26 @@ A&nbsp;<em>custom resource</em>&nbsp;is an extension of the Kubernetes API. Many
 
 <details>
 <summary>
+<b><span style="color: rgb(34, 34, 34);">When a config map currently consumed in a volume is updated, are projected keys inside the Pods eventually updated as well?</span></b>
+</summary>
+Yes
+<span style="color: rgb(34, 34, 34);">The kubelet checks whether the mounted config map is fresh on every periodic sync. However, the kubelet also uses its local configurable cache for getting the current value of the ConfigMap.&nbsp;</span>
+</details>
+
+<details>
+<summary>
 <b><span style="color: rgb(34, 34, 34);">T</span><span style="color: rgb(34, 34, 34);">o pass a secret that contains a Docker (or other) image registry password to the kubelet, you can use...</span></b>
 </summary>
 <code>imagePullSecrets</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">When a process in the container tries to consume more than the allowed amount of memory, the system kernel _____ the process that attempted the allocation, with an _____ error</span></b>
+</summary>
+<span style="color: rgb(34, 34, 34);">terminates</span>
+
+OOM (Out of Memory)
 </details>
 
 <details>

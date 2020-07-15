@@ -2,6 +2,65 @@
 
 <details>
 <summary>
+<b>All API usage from nodes and pods terminate at the following control plane components:</b>
+</summary>
+apiserver only.
+</details>
+
+<details>
+<summary>
+<b>Pods that wish to securely connect to the apiserver can automatically inject the public root certificate and valid bearer token into themselves. This is done by using a...</b>
+</summary>
+service account
+</details>
+
+<details>
+<summary>
+<b>apiserver to kubelet connection can be verified by adding the apiserver flag _____ or via _____</b>
+</summary>
+<b>--kubelet-certificate-authority</b>
+<b>
+</b>SSH tunneling
+</details>
+
+<details>
+<summary>
+<b>By decoupling the interoperability logic between Kubernetes and the underlying cloud infrastructure, _____ enables cloud providers to release features at a different pace compared to the main Kubernetes project.</b>
+</summary>
+cloud-controller-manager
+</details>
+
+<details>
+<summary>
+<b>the apiserver is configured to listen for remote connections on a secure _____ port with one or more forms of client _____ enabled</b>
+</summary>
+HTTPS
+authentication
+</details>
+
+<details>
+<summary>
+<b>Are <b>apiserver</b>&nbsp;connections to <b>nodes, pods and services</b>&nbsp;authenticated or encrypted?</b>
+</summary>
+They can run over HTTPS but will NOT validate the certificate :(
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">The _____ is a daemon that embeds the core control loops shipped with Kubernetes.&nbsp;</span></b>
+</summary>
+<span style="color: rgb(34, 34, 34);">kube-controller-manager</span>
+</details>
+
+<details>
+<summary>
+<b>The Kubernetes Master is a collection of three processes that run on a single node in your cluster. These processes are...</b>
+</summary>
+apiserver, scheduler, controller-manager
+</details>
+
+<details>
+<summary>
 <b>Nodes should be provisioned with _____ for the cluster such that they can connect securely to the apiserver along with valid client credentials</b>
 </summary>
 public root certificate
@@ -9,25 +68,9 @@ public root certificate
 
 <details>
 <summary>
-<b>Pods that wish to securely connect to the apiserver can leverage a _____ so that K8S will automatically inject the public root certificate and valid bearer token into the new pod.</b>
+<b>The <b>kubernetes </b>service is configured in all namespaces&nbsp;with virtual IP address that is redirected via _____ to the apiserver.</b>
 </summary>
-service account
-</details>
-
-<details>
-<summary>
-<b>The <b>kubernetes </b>service (in all namespaces) is configured with _____ that is redirected via _____ to the apiserver</b>
-</summary>
-a virtual IP address
 kube-proxy
-</details>
-
-<details>
-<summary>
-<b>the apiserver is configured to listen for remote connections on _____ with one or more forms of _____ enabled</b>
-</summary>
-a secure HTTPS port
-client authentication
 </details>
 
 <details>
@@ -41,66 +84,14 @@ the kubelet's HTTPS endpoint
 <summary>
 <b>Does the <b>apiserver</b> verify the <b>kubelet's</b> serving certificate by default?</b>
 </summary>
-No-----The connection is subject to MITM attacks by default
+No. The connection is subject to MITM attacks by default.
 </details>
 
 <details>
 <summary>
-<b>apiserver to kubelet connection can be verified via</b>
+<b>The component that creates, annotates, destroys nodes and gets their information (like hostname, address or health) is called the...</b>
 </summary>
-SSH tunneling
-OR&nbsp;
-<b>apiserver --kubelet-certificate-authority</b>
-</details>
-
-<details>
-<summary>
-<b>Are <b>apiserver</b>&nbsp;connections to <b>nodes, pods and services</b>&nbsp;authenticated or encrypted?</b>
-</summary>
-No :(
-They can be run over HTTPS but will not validate the certificate
-</details>
-
-<details>
-<summary>
-<b>By decoupling the interoperability logic between Kubernetes and the underlying cloud infrastructure, _____ enables cloud providers to release features at a different pace compared to the main Kubernetes project.</b>
-</summary>
-cloud-controller-manager
-</details>
-
-<details>
-<summary>
-<b>Node controller</b>
-</summary>
-<b>Create / destroy nodes&nbsp;</b>when new servers are created and destroyed in your cloud infrastructure
-<b>Annotate Nodes</b>with cloud-specific information, such as Region
-<b>Get Node information</b>Hostname, address, health
-</details>
-
-<details>
-<summary>
-<b>Route controller</b>
-</summary>
-Configures addresses and routes between K8S nodes in your cloud
-</details>
-
-<details>
-<summary>
-<b>Service Controller</b>
-</summary>
-Sets up Load Balancers and other infrastructure components needed by <b>Service </b>k8s objects
-</details>
-
-<details>
-<summary>
-<b>kube-controller-manager</b>
-</summary>
-Daemon controlling core K8S control loops
-Node controllerReplication controllerService account controllerEndpoints controller
-Garbage collector (can be disabled)
-
-HPA
-Leader electionReconcilliation intervalFeature gatesCluster CIDRPod CIDR
+Node controller
 </details>
 
 <details>
@@ -108,19 +99,5 @@ Leader electionReconcilliation intervalFeature gatesCluster CIDRPod CIDR
 <b>The three main control plane components are...</b>
 </summary>
 kubelets, master, etcd
-</details>
-
-<details>
-<summary>
-<b>All API usage from nodes and pods terminate at the following control plane components:</b>
-</summary>
-apiserver only.
-</details>
-
-<details>
-<summary>
-<b>The Kubernetes Master is a collection of three processes that run on a single node in your cluster. These processes are...</b>
-</summary>
-apiserver, scheduler, controller-manager
 </details>
 

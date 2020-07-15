@@ -2,105 +2,6 @@
 
 <details>
 <summary>
-<b>Kubernetes replication controller ensures</b>
-</summary>
-a specific number of pod replicas are running at any one time across nodes
-</details>
-
-<details>
-<summary>
-<b>what is rolling deployment?</b>
-</summary>
-approach when you deploy your containers to production hosts one at a time, so your app keeps running.Centurion can do this
-</details>
-
-<details>
-<summary>
-<b>The name of the Kubernetes Controller that provides declarative updates for pods.</b>
-</summary>
-Deployments
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">A </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">ensures that all (or some) Nodes run a copy of a Pod.</span></b>
-</summary>
-DaemonSet
-</details>
-
-<details>
-<summary>
-<b>Kubernetes deployments can be in what states?&nbsp;</b>
-</summary>
-1.&nbsp;<b>Progressing</b>, which means the deployment is in the process of performing a task&nbsp;
-2.&nbsp;<b>Completed</b>, which means the rollout of containers is complete and all pods are running the latest version of containers&nbsp;
-3.&nbsp;<b>Failed</b>, which indicates the deployment process encountered a problem it could not recover from&nbsp;&nbsp;
-
-<img src="paste-b161711b323beee4f9321701871a89dbe94c759c.jpg">
-<img src="paste-eb67b2c5aa380b7fa66366a34219cd767c81a081.jpg">
-<img src="paste-3b99c3b118c2e59529bf12a6a554aa2c5c5bab73.jpg">
-</details>
-
-<details>
-<summary>
-<b>To which entity is this description reffering to?
-
-A Kubernetes&nbsp;<b>Controller&nbsp;</b>which ensures that all (or some)&nbsp;<b>Nodes run a copy of a Pod&nbsp;</b>- thus allowing for node management.</b>
-</summary>
-DaemonSet
-
-<img src="paste-71933616ad20fe752807b7c64a8363b0d177838e.jpg">
-</details>
-
-<details>
-<summary>
-<b>Explain what DaemonSet and ReplicaSet have in common (and what are the differences)</b>
-</summary>
-They are both Kubernetes Controllers and they are both related to count of pods inside the cluster.
-<b>
-ReplicaSet </b>makes sure that given amount of pods is always running in the cluster (<b>doesn't</b> matter in which worker node they are running!)<img src="paste-3dfda59e415fbe71f6a599a82a877ec60953f322.jpg">
-
-<div style="display: inline !important;"><b>DaemonSet </b>makes sure that all (or selected) nodes have a replica of given pod.
-In most use cases, the number of nodes will be equal with number of pods<img src="paste-41a44af9a7651900a5b65dbf3ba95a1f3fa4eb3e.jpg">
-</details>
-
-<details>
-<summary>
-<b>Is it possible to run DaemonSet pods on only some nodes?</b>
-</summary>
-Yes - with taints and affinities
-</details>
-
-<details>
-<summary>
-<b>What will happen (by default) to DaemonSet pods inside a node when that node gets deleted?</b>
-</summary>
-These pods will be garbage collected (deleted) as well<b><img src="lFn2VhS56EQ5e5HzPHY0ouWasNdxi6-R2XEOtnqIpKDTocCA4l-Sg6AfbKXHH9WIS1a8EMnYYEOiGyGJFioK-9qIZIH3sduMAborO6gXiCHw1Umz7OniapkRpRZdEZfQbEXv.png"></b>
-</details>
-
-<details>
-<summary>
-<b>What will happen to ReplicaSet pods inside a node when that node gets deleted?</b>
-</summary>
-These pods will be replaced on another node(s)
-
-<img src="paste-69330a78781544cb8771f0f33692134d36fa2003.jpg">
-</details>
-
-<details>
-<summary>
-<b>cloudnatived/demo:hello deployment spec</b>
-</summary>
-spec:
- &nbsp;containers:
- &nbsp;- name: demo
- &nbsp;&nbsp;&nbsp;image: cloudnatived/demo:hello
- &nbsp;&nbsp;&nbsp;ports:
- &nbsp;&nbsp;&nbsp;- containerPort: 8888
-</details>
-
-<details>
-<summary>
 <b>What is DaemonSet?</b>
 </summary>
 A Kubernetes&nbsp;<b>Controller&nbsp;</b>which ensures that all (or some)&nbsp;<b>Nodes run a copy of a Pod.</b>
@@ -421,5 +322,40 @@ foreground cascading deletion
 <b>To control the cascading deletion policy, set the&nbsp;<code>propagationPolicy</code>&nbsp;field on the&nbsp;<code>deleteOptions</code>&nbsp;argument when deleting an Object. Possible values include "Orphan", "Foreground", or "Background".</b>
 </summary>
 TODO
+</details>
+
+<details>
+<summary>
+<b>Is it possible to run DaemonSet pods on only some nodes?</b>
+</summary>
+Yes - with taints and affinities
+</details>
+
+<details>
+<summary>
+<b>What will happen to ReplicaSet pods inside a node when that node gets deleted?</b>
+</summary>
+These pods will be replaced on another node, or nodes.
+</details>
+
+<details>
+<summary>
+<b>The _____ ensures a specific number of pod replicas are running at any one time across nodes</b>
+</summary>
+replication controller
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">A </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">ensures that all (or some) Nodes run a copy of a Pod.</span></b>
+</summary>
+DaemonSet
+</details>
+
+<details>
+<summary>
+<b>What will happen (by default) to DaemonSet pods inside a node when that node gets deleted?</b>
+</summary>
+These pods will be garbage collected
 </details>
 
