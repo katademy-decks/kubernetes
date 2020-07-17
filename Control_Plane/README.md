@@ -2,13 +2,6 @@
 
 <details>
 <summary>
-<b>All API usage from nodes and pods terminate at the following control plane components:</b>
-</summary>
-apiserver only.
-</details>
-
-<details>
-<summary>
 <b>Pods that wish to securely connect to the apiserver can automatically inject the public root certificate and valid bearer token into themselves. This is done by using a...</b>
 </summary>
 service account
@@ -99,5 +92,12 @@ Node controller
 <b>The three main control plane components are...</b>
 </summary>
 kubelets, master, etcd
+</details>
+
+<details>
+<summary>
+<b>All API usage from nodes and pods terminate at the following control plane components:</b>
+</summary>
+apiserver only.
 </details>
 

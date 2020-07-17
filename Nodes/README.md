@@ -2,13 +2,6 @@
 
 <details>
 <summary>
-<b>The kubernetes components inside a worker node are...</b>
-</summary>
-kubelet, kube-proxy, container runtime
-</details>
-
-<details>
-<summary>
 <b>Available ImagePullPolicies</b>
 </summary>
 Always, Never, IfNotPresent (default)
@@ -33,6 +26,13 @@ Master and Nodes
 <b>A _____ is a worker machine in Kubernetes and may be either a virtual or a physical machine, depending on the cluster.&nbsp;</b>
 </summary>
 Node
+</details>
+
+<details>
+<summary>
+<b>Is it possible to run DaemonSet pods on only some nodes?</b>
+</summary>
+Yes - with taints and affinities
 </details>
 
 <details>
@@ -200,8 +200,86 @@ available to be consumed by Pods
 
 <details>
 <summary>
+<b><span style="color: rgb(34, 34, 34);">Topology spread constraints rely on _____ to&nbsp;</span><span style="color: rgb(34, 34, 34);">identify the topology domain(s) that each Node is in.</span></b>
+</summary>
+node labels
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">If an incoming Pod has&nbsp;</span><code>spec.nodeSelector</code><span style="color: rgb(34, 34, 34);">&nbsp;or&nbsp;</span><code>spec.affinity.nodeAffinity</code><span style="color: rgb(34, 34, 34);">&nbsp;defined, nodes not matching them will be...</span></b>
+</summary>
+bypassed
+</details>
+
+<details>
+<summary>
 <b>A Node's "Ready" status is True when...</b>
 </summary>
 It's healthy and accepts pods
+</details>
+
+<details>
+<summary>
+<b>_____ are a way of tagging nodes with specific information; usually, about node problems or failures. By default, Pods won’t be scheduled on nodes with them.</b>
+</summary>
+Taints
+</details>
+
+<details>
+<summary>
+<b>The kubernetes components inside a worker node are...</b>
+</summary>
+kubelet, kube-proxy, container runtime
+</details>
+
+<details>
+<summary>
+<b>_____ allow a Pod to be scheduled on nodes with a specific taint. You can use this mechanism to run certain Pods only on dedicated nodes.</b>
+</summary>
+Tolerations
+</details>
+
+<details>
+<summary>
+<b>Pod _____ express a preference for Pods to be scheduled on the same node as other Pods, when they benefit from it.</b>
+</summary>
+affinities
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">If two Nodes are labelled with one&nbsp;<b>topologyKey&nbsp;</b>and have identical values for that label, the scheduler&nbsp;</span><span style="color: rgb(34, 34, 34);">tries to place a _____ number of Pods into each topology domain</span></b>
+</summary>
+balanced
+</details>
+
+<details>
+<summary>
+<b><strong>topologyKey</strong><span style="color: rgb(34, 34, 34);">&nbsp;is...</span></b>
+</summary>
+<span style="color: rgb(34, 34, 34);">The key of node labels.&nbsp;</span>
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">If two Nodes are labelled with one&nbsp;<b>topologyKey&nbsp;</b>and have identical values for that label, the scheduler treats both Nodes as being in the same _____&nbsp;</span></b>
+</summary>
+<span style="color: rgb(34, 34, 34);">topology&nbsp;</span>
+</details>
+
+<details>
+<summary>
+<b>_____ attract or repel Pods to or from nodes with specified attributes. For example, you can specify that a Pod can only run on a node in a specified availability zone.</b>
+</summary>
+Node affinities
+</details>
+
+<details>
+<summary>
+<b>While _____ can block a Pod from running on a node, _____ are more like suggestions to the scheduler. You can combine multiple, with different weights.</b>
+</summary>
+hard node affinities
+soft node affinities
 </details>
 

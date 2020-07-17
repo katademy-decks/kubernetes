@@ -2,36 +2,6 @@
 
 <details>
 <summary>
-<b>The {{c2::NodePort}} type is an extension of the {{c1::ClusterIP}} type. So a service of type {{c2::NodePort}} has a {{c1::cluster IP}} address.
-<img src="paste-98292609fa9710f9d58f5ae8b0b04b4a68745a02.jpg"></b>
-</summary>
-
-</details>
-
-<details>
-<summary>
-<b>The {{c1::LoadBalancer}} type is an extension of the {{c2::NodePort}} type. So a Service of this type has a {{c1::cluster IP}} address and one or more {{c2::nodePort}} values.</b>
-</summary>
-
-</details>
-
-<details>
-<summary>
-<b>To ensure each Service receives a unique IP, an internal allocator atomically updates a global allocation map in _____ prior to creating each Service. The map object must exist in the registry for Services to get IP address assignments, otherwise creations will fail with a message indicating an IP address could not be allocated.&nbsp;
-In the control plane, a background controller is responsible for creating that map (needed to support migrating from older versions of Kubernetes that used in-memory locking). Kubernetes also uses controllers to check for invalid assignments (eg due to administrator intervention) and for cleaning up allocated IP addresses that are no longer used by any Services.</b>
-</summary>
-etcd
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">Even though health checks are not exposed directly through the Ingress, there exist parallel concepts in Kubernetes such as _____</span><span style="color: rgb(34, 34, 34);">&nbsp;that allow you to achieve the same end result.&nbsp;</span></b>
-</summary>
-readinessProbes
-</details>
-
-<details>
-<summary>
 <b>A Kubernetes resource that exposes deployments.</b>
 </summary>
 Services
@@ -235,6 +205,13 @@ clusterIP
 
 <details>
 <summary>
+<b>To ensure each Service receives a unique IP, an internal allocator atomically updates a global allocation map in _____ prior to creating each Service.</b>
+</summary>
+etcd
+</details>
+
+<details>
+<summary>
 <b>_____ enables a service to route traffic based upon the Node topology of the cluster.&nbsp;</b>
 </summary>
 Service Topology
@@ -309,6 +286,13 @@ Yes
 <b><span style="color: rgb(34, 34, 34);">A Service can specify that traffic be preferentially routed to endpoints that are on the same Node as the client, or in the same availability zone by using _____</span></b>
 </summary>
 Service Topology
+</details>
+
+<details>
+<summary>
+<b>Containers within a single pod share network resources - _____ and _____</b>
+</summary>
+IP address and port space
 </details>
 
 <details>
@@ -421,5 +405,26 @@ Node - kubernetes.io/hostnameZone - topology.kubernetes.io/zoneRegion - topology
 <b><span style="color: rgb(34, 34, 34);">For TLS, the Ingress object currently only supports the port 443, and assumes TLS _____.&nbsp;</span></b>
 </summary>
 termination
+</details>
+
+<details>
+<summary>
+<b>_____ resources route requests to different services, depending on a set of rules, for example, matching parts of the request URL. They can also terminate TLS connections for your application.</b>
+</summary>
+Ingress
+</details>
+
+<details>
+<summary>
+<b>The NodePort type is an extension of the _____ type. So a NodePort service also has a _____ address.</b>
+</summary>
+ClusterIP
+</details>
+
+<details>
+<summary>
+<b>The LoadBalancer service type is an extension of the _____ type. A LoadBalancer Service has a clusterIP address and one or more _____ values.</b>
+</summary>
+NodePort
 </details>
 

@@ -2,19 +2,29 @@
 
 <details>
 <summary>
-<b>How to harden the security of the container?</b>
+<b>A _____ contains a set of additive RBAC permissions</b>
 </summary>
-containers:
-- name: demo
- &nbsp;image: cloudnatived/demo:hello
-<b> &nbsp;securityContext:
-</b><strong>&nbsp; &nbsp;<font color="#ab1aff">readOnlyRootFilesystem: true</font></strong><b><font color="#ab1aff">
-</font></b><strong>&nbsp; &nbsp;<i><font color="#ff5d83">runAsNonRoot: true</font></i></strong><b>
- &nbsp;&nbsp;&nbsp;runAsUser: 1000</b>
-&nbsp; &nbsp;# setuid&nbsp;mechanism can temporarily gain the privileges of the user that&nbsp;<em>owns</em>&nbsp;the binary<b>
-</b>&nbsp; &nbsp;allowPrivilegeEscalation: false
-&nbsp; &nbsp;capabilities:&nbsp;&nbsp; &nbsp; &nbsp;drop: ["all"]&nbsp;&nbsp; &nbsp; &nbsp;drop: ["CHOWN", "NET_RAW", "SETPCAP"]&nbsp;&nbsp; &nbsp; &nbsp;add: ["NET_ADMIN"]<strong>
-</strong>
+Role / Clusterrole
+</details>
+
+<details>
+<summary>
+<b>List some ways to improve Kubernetes security</b>
+</summary>
+Log everything in prod
+Alert and apply new CVE fixes
+Restrict access to nodes, etcd, sudo
+Network segmentation
+Resource quotas and policy rules&nbsp;
+Secrets as volumes
+Containers should be non-root, with read-only filesystems
+</details>
+
+<details>
+<summary>
+<b>How can any container in a pod enable privileged mode?</b>
+</summary>
+Using the <b>privileged</b>&nbsp;flag in the security context of the container spec.
 </details>
 
 <details>
@@ -22,6 +32,35 @@ containers:
 <b>The 4C's of Cloud Native security are...</b>
 </summary>
 Cloud, Clusters, Containers, Code
+</details>
+
+<details>
+<summary>
+<b>The three PodSecurityPolicy types are:</b>
+</summary>
+Privileged, Restricted, Default
+</details>
+
+<details>
+<summary>
+<b>Is there currently an API standard for whether a Pod is considered sandboxed?</b>
+</summary>
+No -&nbsp;<span style="color: rgb(34, 34, 34);">Sandbox Pods may be identified by the use of a sandboxed runtime (such as gVisor or Kata Containers), but there is no standard definition of what a sandboxed runtime is.</span>
+</details>
+
+<details>
+<summary>
+<b><i>S</i><span style="color: rgb(34, 34, 34);">ecurity sensitive aspects of pod specification, such as c</span><span style="color: rgb(34, 34, 34);">onditions that a pod must run with in order to be accepted into the system, as well as defaults for the related fields can be stored inside cluster-level resources called _____</span></b>
+</summary>
+PodSecurityPolicy
+</details>
+
+<details>
+<summary>
+<b>Some security tools with which clusters can be further protected, are...</b>
+</summary>
+Snyk, Aqua, kata containers
+gVisor, AppArmor, seccomp, SELinux
 </details>
 
 <details>
@@ -34,6 +73,20 @@ Secret and encryption management
 Pod security policies
 Network policies
 TLS
+</details>
+
+<details>
+<summary>
+<b>Do security contexts replace Pod Security Policy?</b>
+</summary>
+<span style="color: rgb(34, 34, 34);">Debatable. Numerous means of policy enforcement have arisen that augment or replace the use of PodSecurityPolicy.</span>
+</details>
+
+<details>
+<summary>
+<b>What are some tools with which clusters can be audited?</b>
+</summary>
+Sonobuoy
 </details>
 
 <details>
@@ -57,33 +110,5 @@ security contexts
 <b><span style="color: rgb(34, 34, 34);">A </span><i>_____</i><span style="color: rgb(34, 34, 34);">&nbsp;is a cluster-level resource that controls security sensitive aspects of the Pod specification.</span></b>
 </summary>
 Pod Security Policy
-</details>
-
-<details>
-<summary>
-<b>Do security contexts replace Pod Security Policy?</b>
-</summary>
-<span style="color: rgb(34, 34, 34);">Debatable. Numerous means of policy enforcement have arisen that augment or replace the use of PodSecurityPolicy.</span>
-</details>
-
-<details>
-<summary>
-<b>The three PodSecurityPolicy types are:</b>
-</summary>
-Privileged, Restricted, Default
-</details>
-
-<details>
-<summary>
-<b>Is there currently an API standard for whether a Pod is considered sandboxed?</b>
-</summary>
-No -&nbsp;<span style="color: rgb(34, 34, 34);">Sandbox Pods may be identified by the use of a sandboxed runtime (such as gVisor or Kata Containers), but there is no standard definition of what a sandboxed runtime is.</span>
-</details>
-
-<details>
-<summary>
-<b>A _____ contains a set of additive RBAC permissions</b>
-</summary>
-Role / Clusterrole
 </details>
 

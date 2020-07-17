@@ -2,60 +2,9 @@
 
 <details>
 <summary>
-<b>How would you improve Kubernetes security</b>
+<b>_____ allow you to create your own custom Kubernetes objects, to store any data you wish.&nbsp;</b>
 </summary>
-Log everything in prod
-Alert and apply new CVE fixes
-Use audit&nbsp;services (Sonobuoy)
-
-No access to nodes
-No access to ETCD
-Network segmentation
-Resource quotas and policy rules&nbsp;
-Secrets as volumes
-Scan containers (Snyk, Aqua)
-
-Non-root containers
-Read-only filesystems on containers
-Disallow sudo
-Use kata containers&nbsp;
-
-gVisorAppArmor (lockbox)seccomp (lockbox)SELinux
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">A _____ is an API object used to store non-confidential data in key-value pairs.&nbsp;</span><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/">Pods<span style="background-color: rgb(85, 85, 85); color: rgb(255, 255, 255);"></span></a><span style="color: rgb(34, 34, 34);">&nbsp;can consume them as environment variables, command-line arguments, or as configuration files in a&nbsp;</span><a href="https://kubernetes.io/docs/concepts/storage/volumes/">volume<span style="background-color: rgb(85, 85, 85); color: rgb(255, 255, 255);"></span></a><span style="color: rgb(34, 34, 34);">.</span></b>
-</summary>
-<span style="color: rgb(34, 34, 34);">ConfigMap</span>
-</details>
-
-<details>
-<summary>
-<b>If the data you want to store are confidential, use a _____ rather than a ConfigMap</b>
-</summary>
-Secret
-</details>
-
-<details>
-<summary>
-<b>Each ConfigMap you want to mount in a Pod needs to be referred to in...</b>
-</summary>
-&nbsp;<code>.spec.volumes</code>
-</details>
-
-<details>
-<summary>
-<b><span style="color: rgb(34, 34, 34);">The&nbsp;</span><code>KUBECONFIG</code><span style="color: rgb(34, 34, 34);">&nbsp;environment variable holds...</span></b>
-</summary>
-A list of kubeconfig files
-</details>
-
-<details>
-<summary>
-<b><i>_____</i><span style="color: rgb(34, 34, 34);">&nbsp;are&nbsp;cluster-level resources that control security sensitive aspects of pod specification. They define</span><span style="color: rgb(34, 34, 34);">&nbsp;a set of conditions that a pod must run with in order to be accepted into the system, as well as defaults for the related fields.</span></b>
-</summary>
-PodSecurityPolicy
+Custom Resource Definitions (CRDs)
 </details>
 
 <details>
@@ -287,5 +236,41 @@ OOM (Out of Memory)
 <b><span style="color: rgb(34, 34, 34);">When several users or teams share a cluster with a fixed number of nodes, there is a concern that one team could use more than its fair share of resources. _____&nbsp;</span><span style="color: rgb(34, 34, 34);">is a tool to address this concern.</span></b>
 </summary>
 ResorceQuota
+</details>
+
+<details>
+<summary>
+<b>_____ are key-value pairs that identify resources, and can be used with _____ to match a specified group of resources.</b>
+</summary>
+Labels
+Selectors
+</details>
+
+<details>
+<summary>
+<b>If the data you want to store are confidential, use a _____ rather than a ConfigMap</b>
+</summary>
+Secret
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">A _____ is an API object used to store non-confidential data in key-value pairs.&nbsp;</span><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/">Pods<span style="background-color: rgb(85, 85, 85); color: rgb(255, 255, 255);"></span></a><span style="color: rgb(34, 34, 34);">&nbsp;can consume them as environment variables, command-line arguments, or as configuration files in a&nbsp;</span><a href="https://kubernetes.io/docs/concepts/storage/volumes/">volume<span style="background-color: rgb(85, 85, 85); color: rgb(255, 255, 255);"></span></a><span style="color: rgb(34, 34, 34);">.</span></b>
+</summary>
+<span style="color: rgb(34, 34, 34);">ConfigMap</span>
+</details>
+
+<details>
+<summary>
+<b>Mounting ConfigMaps in a Pod is done in its .spec._____</b>
+</summary>
+volumes
+</details>
+
+<details>
+<summary>
+<b><span style="color: rgb(34, 34, 34);">The&nbsp;</span><code>KUBECONFIG</code><span style="color: rgb(34, 34, 34);">&nbsp;environment variable holds...</span></b>
+</summary>
+A list of kubeconfig files
 </details>
 

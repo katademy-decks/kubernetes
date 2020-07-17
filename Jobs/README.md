@@ -120,3 +120,11 @@ startingDeadlineSeconds&nbsp;
 completions
 </details>
 
+<details>
+<summary>
+<b>_____ run a Pod a specified number of times before completing. _____ run a Pod periodically at specified times.</b>
+</summary>
+Jobs
+CronJobs
+</details>
+
