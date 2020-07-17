@@ -13,4 +13,4 @@ This project aims to be the most in-depth question & answer repository on [Kuber
 
 #### Flashcard apps
 
-This repository can be used with any flashcard application that supports the `.apkg` deck format, such as [Anki](https://ankiweb.net). To do this, download the latest deck from the [Releases](https://github.com/kubernetes-faq/kubernetes-faq/releases/) page and import to your app.
+This repository can be used with any flashcard application that supports the `.apkg` deck format, such as [Anki](https://ankiweb.net). To do this, download the latest deck from the [Releases](https://github.com/icypedia/kubernetes-faq/releases/) page and import to your app.
