@@ -1,4 +1,4 @@
-This repository aims to be the most advanced, in-depth question & answer repository about @kubernetes. Challenge your K8S knowledge!
+This repository aims to be the most advanced, in-depth question & answer repository about @kubernetes.
 
 ### Table of contents
 
