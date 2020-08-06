@@ -11,6 +11,6 @@ This project aims to be the most in-depth question & answer repository on [Kuber
 * [Security](Questions/Security/README.md) (14 questions)
 * [Storage](Questions/Storage/README.md) (75 questions)
 
-#### Flashcard apps
+#### Flashcards
 
-This repository can be used with any flashcard application that supports the `.apkg` deck format, such as [Anki](https://ankiweb.net). To do this, download the latest deck from the [Releases](https://github.com/icypedia/kubernetes-faq/releases/) page and import to your app.
+This repository features flashcards that can be used with any application that supports the `.apkg` deck format (such as [Anki](https://ankiweb.net)). Download the latest deck from the [Releases](https://github.com/devsplit/kubernetes/releases/) page and import the file inside your app.
