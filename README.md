@@ -1,9 +1,8 @@
 # Kubernetes FAQ
 
-#### Flashcards
+Learn Kubernetes by answering questions!
 
-This repository features flashcards that can be used with any application that supports the `.apkg` deck format (such as [Anki](https://ankiweb.net)). Download the latest deck from the [Releases](https://github.com/devsplit/kubernetes/releases/) page and import the file inside your app.
-
+The FAQ comes with downloadable [flashcards](https://github.com/devsplit/kubernetes/releases/) which are updated with every major release. These can be used with any application that supports the `.apkg` deck format (such as [Anki](https://ankiweb.net)).
 
 ## Admission 
 <details>
@@ -440,20 +439,7 @@ No!
 <br></details>
 
 
-## Cluster_Architecture 
-<details>
-<summary>metadata</summary>
-labels:annotations:name:namespace:
-creationTimestamp:deletionTimestamp (and grace period)
-<br></details>
-
-<details>
-<summary>metadata.ownerReference</summary>
-Objects depended by this object.
-If empty, object will be garbage collected
-E.g. points to the controller managing this pod.
-<br></details>
-
+## Cluster Architecture 
 <details>
 <summary>Federated clusters</summary>
 Managing multiple clusters as one
@@ -625,7 +611,7 @@ targetPort
 <br></details>
 
 
-## Cluster_Security 
+## Cluster Security 
 <details>
 <summary>Nodes should be provisioned with valid client credentials and&nbsp;a _____ certificate&nbsp;to connect to the apiserver.</summary>
 public root certificate
@@ -1029,7 +1015,7 @@ LimitRange
 <br></details>
 
 
-## Container_Security 
+## Container Security 
 <details>
 <summary>The 4C's of Cloud Native security are _____, _____, _____ and _____.</summary>
 Cloud, Clusters, Containers and Code
