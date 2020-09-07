@@ -1,8 +1,23 @@
 # Kubernetes FAQ
 
-Learn Kubernetes by answering questions!
+Learn Kubernetes in-depth by answering simple questions! [Flashcards](https://github.com/devsplit/kubernetes/releases/) included with each release.
 
-The FAQ comes with downloadable [flashcards](https://github.com/devsplit/kubernetes/releases/) which are updated with every major release. These can be used with any application that supports the `.apkg` deck format (such as [Anki](https://ankiweb.net)).
+### Table of Contents
+
+1. [Admission](#admission)
+1. [Auditing](#auditing)
+1. [Authentication](#authentication)
+1. [Authorization](#authorization)
+1. [Cluster Architecture](#cluster-architecture)
+1. [Cluster Security](#cluster-security)
+1. [Configuration](#configuration)
+1. [Container Security](#container-security)
+1. [Deployments](#deployments)
+1. [Nodes](#nodes)
+1. [Pods](#pods)
+1. [Services](#services)
+1. [Storage](#storage)
+1. [etcd](#etcd)
 
 ## Admission 
 <details>
