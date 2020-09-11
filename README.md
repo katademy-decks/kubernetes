@@ -1,6 +1,6 @@
 # Kubernetes FAQ
 
-Learn Kubernetes in-depth by answering simple questions! [Flashcards](https://github.com/devsplit/kubernetes/releases/) included with each release.
+Learn Kubernetes by answering simple questions! [Flashcards](https://github.com/devsplit/kubernetes/releases/) included for spaced repetition.
 
 ### Table of Contents
 
