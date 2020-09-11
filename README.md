@@ -118,7 +118,7 @@ increases&nbsp;
 
 <details>
 <summary>The four audit levels are:
-<font face="monospace">_____&nbsp;</font>- don't log these events.<font face="monospace">_____&nbsp;</font>- log request metadata (requesting user, timestamp, resource, verb, etc.)&nbsp;<font face="monospace">_____&nbsp;</font>- log event metadata and request body.<font face="monospace">_____&nbsp;</font>- log event metadata, request body and response bodies.</summary>
+_____&nbsp;- don't log these events._____&nbsp;- log request metadata (requesting user, timestamp, resource, verb, etc.)&nbsp;_____&nbsp;- log event metadata and request body._____&nbsp;- log event metadata, request body and response bodies.</summary>
 None
 Metadata
 Request
@@ -173,17 +173,6 @@ Sonobuoy
 
 ## Authentication 
 <details>
-<summary>kubectl config set-credentials</summary>
-Sets a user in kubeconfig
-<br></details>
-
-<details>
-<summary>Kubeconfig</summary>
-Information about 
-clusters, users, authentication
-<br></details>
-
-<details>
 <summary>Suppose you have several clusters, and your users and components authenticate in a variety of ways. For example:<ul><li>A running kubelet might authenticate using certificates.</li><li>A user might authenticate using tokens.</li><li>Administrators might have sets of certificates that they provide to individual users.</li></ul>With _____ files, you can organize your clusters, users, contexts, and namespaces.</summary>
 kubeconfig
 <br></details>
@@ -199,13 +188,8 @@ context
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">default kubeconfig filepath</span></summary>
-$HOME/.kube/config
-<br></details>
-
-<details>
-<summary><span style="color: rgb(34, 34, 34);">The&nbsp;</span><code>KUBECONFIG</code><span style="color: rgb(34, 34, 34);">&nbsp;environment variable holds...</span></summary>
-A list of kubeconfig files
+<summary>The&nbsp;KUBECONFIG&nbsp;environment variable holds a list of _____</summary>
+kubeconfig files
 <br></details>
 
 <details>
@@ -275,11 +259,6 @@ Yes
 <br></details>
 
 <details>
-<summary>Are service accounts created manually or automatically by the API server?</summary>
-Both
-<br></details>
-
-<details>
 <summary>Service accounts are tied to a set of credentials stored as _____, which are mounted into _____ allowing in-cluster processes to talk to the Kubernetes API.</summary>
 Secrets
 pods
@@ -323,7 +302,7 @@ service accounts
 <br></details>
 
 <details>
-<summary>The <font face="monospace">_____&nbsp;</font>group is included in the list of groups for all authenticated users.</summary>
+<summary>The _____&nbsp;group is included in the list of groups for all authenticated users.</summary>
 system:authenticated&nbsp;
 <br></details>
 
@@ -408,8 +387,8 @@ bearer token
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">If a request is authorized by an authorization module, does it get checked by other authorization modules before proceeding?</span></summary>
-<font color="#222222">No - it's immediately authorized.</font>
+<summary>If a request is authorized by an authorization module, does it get checked by other authorization modules before proceeding?</summary>
+No - it's immediately authorized.
 <br></details>
 
 <details>
@@ -456,52 +435,38 @@ No!
 
 ## Cluster Architecture 
 <details>
-<summary>Federated clusters</summary>
-Managing multiple clusters as one
-You need cross-cluster DNS, discovery and loadbalancing
-And to sync the resources
+<summary>An object's _____ status field denotes its parent object. If empty, the child object will be garbage collected and removed.</summary>
+metadata.ownerReference
 <br></details>
 
 <details>
-<summary>metadata.finalizers</summary>
-Identifiers for the responsible component that will remove the finalizer
-Any actor with permission can reorder finalizer.
-Must be empty before object is deleted
+<summary>Managing multiple clusters as one known as _____, requires many considerations to implement, such as cross-cluster DNS, service discovery, loadbalancing and resource sync.</summary>
+Cluster federation
 <br></details>
 
 <details>
-<summary>aggregationRule</summary>
-ClusterRoles can be created by combining other ClusterRoles using an aggregationRule
+<summary>An object's _____ field is a list of string items which must be removed the list before the object can ever be deleted from the cluster. The permission to remove these items is explicitly given to desired actors.</summary>
+metadata.finalizers
 <br></details>
 
 <details>
-<summary>What Are Labels?</summary>
-Key/value pairs that are attached to objects, such as pods.
+<summary>ClusterRoles can be created by combining other ClusterRoles using an _____</summary>
+aggregationRule
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">The scheduler ensures that, for each resource type, the sum of the resource requests of the scheduled Containers is _____ than the capacity of the node.</span></summary>
-<span style="color: rgb(34, 34, 34);">less</span>
+<summary>Selectable and attachable Key/Value pairs on objects such as pods are called _____</summary>
+Labels
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Each context has three parameters:&nbsp;</span></summary>
-<span style="color: rgb(34, 34, 34);">cluster, namespace, and user.&nbsp;</span>
-<br></details>
-
-<details>
-<summary>What is Custom resource in Kubernetes?</summary>
-A&nbsp;<em>custom resource</em>&nbsp;is an extension of the Kubernetes API. Many core Kubernetes functions are now built using custom resources, making Kubernetes more modular.
+<summary>A _____&nbsp;is an extension of the Kubernetes API. Many core Kubernetes functions are now built using them, making Kubernetes more modular.</summary>
+<em>custom resource</em>
 <br></details>
 
 <details>
 <summary>Each of a Service's ports can specify the application protocol to use via the _____ field.</summary>
 AppProtocol
-<br></details>
-
-<details>
-<summary><span style="color: rgb(34, 34, 34);">Kubernetes supports 2 primary modes of finding a Service. These are...</span></summary>
-<span style="color: rgb(34, 34, 34);">DNS and environment variables.</span>
 <br></details>
 
 <details>
@@ -518,21 +483,8 @@ Selectors
 <br></details>
 
 <details>
-<summary>You have a 4-node cluster with the following labels:<pre><code>NAME    STATUS   ROLES    AGE     VERSION   LABELS
-node1   Ready    &lt;none&gt;   4m26s   v1.16.0   node=node1,zone=zoneA
-node2   Ready    &lt;none&gt;   3m58s   v1.16.0   node=node2,zone=zoneA
-node3   Ready    &lt;none&gt;   3m17s   v1.16.0   node=node3,zone=zoneB
-node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></pre>What would the cluster logically look like?</summary>
-<pre><code>+---------------+---------------+
-|     zoneA     |     zoneB     |
-+-------+-------+-------+-------+
-| node1 | node2 | node3 | node4 |
-+-------+-------+-------+-------+</code></pre>
-<br></details>
-
-<details>
-<summary>The Kubernetes Master is a collection of three processes that run on a single node in your cluster. These processes are...</summary>
-apiserver, scheduler, controller-manager
+<summary>The Kubernetes Master is a collection of three processes that run on a single node in your cluster. These processes are _____</summary>
+kube-apiserver, scheduler, kube-controller-manager
 <br></details>
 
 <details>
@@ -598,11 +550,6 @@ kubectl api-resources --namespaced=false
 <details>
 <summary>The _____ service type exposes the Service externally using a cloud provider�s load balancer.</summary>
 LoadBalancer
-<br></details>
-
-<details>
-<summary>The three main control plane components are...</summary>
-kubelets, master, etcd
 <br></details>
 
 <details>
@@ -844,11 +791,6 @@ NetworkPolicy
 <br></details>
 
 <details>
-<summary>apiserver to kubelet connections terminate at</summary>
-the kubelet's HTTPS endpoint
-<br></details>
-
-<details>
 <summary>A NetworkPolicy uses _____ to specify how groups of pods&nbsp;are allowed to communicate with each other and other network endpoints.</summary>
 labels
 <br></details>
@@ -871,7 +813,7 @@ labels
 
 ## Configuration 
 <details>
-<summary>The resource for storing sensitive information in Kubernetes.</summary>
+<summary>The resources for storing sensitive information in Kubernetes are _____</summary>
 Secrets
 <br></details>
 
@@ -886,8 +828,8 @@ Secrets
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">provides constraints that limit aggregate resource consumption per namespace. It can limit the quantity of objects that can be created in a namespace by type, as well as the total amount of compute resources that may be consumed by resources in that project.</span></summary>
-<code>ResourceQuota</code>
+<summary>A _____&nbsp;provides constraints that limit aggregate resource consumption per namespace. It can limit the quantity of objects that can be created in a namespace by type, as well as the total amount of compute resources that may be consumed by resources in that project.</summary>
+ResourceQuota
 <br></details>
 
 <details>
@@ -896,22 +838,22 @@ By default - yes. Limits and ResourceQuotas are recommended.
 <br></details>
 
 <details>
-<summary>You can enforce minimum and maximum compute resources usage per Pod or Container in a namespace using a...</summary>
+<summary>You can enforce minimum and maximum compute resources usage per Pod or Container in a namespace using a _____</summary>
 LimitRange
 <br></details>
 
 <details>
-<summary>You can&nbsp;<span style="background-color: rgb(255, 255, 255);">enforce minimum and maximum storage request per PersistentVolumeClaim in a namespace using a...</span></summary>
+<summary>You can&nbsp;<span style="background-color: rgb(255, 255, 255);">enforce minimum and maximum storage request per PersistentVolumeClaim in a namespace using a _____</span></summary>
 LimitRange
 <br></details>
 
 <details>
-<summary>You can enforce a ratio between request and limit for a resource in a namespace using a...</summary>
+<summary>You can enforce a ratio between request and limit for a resource in a namespace using a _____</summary>
 LimitRange
 <br></details>
 
 <details>
-<summary>You can set default request/limit for compute resources in a namespace and automatically inject them to Containers at runtime using a...</summary>
+<summary>You can set default request/limit for compute resources in a namespace and automatically inject them to Containers at runtime using a _____</summary>
 LimitRange
 <br></details>
 
@@ -919,11 +861,6 @@ LimitRange
 <summary>The _____ is the primary object for storing configuration data in Kubernetes. 
 You can supply that data to an application either by creating a file in the Pod, or by injecting it into the Pod�s environment.</summary>
 ConfigMap
-<br></details>
-
-<details>
-<summary>List some ways to improve Kubernetes security</summary>
-Secrets as volumes
 <br></details>
 
 <details>
@@ -937,7 +874,7 @@ immutable
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">If the node where a Pod is running has enough of a resource available, it's allowed for a container to use more resources than defined in its resource&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">. However, a container is not allowed to use more than its resource&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">.</span></summary>
+<summary>If the node where a Pod is running has enough of a resource available, it's allowed for a container to use more resources than defined in its resource&nbsp;_____. However, a container is not allowed to use more than its resource&nbsp;_____.</summary>
 request
 limit
 <br></details>
@@ -950,12 +887,6 @@ namespace
 <details>
 <summary>To&nbsp;define default CPU limit and request to 150m and memory default request to 300Mi for Containers started with no cpu and memory requests in their specs, you could use...</summary>
 LimitRange
-<br></details>
-
-<details>
-<summary>In a cluster with a capacity of 32 GiB RAM, and 16 cores, let team A use 20 GiB and 10 cores, let B use 10GiB and 4 cores, and hold 2GiB and 2 cores in reserve for future allocation.
-You could create this policy via...</summary>
-ResourceQuota
 <br></details>
 
 <details>
@@ -1042,7 +973,7 @@ securityContexts
 <br></details>
 
 <details>
-<summary>The three PodSecurityPolicy types are:</summary>
+<summary>The three PodSecurityPolicy types are _____, _____ and Default.</summary>
 Privileged, Restricted, Default
 <br></details>
 
@@ -1196,7 +1127,7 @@ Yes
 
 ## Deployments 
 <details>
-<summary>Jobs on a repeating schedule are called...</summary>
+<summary>Jobs on a repeating schedule are called _____</summary>
 CronJobs
 <br></details>
 
@@ -1216,24 +1147,23 @@ idempotent
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A CronJob is counted as missed if it...</span></summary>
-<span style="color: rgb(34, 34, 34);">has failed to be created at its scheduled time.</span>
+<summary><span style="color: rgb(34, 34, 34);">A CronJob is counted as _____ if it&nbsp;</span><span style="color: rgb(34, 34, 34);">has failed to be created at its scheduled time.</span></summary>
+missed
 <br></details>
 
 <details>
-<summary>A job's default parallelism value is 1.<span style="color: rgb(34, 34, 34);">&nbsp;If it is specified as 0, then the Job...</span></summary>
-<span style="color: rgb(34, 34, 34);">Is paused until it is increased.</span>
+<summary>A job's default parallelism value is 1.<span style="color: rgb(34, 34, 34);">&nbsp;If it is set to _____ instead, then the Job&nbsp;</span><span style="color: rgb(34, 34, 34);">is paused until it is increased.</span></summary>
+0
 <br></details>
 
 <details>
-<summary>A job's parallelism is...</summary>
-<span style="color: rgb(34, 34, 34);">The number of Job pods running at any instant.</span>
+<summary>A job's _____ is&nbsp;<span style="color: rgb(34, 34, 34);">the number of Job pods running at any instant.</span></summary>
+parallelism
 <br></details>
 
 <details>
-<summary>What is DaemonSet?</summary>
-A Kubernetes&nbsp;<b>Controller&nbsp;</b>which ensures that all (or some)&nbsp;<b>Nodes run a copy of a Pod.
-</b>
+<summary>A Kubernetes&nbsp;resource which ensures that all (or some)&nbsp;Nodes run a copy of a Pod is the _____</summary>
+DaemonSet
 <br></details>
 
 <details>
@@ -1282,11 +1212,6 @@ Yes
 <br></details>
 
 <details>
-<summary>The&nbsp;<span style="color: rgb(34, 34, 34);">TTL controller handles what resource?</span></summary>
-Jobs
-<br></details>
-
-<details>
 <summary>All CronJob schedules are based on the timezone of _____</summary>
 the <b>kube-controller-manager</b>.
 <br></details>
@@ -1294,11 +1219,6 @@ the <b>kube-controller-manager</b>.
 <details>
 <summary><span style="color: rgb(34, 34, 34);">If a CronJob's&nbsp;</span><code>concurrencyPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;is set to&nbsp;</span><code>Forbid,</code><span style="color: rgb(34, 34, 34);">&nbsp;and it attempted to be scheduled when there was a previous schedule still running, then it would count as _____.</span></summary>
 missed
-<br></details>
-
-<details>
-<summary>A Kubernetes concept that represents the smallest unit of deployment.</summary>
-Pod
 <br></details>
 
 <details>
@@ -1312,8 +1232,8 @@ ordering and uniqueness
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">If an application doesn't require any stable identifiers or ordered deployment, deletion, or scaling, you should deploy your application using...</span></summary>
-<b>Deployments&nbsp;</b>or<b> Replicasets </b>-<span style="color: rgb(34, 34, 34);">&nbsp;workload objects that provide a set of stateless replicas.</span>
+<summary><span style="color: rgb(34, 34, 34);">If an application doesn't require any stable identifiers or ordered deployment, you should deploy your application using a _____ - a&nbsp;</span><span style="color: rgb(34, 34, 34);">workload object that provides a set of stateless replicas.</span></summary>
+Deployment
 <br></details>
 
 <details>
@@ -1367,12 +1287,7 @@ completions
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">If you create a DaemonSet with the same selector as Pods that belonged to a matching DaemonSet, what will the new DaemonSet do with the Pods?</span></summary>
-adopt them
-<br></details>
-
-<details>
-<summary><span style="color: rgb(34, 34, 34);">A </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">ensures that all (or some) Nodes run a copy of a Pod.</span></summary>
+<summary>A _____&nbsp;ensures that all (or some) Nodes run a copy of a Pod.</summary>
 DaemonSet
 <br></details>
 
@@ -1408,12 +1323,12 @@ Yes
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Every dependent (i.e. owned) object has a metadata.</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">&nbsp;field that points to the owning object. The owning object is usually a&nbsp;</span><span style="color: rgb(34, 34, 34);">Job, CronJob,&nbsp;</span><span style="color: rgb(34, 34, 34);">Deployment, DaemonSet,&nbsp;</span><span style="color: rgb(34, 34, 34);">StatefulSet,</span><span style="color: rgb(34, 34, 34);">&nbsp;ReplicationController, ReplicaSet.</span></summary>
+<summary>Every dependent (i.e. owned) object has a metadata._____&nbsp;field that points to the owning object. The owning object is usually a&nbsp;Job, CronJob,&nbsp;Deployment, DaemonSet,&nbsp;StatefulSet,&nbsp;ReplicationController, ReplicaSet.</summary>
 ownerReferences
 <br></details>
 
 <details>
-<summary>Identical Pods in a deployment are referred to as...</summary>
+<summary>Identical Pods in a deployment are referred to as _____</summary>
 Replicas
 <br></details>
 
@@ -1476,15 +1391,11 @@ StatefulSets
 
 ## Nodes 
 <details>
-<summary>volume.spec.accessMode</summary>
-<b>ReadWriteOnce</b>Can be used by 1 node
-<b>ReadWriteMany</b>Can be used by many nodes
-<b>ReadOnlyMany</b>Can be read from many nodes
-<br></details>
-
-<details>
-<summary>iptables</summary>
-Configured by kube-proxy pod on each node
+<summary>The 3 possible values for volume.spec.accessMode are:
+_____ - Can be used by 1 node_____ - Can be used by many nodes_____ - Can be read from many nodes</summary>
+<b>ReadWriteOnce</b>
+<b>ReadWriteMany</b>
+<b>ReadOnlyMany</b>
 <br></details>
 
 <details>
@@ -1493,18 +1404,8 @@ Taints
 <br></details>
 
 <details>
-<summary>A Kubernetes cluster consists of two types of resources...</summary>
-Master and Nodes
-<br></details>
-
-<details>
 <summary>A _____ is a worker machine in Kubernetes and may be either a virtual or a physical machine, depending on the cluster.&nbsp;</summary>
 Node
-<br></details>
-
-<details>
-<summary>Is it possible to run DaemonSet pods on only some nodes?</summary>
-Yes - with taints and affinities
 <br></details>
 
 <details>
@@ -1513,23 +1414,23 @@ Yes - with taints and affinities
 <br></details>
 
 <details>
-<summary>A node's <b>DiskPressure </b>is True when...</summary>
-The node's disk capacity is low
+<summary>A node's _____ condition<b>&nbsp;</b>is True when its disk capacity is low</summary>
+DiskPressure
 <br></details>
 
 <details>
-<summary>A Node's <b>MemoryPressure </b>is True when...</summary>
-The node's memory is low
+<summary>A Node's <b>_____ </b>condition&nbsp;is True when the node's memory is low</summary>
+MemoryPressure&nbsp;&nbsp;
 <br></details>
 
 <details>
-<summary>A Node's <b>PIDPressure</b>&nbsp;is True when...</summary>
-There are too many processes running
+<summary>A Node's <b>_____ </b>condition is&nbsp;True when there are too many processes running.</summary>
+PIDPressure
 <br></details>
 
 <details>
-<summary>A Node's <b>NetworkUnavailable</b>&nbsp;is True when...</summary>
-The Node's network is not correctly configured
+<summary>A Node's <b>_____&nbsp;</b>condition is True when its network is not correctly configured</summary>
+<b>NetworkUnavailable</b>
 <br></details>
 
 <details>
@@ -1553,11 +1454,8 @@ Node
 <br></details>
 
 <details>
-<summary>A node's status contains four domains of information.These are...</summary>
-Addresses
-Conditions
-Capacity and Allocatable
-Info
+<summary>A node's _____ contains four domains of information - its Addresses, Conditions, Capacity/Allocatable and Info.</summary>
+status
 <br></details>
 
 <details>
@@ -1616,17 +1514,7 @@ CIDR block
 <br></details>
 
 <details>
-<summary>A Pod always runs on a...</summary>
-Node
-<br></details>
-
-<details>
-<summary>Each Kubernetes Node is managed by the....</summary>
-Master
-<br></details>
-
-<details>
-<summary>When a node self-registers to the control plane, which component is responsible?</summary>
+<summary>Which Kubernetes component is responsible for a node's self-registration into the control plane?</summary>
 kubelet
 <br></details>
 
@@ -1713,8 +1601,8 @@ soft node affinities
 <br></details>
 
 <details>
-<summary>kube-proxy</summary>
-A controller that creates services, endpoints and updates iptables
+<summary>The controller that creates services, endpoints and updates iptables on each node is _____</summary>
+kube-proxy
 <br></details>
 
 <details>
@@ -1775,28 +1663,6 @@ kube-proxy
 
 ## Pods 
 <details>
-<summary>By default, a Pod's hosts file includes...</summary>
-localhost, hostname and IPv4/IPv6 boilerplates.
-<br></details>
-
-<details>
-<summary>Late initialize</summary>
-When fields are set by a  controller after object creation
-E.g. the scheduler sets the&nbsp;<code>pod.spec.nodeName
-<br></details>
-
-<details>
-<summary>Ensure that a pod is deleted automatically when it has completed</summary>
-Use the --rm flag
-<br></details>
-
-<details>
-<summary>Pod</summary>
-Runtime execution group
-Has a unique IP
-<br></details>
-
-<details>
 <summary>When you run a Pod on a Node, the Pod itself takes an amount of system resources. These resources are additional to the resources needed to run the container(s) inside the Pod.&nbsp;<i>_____&nbsp;</i>is a feature for accounting for the resources consumed by the Pod infrastructure on top of the container requests &amp; limits.</summary>
 Pod Overhead
 <br></details>
@@ -1804,11 +1670,6 @@ Pod Overhead
 <details>
 <summary>Can a Pod have a single IPv4 and IPv6 address assigned?</summary>
 Yes - via enabling IPv4/IPv6 dual-stack.
-<br></details>
-
-<details>
-<summary><span style="color: rgb(34, 34, 34);">The <font face="monospace">_____&nbsp;</font></span>admission&nbsp;<span style="color: rgb(34, 34, 34);">controller enforces defaults and limits for all Pods and Containers that do not set compute resource requirements and tracks usage to ensure it does not exceed resource minimum, maximum and ratio defined in any LimitRange present in the namespace.</span></summary>
-<code>LimitRanger</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
 <br></details>
 
 <details>
@@ -1823,18 +1684,13 @@ replication controller
 <br></details>
 
 <details>
-<summary>Can a Pod can opt out of being modified by PodPresets altogether?</summary>
-Yes - via the exclude annotation <b>podpreset.admission.kubernetes.io/exclude: "true"</b>
+<summary>A Pod can opt out of being modified by PodPresets altogether via the metadata _____ podpreset.admission.kubernetes.io/exclude: "true"</summary>
+annotation
 <br></details>
 
 <details>
 <summary>Containers within a single pod share ____ and _____ resources.</summary>
 storage and network
-<br></details>
-
-<details>
-<summary>What is a Kubernetes Service?</summary>
-It's an network connection abstraction which defines a logical set of Pods and a policy to access them.
 <br></details>
 
 <details>
@@ -1853,8 +1709,8 @@ cascading
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">T</span><span style="color: rgb(34, 34, 34);">o pass a secret that contains a Docker (or other) image registry password to the kubelet, you can use...</span></summary>
-<code>imagePullSecrets</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+<summary><span style="color: rgb(34, 34, 34);">When configuring a container, the _____ field allows you t</span><span style="color: rgb(34, 34, 34);">o pass a secret that contains a Docker (or other) image registry password.</span></summary>
+imagePullSecrets&nbsp;
 <br></details>
 
 <details>
@@ -1873,8 +1729,8 @@ Pod Preset
 <br></details>
 
 <details>
-<summary>What�s a <b>Pod</b></summary>
-A logical group of containers with shared network and storage, and a specification for how to run.
+<summary>A logical group of containers with shared network and storage and specifications for how to run each is called a _____</summary>
+Pod
 <br></details>
 
 <details>
@@ -1888,8 +1744,8 @@ Yes
 <br></details>
 
 <details>
-<summary>The <b>phase </b>of a pod is...</summary>
-A high-level summary of where the pod is in its lifecycle
+<summary>A pod's _____ is the high-level summary of where the pod is in its lifecycle.</summary>
+phase
 <br></details>
 
 <details>
@@ -1907,54 +1763,28 @@ Unknown
 <br></details>
 
 <details>
-<summary>List all six fields in a <b>PodCondition</b></summary>
-reason
-status
-message
+<summary>The six fields of a _____ are&nbsp;reason, status, message, type, lastProbeTime, lastTransitionTime.</summary>
+PodCondition&nbsp;
+<br></details>
+
+<details>
+<summary>A Pod's <b>_____&nbsp;</b>condition field provides a unique, one-word reason for the condition's last transition.</summary>
+reason&nbsp;
+<br></details>
+
+<details>
+<summary>The four possible values of a Pod's <b>_____</b>&nbsp;condition field are&nbsp;PodScheduled,&nbsp;Ready,&nbsp;Initialized,&nbsp;ContainersReady</summary>
 type
-lastProbeTime
-lastTransitionTime
 <br></details>
 
 <details>
-<summary>The <b>reason&nbsp;</b>condition field provides...</summary>
-a unique, one-word reason for the condition's last transition.
+<summary>If the _____ probe fails, the Pod's IP address&nbsp;is removed from the endpoints of all&nbsp;<b>Services&nbsp;</b>that match the Pod.</summary>
+readiness
 <br></details>
 
 <details>
-<summary>The four possible values of the&nbsp;<b>type</b>&nbsp;condition field are...</summary>
-<b>PodScheduled</b>
-<b>Ready</b>
-<b>Initialized</b>
-<b>ContainersReady</b>
-<br></details>
-
-<details>
-<summary>If the readinessProbe fails, what happens?</summary>
-The Pod's IP address&nbsp;is removed from the endpoints of all <b>Services </b>that match the Pod.
-<br></details>
-
-<details>
-<summary>If the startupProbe fails, the container...</summary>
-is killed by the kubelet, then subjected to the container's <b>restart policy</b>.
-<br></details>
-
-<details>
-<summary>A container should be killed or restarted if a probe fails. What can be done to achieve this?</summary>
-1. Specify a <b>livenessProbe&nbsp;</b>
-2. Add a <b>restartPolicy </b>of <b>Always </b>or <b>OnFailure</b>
-<br></details>
-
-<details>
-<summary><span style="color: rgb(34, 34, 34);">A Container should be able to take itself down for maintenance. What can achieve this?</span></summary>
-A <b>readinessProbe </b>that checks an endpoints specific to readiness that is different from the liveness probe.
-<br></details>
-
-<details>
-<summary>The three possible states of containers are...</summary>
-Waiting
-Running
-Terminated
+<summary>If the _____ probe fails, the container is killed by the kubelet, then subjected to the container's&nbsp;<b>restart policy</b>.</summary>
+startup
 <br></details>
 
 <details>
@@ -1993,11 +1823,6 @@ node labels
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">If set, a cluster's default topology spread constraints are applied to a Pod if, and only if:</span></summary>
-<ul><li>It doesn't define any constraints in its&nbsp;<code>.spec.topologySpreadConstraints</code>.</li><li>It belongs to a service, replication controller, replica set or stateful set.</li></ul>
-<br></details>
-
-<details>
 <summary><span style="color: rgb(34, 34, 34);">A _____ limits the number of pods of a replicated application that are down simultaneously from voluntary disruptions.</span></summary>
 PodDisruptionBudget
 <br></details>
@@ -2023,9 +1848,9 @@ foreground cascading deletion
 <br></details>
 
 <details>
-<summary>To control the cascading deletion policy, set the <font face="monospace">_____&nbsp;</font>field on the <font face="monospace">_____&nbsp;</font>argument when deleting an Object.&nbsp;</summary>
-<code>propagationPolicy</code>&nbsp;
-<code>deleteOptions</code>
+<summary>To control the cascading deletion policy, set the _____&nbsp;field on the _____&nbsp;argument when deleting an Object.&nbsp;</summary>
+propagationPolicy&nbsp;
+deleteOptions
 <br></details>
 
 <details>
@@ -2039,11 +1864,6 @@ foreground cascading deletion
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A</span><span style="color: rgb(34, 34, 34);">&nbsp;data science workload</span><span style="color: rgb(34, 34, 34);">&nbsp;may need to be prioritized above others, though without discarding existing work via pre-emption. To ensure this job begins once cluster resources become free, you could set...</span></summary>
-PreemptionPolicy: Never
-<br></details>
-
-<details>
 <summary>Is there currently an API standard for whether a Pod is considered sandboxed?</summary>
 No -&nbsp;<span style="color: rgb(34, 34, 34);">Sandbox Pods may be identified by the use of a sandboxed runtime (such as gVisor or Kata Containers), but there is no standard definition of what a sandboxed runtime is.</span>
 <br></details>
@@ -2054,23 +1874,8 @@ Horizontal Pod Autoscalers (HPA)
 <br></details>
 
 <details>
-<summary>A pod's only container exits with&nbsp;<b>success</b>. What happens if the&nbsp;<b>restartPolicy&nbsp;</b>is&nbsp;<b>Always?</b></summary>
-Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays <b>Running</b>.
-<br></details>
-
-<details>
-<summary>A pod's only container exits with&nbsp;<b>failure</b>. What happens if the&nbsp;<b>restartPolicy&nbsp;</b>is&nbsp;<b>Always</b>?</summary>
-Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.
-<br></details>
-
-<details>
 <summary><span style="color: rgb(34, 34, 34);">A _____ allows pod template authors to not have to explicitly provide all information for every pod.&nbsp;</span></summary>
 <span style="color: rgb(34, 34, 34);">PodPreset</span>
-<br></details>
-
-<details>
-<summary>From one container, how could you view processes in other containers?</summary>
-Enable process namespace sharing
 <br></details>
 
 <details>
@@ -2120,8 +1925,8 @@ a timestamp for when the Pod last transitioned from one status to another.
 <br></details>
 
 <details>
-<summary>If a livenessProbe fails, the container...</summary>
-is killed by the kubelet, then subjected to the container's <b>restart policy</b>.
+<summary>If a container's _____ probe fails, the container is killed by the kubelet, then subjected to the container's&nbsp;restart policy.</summary>
+liveness&nbsp;
 <br></details>
 
 <details>
@@ -2131,20 +1936,15 @@ What will be the state of each probe of the container?</summary>
 <br></details>
 
 <details>
-<summary>readinessProbe indicates whether...</summary>
-a container is ready to service requests.
+<summary>A _____ probe indicates whether a container is ready to service requests.</summary>
+readiness&nbsp;
 <br></details>
 
 <details>
-<summary>A container's default readiness state before the initial delay is...</summary>
-Failure
-<br></details>
-
-<details>
-<summary><span style="color: rgb(34, 34, 34);">A process in your Container is able to crash on its own whenever it encounters an issue or becomes unhealthy.&nbsp;</span><span style="color: rgb(34, 34, 34);">
-</span><span style="color: rgb(34, 34, 34);">Do you still need a livenessProbe?</span></summary>
+<summary>A process in your Container is able to crash on its own whenever it encounters an issue or becomes unhealthy.&nbsp;
+Do you still need a livenessProbe?</summary>
 Not necessarily.&nbsp;
-<span style="color: rgb(34, 34, 34);">The kubelet will automatically perform the correct action in accordance with the Pod's&nbsp;</span><code>restartPolicy</code><span style="color: rgb(34, 34, 34);">.</span>
+The kubelet will automatically perform the correct action in accordance with the Pod's&nbsp;restartPolicy.
 <br></details>
 
 <details>
@@ -2153,33 +1953,13 @@ Terminated
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Inject extra feedback or signals into PodStatus via...</span></summary>
-<b>Pod readiness</b>
-<br></details>
-
-<details>
-<summary>Default restartPolicy is...</summary>
-Always
-<br></details>
-
-<details>
 <summary><span style="color: rgb(34, 34, 34);">Exited Containers that are restarted by the kubelet are restarted with an _____ delay capped at 5 minutes, and is reset after ten minutes of successful execution.</span></summary>
 exponential back-off
 <br></details>
 
 <details>
-<summary>A pod's only container exits with&nbsp;<b>failure</b>. What happens if the&nbsp;<b>restartPolicy </b>is <b>Never</b>?</summary>
-Pod phase becomes Failed.
-<br></details>
-
-<details>
-<summary>What applies Pod Presets to incoming pod creation requests?</summary>
-PodPreset admission controller
-<br></details>
-
-<details>
-<summary>The degree to which Pods may be unevenly distributed, i.e. t<span style="color: rgb(34, 34, 34);">he maximum permitted difference between the number of matching Pods in any two topology domains of a given topology type is called...</span></summary>
-<strong>maxSkew</strong>
+<summary>The degree to which Pods may be unevenly distributed (i.e. t<span style="color: rgb(34, 34, 34);">he maximum permitted difference between the number of matching Pods in any two topology domains of a given topology type) is called the _____</span></summary>
+maxSkew
 <br></details>
 
 <details>
@@ -2202,8 +1982,8 @@ Yes
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A temporary ephemeral container is ran in an existing Pod&nbsp;</span><span style="color: rgb(34, 34, 34);">to accomplish user-initiated actions such as..</span></summary>
-Troubleshooting and inspecting services
+<summary><span style="color: rgb(34, 34, 34);">A temporary "_____" container may be ran in an existing Pod&nbsp;</span><span style="color: rgb(34, 34, 34);">to accomplish user-initiated actions such as, t</span>roubleshooting and inspecting services.</summary>
+<span style="color: rgb(34, 34, 34);">ephemeral&nbsp;</span>
 <br></details>
 
 <details>
@@ -2224,11 +2004,6 @@ process namespace sharing
 <details>
 <summary>If you delete an object without deleting its dependents automatically, the dependents are said to become&nbsp;<i>_____</i></summary>
 orphaned
-<br></details>
-
-<details>
-<summary>Cascading deletion types</summary>
-"Orphan", "Foreground", or "Background"
 <br></details>
 
 <details>
@@ -2258,11 +2033,6 @@ filesystem volumes
 <br></details>
 
 <details>
-<summary>A container can be set to run in privileged mode to allow Linux capabilities inside the container, such as...</summary>
-device accessvolume plugin developmentnetwork plugin development and stack manipulation
-<br></details>
-
-<details>
 <summary><table><tbody><tr><td>A Pod has been accepted by the Kubernetes system, but one or more of the Container images has not been created, either still being scheduled or download images. This describes a Pod's _____ phase.</td></tr></tbody></table></summary>
 Pending
 <br></details>
@@ -2273,8 +2043,8 @@ Pending
 <br></details>
 
 <details>
-<summary>The <b>lastProbeTime</b>&nbsp;condition field provides...</summary>
-A timestamp for when the Pod condition was last probed.
+<summary>A Pod's _____&nbsp;condition field provides a timestamp for when the Pod condition was last probed.</summary>
+lastProbeTime&nbsp;
 <br></details>
 
 <details>
@@ -2283,13 +2053,8 @@ a human-readable message indicating details about the transition from one status
 <br></details>
 
 <details>
-<summary>A livenessProbe indicates whether a container is...</summary>
-running
-<br></details>
-
-<details>
-<summary>startupProbe indicates whether...</summary>
-the application in the container has started.
+<summary>A container's _____ probe indicates whether the application in the container has started.</summary>
+startup
 <br></details>
 
 <details>
@@ -2298,7 +2063,7 @@ startupProbe
 <br></details>
 
 <details>
-<summary>A Pod should only be sent traffic when a probe succeeds. What can achieve this?</summary>
+<summary>A Pod should only be sent traffic when a probe succeeds. Which probe can achieve this?</summary>
 readinessProbe
 <br></details>
 
@@ -2328,13 +2093,6 @@ conditions
 <br></details>
 
 <details>
-<summary><b>restartPolicy </b>possible values are...</summary>
-Always
-Never
-OnFailure
-<br></details>
-
-<details>
 <summary>Does a Pod's <b>restartPolicy </b>apply to all its containers?</summary>
 Yes
 <br></details>
@@ -2342,11 +2100,6 @@ Yes
 <details>
 <summary>Does<code> restartPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;only refer to restarts of the Containers by the kubelet on the same node?</span></summary>
 Yes
-<br></details>
-
-<details>
-<summary>A pod's only container exits with <b>success</b>. What happens if the&nbsp;<b>restartPolicy </b>is <b>Never?</b></summary>
-Pod&nbsp;<code>phase</code>&nbsp;becomes&nbsp;<b>Succeeded</b>.
 <br></details>
 
 <details>
@@ -2395,33 +2148,23 @@ preemption
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">The </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">field indicates that the value of this PriorityClass should be used for Pods without a&nbsp;</span><code>priorityClassName</code><span style="color: rgb(34, 34, 34);">.&nbsp;</span><span style="color: rgb(34, 34, 34);">Only one such PriorityClass </span><span style="color: rgb(34, 34, 34);">can exist in the system.</span></summary>
-<code>globalDefault</code>
+<summary>The _____&nbsp;field indicates that the value of this PriorityClass should be used for Pods without a&nbsp;priorityClassName.&nbsp;Only one such PriorityClass can exist in the system.</summary>
+globalDefault
 <br></details>
 
 <details>
-<summary>Pods with PreemptionPolicy:<font face="monospace">_____</font>&nbsp;will be placed in the scheduling queue ahead of lower-priority pods, but they cannot preempt other pods. It will stay in the scheduling queue, until sufficient resources are free.&nbsp;</summary>
+<summary>Pods with PreemptionPolicy:_____&nbsp;will be placed in the scheduling queue ahead of lower-priority pods, but they cannot preempt other pods. It will stay in the scheduling queue, until sufficient resources are free.&nbsp;</summary>
 Never
 <br></details>
 
 <details>
-<summary><code>PreemptionPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;defaults to&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">, which will allow pods of that PriorityClass to preempt lower-priority pods (as is existing default behavior).&nbsp;</span></summary>
+<summary>PreemptionPolicy&nbsp;defaults to&nbsp;_____, which will allow pods of that PriorityClass to preempt lower-priority pods (as is existing default behavior).&nbsp;</summary>
 PreemptLowerPriority
 <br></details>
 
 <details>
 <summary>_____ repel other Pods instead of attracting. Ex.: One to replicas of the same Pod can help spread your replicas evenly across the cluster.</summary>
 anti-affinity
-<br></details>
-
-<details>
-<summary>A pod's only container exits with&nbsp;<b>success</b>. What happens if the&nbsp;<b>restartPolicy&nbsp;</b>is&nbsp;<b>OnFailure?</b></summary>
-Pod&nbsp;<code>phase</code>&nbsp;becomes Succeeded.
-<br></details>
-
-<details>
-<summary>A pod's only container exits with&nbsp;<b>failure</b>. What happens if the&nbsp;<b>restartPolicy&nbsp;</b>is&nbsp;<b>OnFailure</b>?</summary>
-Restart Container; Pod&nbsp;<code>phase</code>&nbsp;stays Running.
 <br></details>
 
 <details>
@@ -2458,7 +2201,7 @@ HostAliases
 
 <details>
 <summary>A container without a readinessProbe is assumed to be ready for traffic once it starts. What are some potential problems with this?&nbsp;</summary>
-The containerised application might need time to start after the container has. All requests to the app will fail throughout this process, because the container was "Ready" before the app started.
+The containerised application might need time to start after its enclosing container has. All requests to the app will fail throughout this process, because the container was "Ready" before the app started.
 <br></details>
 
 <details>
@@ -2549,10 +2292,8 @@ service
 <br></details>
 
 <details>
-<summary>Flat network space</summary>
-Pods MUST be reachable across Nodes
-via L2, L3 or overlay
-Each node has a CIDR IP block to give its pods unique IPs.
+<summary>Each Kubernetes Node has its own _____ range from which it assigns its pods unique IPs.</summary>
+CIDR IP block
 <br></details>
 
 
@@ -2560,14 +2301,6 @@ Each node has a CIDR IP block to give its pods unique IPs.
 <details>
 <summary>A _____ is like a virtual server on your cluster.</summary>
 Service
-<br></details>
-
-<details>
-<summary>Service types</summary>
-ClusterIPExposes as an in-cluster IP
-NodePortExposes as a port on each node
-LoadBalancerExposes externally via cloud provider's LB
-ExternalNameMaps to the contents of the ExternalName, returns a CNAME record with the value
 <br></details>
 
 <details>
@@ -2597,8 +2330,9 @@ prefix
 <br></details>
 
 <details>
-<summary>List possible ServiceTypes for Kubernetes Service</summary>
-ClusterIP (default)
+<summary>The 5 possible ServiceTypes for Kubernetes Service are:
+_____ - Exposes as an in-cluster IP (default)_____ - Exposes as a port on each node_____ - Exposes externally via your cloud provider's LB_____ - Maps to the contents of the ExternalName, returns a CNAME record with the value_____</summary>
+ClusterIP
 NodePort
 LoadBalancer
 ExternalName
@@ -2636,8 +2370,8 @@ LoadBalancer
 <br></details>
 
 <details>
-<summary>EndpointSlices support three address types:</summary>
-IPv4, IPv6, FQDN (Fully Qualified Domain Name)
+<summary>EndpointSlices support three address types: _____, _____, _____.</summary>
+IPv4, IPv6, Fully Qualified Domain Name
 <br></details>
 
 <details>
@@ -2679,7 +2413,7 @@ connection termination
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">An Ingress TLS secret must contain keys named&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">&nbsp;that contain the certificate and private key to use for TLS.</span></summary>
+<summary>An Ingress TLS secret must contain keys named&nbsp;_____&nbsp;that contain the certificate and private key to use for TLS.</summary>
 tls.crt&nbsp;and&nbsp;tls.key
 <br></details>
 
@@ -2699,13 +2433,8 @@ Ingress
 <br></details>
 
 <details>
-<summary>A Kubernetes resource that exposes deployments.</summary>
+<summary>The resources that expose deployments on a network are _____</summary>
 Services
-<br></details>
-
-<details>
-<summary>Can you set up a DNS service for your Kubernetes cluster?</summary>
-You almost always should. Ex.: CoreDNS
 <br></details>
 
 <details>
@@ -2718,11 +2447,6 @@ headless services
 clusterIP
 
 "None"
-<br></details>
-
-<details>
-<summary>Which <b>type </b>of Service makes it only reachable from within the cluster?</summary>
-<b>ClusterIP </b>(default ServiceType)
 <br></details>
 
 <details>
@@ -2758,9 +2482,9 @@ No
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">To use a volume, a Pod specifies what volumes to provide for the Pod in the _____ field,&nbsp;</span><span style="color: rgb(34, 34, 34);">and where to mount those into Containers in the&nbsp;</span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">field.</span></summary>
+<summary>To use a volume, a Pod specifies what volumes to provide for the Pod in the _____ field,&nbsp;and where to mount those into Containers in the&nbsp;_____&nbsp;field.</summary>
 .spec.volumes
-<code>.spec.containers[*].volumeMounts</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+.spec.containers[*].volumeMounts&nbsp;
 <br></details>
 
 <details>
@@ -2784,8 +2508,8 @@ static
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A cluster provisioned with many 50Gi PVs. A PVC requests 100Gi. What happens?</span></summary>
-<span style="color: rgb(34, 34, 34);">The claim remains unbound.&nbsp;</span><span style="color: rgb(34, 34, 34);">The PVC can be bound when a 100Gi PV is added to the cluster.</span>
+<summary><span style="color: rgb(34, 34, 34);">A cluster is provisioned with several 50Gi PVs. A PVC requests 100Gi PV. What happens?</span></summary>
+<span style="color: rgb(34, 34, 34);">Nothing.&nbsp;</span><span style="color: rgb(34, 34, 34);">The PVC can only be bound once a 100Gi PV is added to the cluster.</span>
 <br></details>
 
 <details>
@@ -2804,20 +2528,18 @@ static
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">You can see that a PV or a PVC is protected when its status is </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">and the&nbsp;</span><code>Finalizers</code><span style="color: rgb(34, 34, 34);">&nbsp;list includes&nbsp;<font face="monospace">_____</font></span></summary>
-<code>Terminating</code><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">
-</span><code>kubernetes.io/pvc-protection</code><span style="color: rgb(34, 34, 34);">
-</span>
+<summary>A PV or a PVC is protected when its status its&nbsp;metadata.finalizers&nbsp;list includes&nbsp;_____</summary>
+kubernetes.io/pvc-protection
 <br></details>
 
 <details>
-<summary>Generally, a PV will have a specific storage capacity. This is set using the PV's <font face="monospace">_____&nbsp;</font>attribute.</summary>
-<code>capacity</code>&nbsp;
+<summary>Generally, a PV will have a specific storage capacity. This is set using the PV's _____&nbsp;attribute.</summary>
+capacity&nbsp;
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">You can set the value of&nbsp;</span><code>volumeMode</code><span style="color: rgb(34, 34, 34);">&nbsp;to&nbsp;</span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">to use a volume as a raw block device. Such volume is presented into a Pod as a block device, without any filesystem on it. This mode is useful to provide a Pod the fastest possible way to access a volume, without any filesystem layer between the Pod and the volume. On the other hand, the application running in the Pod must know how to handle a raw block device.</span></summary>
-<code>Block</code>
+<summary>You can set the value of&nbsp;volumeMode&nbsp;to&nbsp;_____&nbsp;to use a volume as a raw block device. Such volume is presented into a Pod as a block device, without any filesystem on it. This mode is useful to provide a Pod the fastest possible way to access a volume, without any filesystem layer between the Pod and the volume. On the other hand, the application running in the Pod must know how to handle a raw block device.</summary>
+Block
 <br></details>
 
 <details>
@@ -2836,8 +2558,8 @@ Failed
 <br></details>
 
 <details>
-<summary>A <font face="monospace">_____&nbsp;</font>is a request for snapshot of a volume by a user. It is similar to a PersistentVolumeClaim.</summary>
-<code>VolumeSnapshot</code>&nbsp;
+<summary>A _____&nbsp;is a request for snapshot of a volume by a user. It is similar to a PersistentVolumeClaim.</summary>
+VolumeSnapshot&nbsp;
 <br></details>
 
 <details>
@@ -2846,9 +2568,9 @@ No - they are CustomResourceDefinitions.
 <br></details>
 
 <details>
-<summary>In volume snapshots,<font face="monospace"> _____&nbsp;</font><span style="color: rgb(34, 34, 34);">are resources in the cluster.&nbsp;</span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">are requests for those resources.&nbsp;</span></summary>
-<code>VolumeSnapshotContents</code><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">
-</span><code>VolumeSnapshots</code><span style="color: rgb(34, 34, 34);">&nbsp;</span><span style="color: rgb(34, 34, 34);">
+<summary>In volume snapshots, _____&nbsp;are resources in the cluster.&nbsp;_____&nbsp;are requests for those resources.&nbsp;</summary>
+VolumeSnapshotContents&nbsp;
+VolumeSnapshots&nbsp;<span style="color: rgb(34, 34, 34);">
 </span>
 <br></details>
 
@@ -2858,8 +2580,8 @@ readyToUse or aborted.
 <br></details>
 
 <details>
-<summary><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">is the unique identifier of the volume created on the storage backend and returned by the CSI driver during the volume creation. This field is required for dynamically provisioning a snapshot. It specifies the volume source of the snapshot.</span></summary>
-<code>volumeHandle</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+<summary>_____&nbsp;is the unique identifier of the volume created on the storage backend and returned by the CSI driver during the volume creation. This field is required for dynamically provisioning a snapshot. It specifies the volume source of the snapshot.</summary>
+volumeHandle&nbsp;
 <br></details>
 
 <details>
@@ -2868,8 +2590,8 @@ readyToUse or aborted.
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">PersistentVolumes that are dynamically created by a StorageClass will have the reclaim policy specified in the&nbsp;</span><code>reclaimPolicy</code><span style="color: rgb(34, 34, 34);">&nbsp;field of the class, which can be...</span></summary>
-<span style="color: rgb(34, 34, 34);">&nbsp;</span><code>Delete</code><span style="color: rgb(34, 34, 34);">&nbsp;or&nbsp;</span><code>Retain</code>
+<summary>PersistentVolumes that are dynamically created by a StorageClass will have a&nbsp;_____defined, which can be&nbsp;Delete&nbsp;or&nbsp;Retain</summary>
+reclaimPolicy&nbsp;
 <br></details>
 
 <details>
@@ -2878,8 +2600,8 @@ readyToUse or aborted.
 <br></details>
 
 <details>
-<summary>When a Container crashes, kubelet will restart it, but its on-disk files will be...&nbsp;</summary>
-Lost, unless stored on a Volume
+<summary>When a Container crashes, kubelet will restart it, but its on-disk files will be lost unless stored on a _____</summary>
+Volume
 <br></details>
 
 <details>
@@ -2918,8 +2640,8 @@ binds
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">You can only expand a PVC if its storage class's </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">field is set to true.&nbsp;</span>To request a larger volume for a PVC, edit the PVC object and specify a larger size. This triggers expansion of the volume that backs the underlying PersistentVolume. A new PersistentVolume is never created to satisfy the claim. Instead, an existing volume is resized.</summary>
-<code>allowVolumeExpansion</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+<summary>You can only expand a PVC if its storage class's _____&nbsp;field is set to true.&nbsp;To request a larger volume for a PVC, edit the PVC object and specify a larger size. This triggers expansion of the volume that backs the underlying PersistentVolume. A new PersistentVolume is never created to satisfy the claim. Instead, an existing volume is resized.</summary>
+allowVolumeExpansion&nbsp;
 <br></details>
 
 <details>
@@ -2928,17 +2650,17 @@ Yes - since Kubernetes 1.15.&nbsp;<span style="color: rgb(136, 136, 136);">The&n
 <br></details>
 
 <details>
-<summary>Kubernetes supports two&nbsp;<code>volumeModes</code>&nbsp;of PersistentVolumes:&nbsp;</summary>
-<code>Filesystem</code>&nbsp;and&nbsp;<code>Block</code>.
+<summary>Kubernetes supports two _____&nbsp;of PersistentVolumes:&nbsp;Filesystem&nbsp;and&nbsp;Block.</summary>
+volumeModes&nbsp;
 <br></details>
 
 <details>
-<summary><code>volumeMode</code>&nbsp;is an optional API parameter.&nbsp;<font face="monospace">_____&nbsp;</font>is the default mode used when&nbsp;<code>volumeMode</code>&nbsp;parameter is omitted.</summary>
-<code>Filesystem</code>&nbsp;
+<summary>volumeMode&nbsp;is an optional API parameter.&nbsp;_____&nbsp;is the default mode used when&nbsp;volumeMode&nbsp;parameter is omitted.</summary>
+Filesystem&nbsp;
 <br></details>
 
 <details>
-<summary>A volume with <font face="monospace">_____</font>&nbsp;is&nbsp;<em>mounted</em>&nbsp;into Pods into a directory. If the volume is backed by a block device and the device is empty, Kuberneretes creates a filesystem on the device before mounting it for the first time.</summary>
+<summary>A volume with _____&nbsp;is&nbsp;mounted&nbsp;into Pods into a directory. If the volume is backed by a block device and the device is empty, Kuberneretes creates a filesystem on the device before mounting it for the first time.</summary>
 volumeMode: Filesystem
 <br></details>
 
@@ -2948,19 +2670,19 @@ volumeMode: Filesystem
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A PV can have a class, which is specified by setting the </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">attribute to the name of a&nbsp;</span><a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">StorageClass</a><span style="color: rgb(34, 34, 34);">.&nbsp;</span></summary>
-<code>storageClassName</code>
-<br></details>
-
-<details>
-<summary><span style="color: rgb(34, 34, 34);">A claim can request a particular class by specifying the name of a StorageClass</span><span style="color: rgb(34, 34, 34);">&nbsp;using the attribute&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">.&nbsp;</span></summary>
+<summary>A PV can have a class, which is specified by setting the _____&nbsp;attribute to the name of a&nbsp;<a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">StorageClass</a>.&nbsp;</summary>
 storageClassName
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Similar to how API resources&nbsp;</span><code>PersistentVolume</code><span style="color: rgb(34, 34, 34);">&nbsp;and&nbsp;</span><code>PersistentVolumeClaim</code><span style="color: rgb(34, 34, 34);">&nbsp;are used to provision volumes for users and administrators,&nbsp;</span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">and&nbsp;</span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">API resources are provided to create volume snapshots for users and administrators.</span></summary>
-VolumeSnapshot&nbsp;<code>
-</code><code>VolumeSnapshotContent</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+<summary>A claim can request a particular class by specifying the name of a StorageClass&nbsp;using the attribute&nbsp;_____.&nbsp;</summary>
+storageClassName
+<br></details>
+
+<details>
+<summary>Similar to how API resources&nbsp;PersistentVolume&nbsp;and&nbsp;PersistentVolumeClaim&nbsp;are used to provision volumes for users and administrators,&nbsp;_____&nbsp;and&nbsp;_____&nbsp;API resources are provided to create volume snapshots for users and administrators.</summary>
+VolumeSnapshot&nbsp;
+VolumeSnapshotContent&nbsp;
 <br></details>
 
 <details>
@@ -2980,7 +2702,7 @@ one-to-one
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">An administrator can mark a specific&nbsp;</span><code>StorageClass</code><span style="color: rgb(34, 34, 34);">&nbsp;as default by adding the&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">&nbsp;annotation to it.</span></summary>
+<summary>An administrator can mark a specific&nbsp;StorageClass&nbsp;as default by adding the&nbsp;_____&nbsp;annotation to it.</summary>
 storageclass.kubernetes.io/is-default-class
 <br></details>
 
@@ -3010,7 +2732,7 @@ Released
 <br></details>
 
 <details>
-<summary>Mounted directories that are accessible from inside containers.</summary>
+<summary>Mounted directories accessible from inside containers are called _____</summary>
 Volumes
 <br></details>
 
@@ -3037,7 +2759,7 @@ No
 <br></details>
 
 <details>
-<summary>There are two ways PVs may be provisioned:</summary>
+<summary>The two ways that PVs may be provisioned are either _____ or _____.</summary>
 statically or dynamically.
 <br></details>
 
@@ -3052,9 +2774,9 @@ exclusive
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Once a user has a claim and that claim is bound, the bound PV belongs to the user for as long as they need it. Users schedule Pods and access their claimed PVs by including a </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">section in a Pod's&nbsp;</span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">block.</span></summary>
-<code>persistentVolumeClaim</code><code>
-</code><code><code>volumes</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+<summary>Once a user has a claim and that claim is bound, the bound PV belongs to the user for as long as they need it. Users schedule Pods and access their claimed PVs by including a _____&nbsp;section in a Pod's&nbsp;_____&nbsp;block.</summary>
+persistentVolumeClaim
+volumes&nbsp;<code>
 </code>
 <br></details>
 
@@ -3069,13 +2791,13 @@ exclusive
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">The </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">reclaim policy allows for manual reclamation of the resource. When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the volume is considered "released". But it is not yet available for another claim because the previous claimant's data remains on the volume.</span></summary>
-<code>Retain</code>
+<summary>The _____&nbsp;reclaim policy allows for manual reclamation of the resource. When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the volume is considered "released". But it is not yet available for another claim because the previous claimant's data remains on the volume.</summary>
+Retain
 <br></details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">For volume plugins that support the </span><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">reclaim policy, deletion removes both the PersistentVolume object from Kubernetes, as well as the associated storage asset in the external cloud infrastructure. Volumes that were dynamically provisioned inherit the&nbsp;</span><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaim-policy">reclaim policy of their StorageClass</a><span style="color: rgb(34, 34, 34);">, which defaults to&nbsp;</span><font face="monospace">_____</font><span style="color: rgb(34, 34, 34);">. The administrator should configure the StorageClass according to users' expectations; otherwise, the PV must be edited or patched after it is created.</span></summary>
-<code>Delete</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+<summary>For volume plugins that support the _____&nbsp;reclaim policy, deletion removes both the PersistentVolume object from Kubernetes, as well as the associated storage asset in the external cloud infrastructure. Volumes that were dynamically provisioned inherit the&nbsp;<a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaim-policy">reclaim policy of their StorageClass</a>, which defaults to&nbsp;_____. The administrator should configure the StorageClass according to users' expectations; otherwise, the PV must be edited or patched after it is created.</summary>
+Delete&nbsp;
 <br></details>
 
 <details>
@@ -3099,17 +2821,17 @@ node affinity
 <br></details>
 
 <details>
-<summary>A <font face="monospace">_____&nbsp;</font>is a snapshot taken from a volume in the cluster that has been provisioned by an administrator. It is a resource in the cluster just like a PersistentVolume is a cluster resource.</summary>
-<code>VolumeSnapshotContent</code>&nbsp;
+<summary>A _____&nbsp;is a snapshot taken from a volume in the cluster that has been provisioned by an administrator. It is a resource in the cluster just like a PersistentVolume is a cluster resource.</summary>
+VolumeSnapshotContent&nbsp;
 <br></details>
 
 <details>
-<summary><font face="monospace">_____&nbsp;</font><span style="color: rgb(34, 34, 34);">allows you to specify different attributes belonging to a&nbsp;</span><code>VolumeSnapshot</code><span style="color: rgb(34, 34, 34);">. These attributes may differ among snapshots taken from the same volume on the storage system and therefore cannot be expressed by using the same&nbsp;</span><code>StorageClass</code><span style="color: rgb(34, 34, 34);">&nbsp;of a&nbsp;</span><code>PersistentVolumeClaim</code><span style="color: rgb(34, 34, 34);">.</span></summary>
-<code>VolumeSnapshotClass</code><span style="color: rgb(34, 34, 34);">&nbsp;</span>
+<summary>_____&nbsp;allows you to specify different attributes belonging to a&nbsp;VolumeSnapshot. These attributes may differ among snapshots taken from the same volume on the storage system and therefore cannot be expressed by using the same&nbsp;StorageClass&nbsp;of a&nbsp;PersistentVolumeClaim.</summary>
+VolumeSnapshotClass&nbsp;
 <br></details>
 
 <details>
-<summary>There are two ways snapshots may be provisioned:&nbsp;</summary>
+<summary>There are two ways snapshots may be provisioned: _____ or _____.</summary>
 pre-provisioned or dynamically provisioned.
 <br></details>
 
@@ -3174,4 +2896,3 @@ Yes
 <summary>Restricting access to _____ prevents an attacker from modifying the desired cluster state.</summary>
 etcd
 <br></details>
-
