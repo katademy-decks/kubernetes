@@ -1,6 +1,8 @@
 # Kubernetes FAQ
 
-Learn Kubernetes by answering simple questions! [Flashcards](https://github.com/devsplit/kubernetes/releases/) included for spaced repetition.
+Learn Kubernetes by answering simple questions about it! 
+
+[Flashcards](https://github.com/devsplit/kubernetes/releases/) included for spaced repetition.
 
 ### Table of Contents
 
