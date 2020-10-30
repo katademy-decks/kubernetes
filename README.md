@@ -980,7 +980,7 @@ Privileged, Restricted, Default
 <br></details>
 
 <details>
-<summary><i>_____ </i>objects&nbsp;contain senstivie aspects of pod specification, such as the conditions they must meet or their default fields.</summary>
+<summary><i>_____ </i>objects&nbsp;contain sensitive aspects of pod specification, such as the conditions they must meet or their default fields.</summary>
 PodSecurityPolicy
 <br></details>
 
