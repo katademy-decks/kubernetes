@@ -7,14 +7,13 @@ repo_url: https://github.com/katademy/kubernetes-faq/
 repo_name: kubernetes-faq
 
 theme:
+  name: material
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    - scheme: default
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
