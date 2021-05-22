@@ -1,5 +1,7 @@
 # k8s-faq
 
+[[Open this repository on GitHub Pages]](https://katademy.github.io/kubernetes-faq)
+
 We aim to be the most comprehensive repository for Kubernetes flashcards and interview questions.
 
 Test your knowledge of Kubernetes topics:
