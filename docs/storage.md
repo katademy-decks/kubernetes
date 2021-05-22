@@ -1,388 +1,623 @@
 <details>
-<summary>Is a Volume preserved after its Pod's deletion?</summary>
-No
-<br></details>
+	<summary>
+		A _____ is just a directory with data accessible by Containers when mounted.
+	</summary>
+		volume
+</details>
 
 <details>
-<summary>To use a volume, a Pod specifies what volumes to provide for the Pod in the _____ field,&nbsp;and where to mount those into Containers in the&nbsp;_____&nbsp;field.</summary>
-.spec.volumes
-.spec.containers[*].volumeMounts&nbsp;
-<br></details>
+	<summary>
+		A persistentVolume with no storageClassName can only be bound to PersistentVolumeClaims that request _____.
+	</summary>
+		no storageClassName
+</details>
 
 <details>
-<summary>Can Volumes have hard links to other Volumes?</summary>
-No
-<br></details>
+	<summary>
+		A PersistentVolumeClaim can request a particular storage class by specifying the name of a StorageClass using the attribute _____.
+	</summary>
+		storageClassName
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using&nbsp;Storage Classes.</span><span style="color: rgb(34, 34, 34);">&nbsp;It is a resource in the cluster just like a node is a cluster resource.&nbsp;</span></summary>
-PersistentVolume&nbsp;
-<br></details>
+	<summary>
+		Dynamic volume provisioning is enabled by creating one or more _____ objects for cluster users.
+	</summary>
+		StorageClass
+</details>
 
 <details>
-<summary>A <i>_____&nbsp;</i>is a request for storage by a user.&nbsp;</summary>
-PersistentVolumeClaim&nbsp;
-<br></details>
+	<summary>
+		A _____ object represents a snapshot taken from a volume.
+	</summary>
+		VolumeSnapshotContent
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">In _____ provisioning, a cluster administrator creates a number of PVs. They carry the details of the real storage, which is available for use by cluster users. They exist in the Kubernetes API and are available for consumption.</span></summary>
-static
-<br></details>
+	<summary>
+		_____ is the unique identifier of the volume created on the storage backend and returned by the CSI driver during the volume creation. This field is required for dynamically provisioning a snapshot. It specifies the volume source of the snapshot.
+	</summary>
+		volumeHandle
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A cluster is provisioned with several 50Gi PVs. A PVC requests 100Gi PV. What happens?</span></summary>
-<span style="color: rgb(34, 34, 34);">Nothing.&nbsp;</span><span style="color: rgb(34, 34, 34);">The PVC can only be bound once a 100Gi PV is added to the cluster.</span>
-<br></details>
+	<summary>
+		Are PersistentVolume lifecycles dependent on the Pods that use them? _____
+	</summary>
+		No
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">If a user deletes a PVC in active use by a Pod, the PVC is...</span></summary>
-<span style="color: rgb(34, 34, 34);">not removed immediately.</span>
-<br></details>
+	<summary>
+		VolumeSnapshot and _____ Objects are used to provision volume snapshots.
+	</summary>
+		VolumeSnapshotContent
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">PVC removal is postponed until _____</span></summary>
-<span style="color: rgb(34, 34, 34);">the PVC is no longer actively used by any Pods.</span>
-<br></details>
+	<summary>
+		PersistentVolume and PersistentVolumeClaim Objects are used to provision _____.
+	</summary>
+		volumes
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">&nbsp;PV removal is postponed until...</span></summary>
-<span style="color: rgb(34, 34, 34);">&nbsp;the PV is no longer bound to a PVC.</span>
-<br></details>
+	<summary>
+		VolumeSnapshot support is only available for _____ drivers.
+	</summary>
+		CSI
+</details>
 
 <details>
-<summary>A PV or a PVC is protected when its status its&nbsp;metadata.finalizers&nbsp;list includes&nbsp;_____</summary>
-kubernetes.io/pvc-protection
-<br></details>
+	<summary>
+		A Pod specifies where and how to mount its volumes inside its containers in the .spec.containers[*]._____ field.
+	</summary>
+		volumeMounts
+</details>
 
 <details>
-<summary>Generally, a PV will have a specific storage capacity. This is set using the PV's _____&nbsp;attribute.</summary>
-capacity&nbsp;
-<br></details>
+	<summary>
+		A volume is just a directory with data accessible by _____ when mounted.
+	</summary>
+		Containers
+</details>
 
 <details>
-<summary>You can set the value of&nbsp;volumeMode&nbsp;to&nbsp;_____&nbsp;to use a volume as a raw block device. Such volume is presented into a Pod as a block device, without any filesystem on it. This mode is useful to provide a Pod the fastest possible way to access a volume, without any filesystem layer between the Pod and the volume. On the other hand, the application running in the Pod must know how to handle a raw block device.</summary>
-Block
-<br></details>
+	<summary>
+		Snapshots may be _____ or dynamically provisioned.
+	</summary>
+		pre-provisioned
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">ReadOnlyMany&nbsp;</span></summary>
-<span style="color: rgb(34, 34, 34);">the volume can be mounted read-only by many nodes</span>
-<br></details>
+	<summary>
+		A volume in _____ access mode can be mounted as read-write by a single node
+	</summary>
+		ReadWriteOnce
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A volume is said to be _____ when the</span>&nbsp;volume has failed its automatic reclamation.</summary>
-Failed
-<br></details>
+	<summary>
+		A volume is said to be _____, when the claim has been deleted, but the resource is not yet reclaimed by the cluster.
+	</summary>
+		Released
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">PersistentVolumes binds are exclusive, and since PersistentVolumeClaims are namespaced objects, mounting claims with "Many" modes (</span><code>ROX</code><span style="color: rgb(34, 34, 34);">,&nbsp;</span><code>RWX</code><span style="color: rgb(34, 34, 34);">) is only possible within _____</span></summary>
-<span style="color: rgb(34, 34, 34);">one namespace</span>
-<br></details>
+	<summary>
+		A _____ specifies what volumes to provide for its containers in the spec.volumes field.
+	</summary>
+		Pod
+</details>
 
 <details>
-<summary>A _____&nbsp;is a request for snapshot of a volume by a user. It is similar to a PersistentVolumeClaim.</summary>
-VolumeSnapshot&nbsp;
-<br></details>
+	<summary>
+		A PersistentVolume of a particular storage class can only be bound to _____ requesting that class.
+	</summary>
+		PersistentVolumeClaim
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Are&nbsp;</span><code>VolumeSnapshot</code><span style="color: rgb(34, 34, 34);">,&nbsp;</span><code>VolumeSnapshotContent</code><span style="color: rgb(34, 34, 34);">, and&nbsp;</span><code>VolumeSnapshotClass</code><span style="color: rgb(34, 34, 34);">&nbsp;part of the core API?&nbsp;</span></summary>
-No - they are CustomResourceDefinitions.
-<br></details>
+	<summary>
+		A PersistentVolume's _____ Policy defines what should be done with it after once released from a a PersistentVolumeClaim. By setting this policy, Volumes may either be Retained, Recycled or Deleted.
+	</summary>
+		reclaim
+</details>
 
 <details>
-<summary>In volume snapshots, _____&nbsp;are resources in the cluster.&nbsp;_____&nbsp;are requests for those resources.&nbsp;</summary>
-VolumeSnapshotContents&nbsp;
-VolumeSnapshots&nbsp;<span style="color: rgb(34, 34, 34);">
-</span>
-<br></details>
+	<summary>
+		A PersistentVolume's reclaim Policy defines what should be done with it after once released from a a PersistentVolumeClaim. By setting this policy, Volumes may either be _____, Recycled or Deleted.
+	</summary>
+		Retained
+</details>
 
 <details>
-<summary>While a snapshot is being taken of a PersistentVolumeClaim, that PersistentVolumeClaim is in-use. If you delete a PersistentVolumeClaim API object in active use as a snapshot source, the PersistentVolumeClaim object is not removed immediately. Instead, removal of the PersistentVolumeClaim object is postponed until the snapshot is _____</summary>
-readyToUse or aborted.
-<br></details>
+	<summary>
+		PersistentVolume and _____ Objects are used to provision volumes.
+	</summary>
+		PersistentVolumeClaim
+</details>
 
 <details>
-<summary>_____&nbsp;is the unique identifier of the volume created on the storage backend and returned by the CSI driver during the volume creation. This field is required for dynamically provisioning a snapshot. It specifies the volume source of the snapshot.</summary>
-volumeHandle&nbsp;
-<br></details>
+	<summary>
+		"A deleted PersistentVolumeClaim is subject to a reclaim policy. The ""_____"" policy allows for manual reclamation of resources in the future - the PersistentVolume remains in existence and is considered ""Released"" but unavailable for another claim while the previous claimant's data remains on the volume."
+	</summary>
+		Retain
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">You can provision a new volume, pre-populated with data from a snapshot, by using the </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">field in the&nbsp;</span><code>PersistentVolumeClaim</code><span style="color: rgb(34, 34, 34);">&nbsp;object.</span></summary>
-<em>dataSource</em><span style="color: rgb(34, 34, 34);">&nbsp;</span>
-<br></details>
+	<summary>
+		If you delete a PersistentVolumeClaim object while a snapshot of it is being taken, its removal is postponed until the snapshot is _____ or aborted.
+	</summary>
+		readyToUse
+</details>
 
 <details>
-<summary>PersistentVolumes that are dynamically created by a StorageClass will have a&nbsp;_____defined, which can be&nbsp;Delete&nbsp;or&nbsp;Retain</summary>
-reclaimPolicy&nbsp;
-<br></details>
+	<summary>
+		_____ represent resources in the cluster, and VolumeSnapshots represent requests for those resources.
+	</summary>
+		VolumeSnapshotContents
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">To enable dynamic volume provisioning, a cluster administrator needs to pre-create one or more _____ objects for users.</span></summary>
-<span style="color: rgb(34, 34, 34);">StorageClass</span>
-<br></details>
+	<summary>
+		A Pod's volumes are _____ after their Pod is deleted.
+	</summary>
+		deleted
+</details>
 
 <details>
-<summary>When a Container crashes, kubelet will restart it, but its on-disk files will be lost unless stored on a _____</summary>
-Volume
-<br></details>
+	<summary>
+		For volume plugins that support the _____ reclaim policy, deletion removes both the PersistentVolume object and the associated storage asset in the external cloud infrastructure. Volumes that were dynamically provisioned inherit the reclaim policy of their storageClass, which defaults to Delete. Administrators should configure the StorageClass according to users' expectations; otherwise, the PV must be edited or patched after it is created.
+	</summary>
+		Delete
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">If a PV was dynamically provisioned for a new PVC, the loop will always _____ that PV to the PVC.</span></summary>
-binds
-<br></details>
+	<summary>
+		"A volume with _____ set to ""Block"" represents a raw block device without a filesystem. These volumes provide Pods with the fastest access, but the application must know how to handle a raw block device."
+	</summary>
+		volumeMode
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A Pod uses a PersistentVolume. This PV has a node affinity towards certain nodes. Where will the Pod be scheduled?</span></summary>
-To the node where the PV is available from.
-<br></details>
+	<summary>
+		It is often necessary to share files between Containers in a Pod. _____ objects are designed to solve this problem.
+	</summary>
+		Volume
+</details>
 
 <details>
-<summary>A volume is said to be _____ when it is free and not yet bound to a claim.</summary>
-Available
-<br></details>
+	<summary>
+		VolumeSnapshotClass allows you to specify different attributes belonging to a _____.
+	</summary>
+		VolumeSnapshot
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">When running Containers together in a&nbsp;</span><code>Pod</code><span style="color: rgb(34, 34, 34);">&nbsp;it is often necessary to share files between those Containers. The Kubernetes&nbsp;_____&nbsp;</span><span style="color: rgb(34, 34, 34);">abstraction solves this problem.</span></summary>
-Volume&nbsp;
-<br></details>
+	<summary>
+		A volume is said to be _____ when it is free and not yet bound to a claim.
+	</summary>
+		Available
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Is a volume just a directory with data, accessible to the Containers in its enclosing Pod?</span></summary>
-Yes
-<br></details>
+	<summary>
+		VolumeSnapshotContents represent resources in the cluster, and _____ represent requests for those resources.
+	</summary>
+		VolumeSnapshots
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Can Volumes mount into other volumes?</span></summary>
-No
-<br></details>
+	<summary>
+		_____ allows you to specify different attributes belonging to a VolumeSnapshot.
+	</summary>
+		VolumeSnapshotClass
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A control loop in the master watches for new PVCs, finds a matching PV (if possible), and _____ them.&nbsp;</span></summary>
-binds
-<br></details>
+	<summary>
+		A Pod specifies what volumes to provide for its containers in the spec._____ field.
+	</summary>
+		volumes
+</details>
 
 <details>
-<summary>You can only expand a PVC if its storage class's _____&nbsp;field is set to true.&nbsp;To request a larger volume for a PVC, edit the PVC object and specify a larger size. This triggers expansion of the volume that backs the underlying PersistentVolume. A new PersistentVolume is never created to satisfy the claim. Instead, an existing volume is resized.</summary>
-allowVolumeExpansion&nbsp;
-<br></details>
+	<summary>
+		A Pod uses a PersistentVolume that has a node affinity towards certain nodes. Whcih node will the Pod be scheduled on? _____
+	</summary>
+		The node where the PV is available from.
+</details>
 
 <details>
-<summary>Can you resize an in-use PVC?</summary>
-Yes - since Kubernetes 1.15.&nbsp;<span style="color: rgb(136, 136, 136);">The&nbsp;</span><code>ExpandInUsePersistentVolumes</code>&nbsp;feature must be enabled.
-<br></details>
+	<summary>
+		"A volume with volumeMode set to ""_____"" represents a raw block device without a filesystem. These volumes provide Pods with the fastest access, but the application must know how to handle a raw block device."
+	</summary>
+		Block
+</details>
 
 <details>
-<summary>Kubernetes supports two _____&nbsp;of PersistentVolumes:&nbsp;Filesystem&nbsp;and&nbsp;Block.</summary>
-volumeModes&nbsp;
-<br></details>
+	<summary>
+		A volume is said to be _____ when the volume has failed its automatic reclamation.
+	</summary>
+		Failed
+</details>
 
 <details>
-<summary>volumeMode&nbsp;is an optional API parameter.&nbsp;_____&nbsp;is the default mode used when&nbsp;volumeMode&nbsp;parameter is omitted.</summary>
-Filesystem&nbsp;
-<br></details>
+	<summary>
+		PersistentVolumes support two _____: Filesystem (default) and Block.
+	</summary>
+		volumeModes
+</details>
 
 <details>
-<summary>A volume with _____&nbsp;is&nbsp;mounted&nbsp;into Pods into a directory. If the volume is backed by a block device and the device is empty, Kuberneretes creates a filesystem on the device before mounting it for the first time.</summary>
-volumeMode: Filesystem
-<br></details>
+	<summary>
+		Can Volumes mount other volumes? _____
+	</summary>
+		No
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">ReadWriteMany&nbsp;</span></summary>
-<span style="color: rgb(34, 34, 34);">&nbsp;the volume can be mounted as read-write by many nodes</span>
-<br></details>
+	<summary>
+		A volume in _____ access mode can be mounted read-only by many nodes
+	</summary>
+		ReadOnlyMany
+</details>
 
 <details>
-<summary>A PV can have a class, which is specified by setting the _____&nbsp;attribute to the name of a&nbsp;<a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">StorageClass</a>.&nbsp;</summary>
-storageClassName
-<br></details>
+	<summary>
+		The Kubernetes control plane watches for new PersistentVolumeClaims, and if it has found a matching _____ it binds them.
+	</summary>
+		PersistentVolume
+</details>
 
 <details>
-<summary>A claim can request a particular class by specifying the name of a StorageClass&nbsp;using the attribute&nbsp;_____.&nbsp;</summary>
-storageClassName
-<br></details>
+	<summary>
+		In static volume provisioning, a cluster administrator creates a number of _____ which carry the details of the real storage, and are available for use by cluster users.
+	</summary>
+		PersistentVolumes
+</details>
 
 <details>
-<summary>Similar to how API resources&nbsp;PersistentVolume&nbsp;and&nbsp;PersistentVolumeClaim&nbsp;are used to provision volumes for users and administrators,&nbsp;_____&nbsp;and&nbsp;_____&nbsp;API resources are provided to create volume snapshots for users and administrators.</summary>
-VolumeSnapshot&nbsp;
-VolumeSnapshotContent&nbsp;
-<br></details>
+	<summary>
+		A PersistentVolume can have its StorageClass specified by setting the _____ attribute.
+	</summary>
+		storageClassName
+</details>
 
 <details>
-<summary><code>VolumeSnapshot</code><span style="color: rgb(34, 34, 34);">&nbsp;support is only available for _____ drivers.</span></summary>
-<span style="color: rgb(34, 34, 34);">CSI&nbsp;</span>
-<br></details>
+	<summary>
+		In _____ volume provisioning, a cluster administrator creates a number of PersistentVolumes which carry the details of the real storage, and are available for use by cluster users.
+	</summary>
+		static
+</details>
 
 <details>
-<summary>The CRDs and snapshot controller installations are the responsibility of _____</summary>
-the Kubernetes distribution
-<br></details>
+	<summary>
+		Snapshots may be pre-provisioned or _____.
+	</summary>
+		dynamically provisioned
+</details>
 
 <details>
-<summary>The snapshot controller handles the binding of a&nbsp;<code>VolumeSnapshot</code>&nbsp;object with an appropriate&nbsp;<code>VolumeSnapshotContent</code>&nbsp;object, in both pre-provisioned and dynamically provisioned scenarios. The binding is a _____ mapping.&nbsp;
-In the case of pre-provisioned binding, the VolumeSnapshot will remain unbound until the requested VolumeSnapshotContent object is created.</summary>
-one-to-one
-<br></details>
+	<summary>
+		A _____ Object represents a snapshot of a volume on a storage system.
+	</summary>
+		VolumeSnapshot
+</details>
 
 <details>
-<summary>An administrator can mark a specific&nbsp;StorageClass&nbsp;as default by adding the&nbsp;_____&nbsp;annotation to it.</summary>
-storageclass.kubernetes.io/is-default-class
-<br></details>
+	<summary>
+		PersistentVolumes have a specific storage capacity, configured via their _____ attribute.
+	</summary>
+		Capacity
+</details>
 
 <details>
-<summary>Can you attach as many volumes as you want to a node?</summary>
-No - depends on the cloud provider's permitted limit.
-<br></details>
+	<summary>
+		A PersistentVolume's reclaim Policy defines what should be done with it after once released from a a PersistentVolumeClaim. By setting this policy, Volumes may either be Retained, _____ or Deleted.
+	</summary>
+		Recycled
+</details>
 
 <details>
-<summary>A PVC to PV binding is a one-to-one mapping, using a <b>_____&nbsp;</b>which is a bi-directional binding between the PersistentVolume and the PersistentVolumeClaim.&nbsp;</summary>
-ClaimRef
-<br></details>
+	<summary>
+		PersistentVolumes support two volumeModes: _____ (default) and Block.
+	</summary>
+		Filesystem
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A PV of a particular class can only be bound to PVCs requesting that class. A PV with no&nbsp;</span>_____&nbsp;<span style="color: rgb(34, 34, 34);">has no class and can only be bound to PVCs that request no particular class.</span></summary>
-storageClassName
-<br></details>
+	<summary>
+		A PersistentVolumeClaim can be expanded if its storageClass has field _____ set to true. To expand it, edit the PersistentVolumeClaim object and specify a larger size. This triggers expansion of the volume that backs the underlying PersistentVolume. A new PersistentVolume is never created to satisfy the claim. Instead, an existing volume is resized.
+	</summary>
+		allowVolumeExpansion
+</details>
 
 <details>
-<summary>A volume is called _____ when it is bound to a claim.</summary>
-Bound
-<br></details>
+	<summary>
+		_____ and PersistentVolumeClaim Objects are used to provision volumes.
+	</summary>
+		PersistentVolume
+</details>
 
 <details>
-<summary>A volume is said to be _____, when the claim has been deleted, but the resource is not yet reclaim by the cluster.</summary>
-Released
-<br></details>
+	<summary>
+		When no static PersistentVolume matches a PersistentVolumeClaim, the cluster may try to dynamically provision a volume specially for the PersistentVolumeClaim. The PersistentVolumeClaim must request a _____ with dynamic provisioning configured.
+	</summary>
+		storageClass
+</details>
 
 <details>
-<summary>Mounted directories accessible from inside containers are called _____</summary>
-Volumes
-<br></details>
+	<summary>
+		A PersistentVolume may be provisioned either statically or _____.
+	</summary>
+		dynamically
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A Kubernetes volume has an explicit lifetime - the same as _____</span></summary>
-The Pod that encloses it
-<br></details>
+	<summary>
+		A PersistentVolumeClaim is in use by a Pod. A user deletes the PersistentVolumeClaim. Is the PersistentVolumeClaim immediately deleted? _____
+	</summary>
+		No - it is postponed until the PersistentVolumeClaim is no longer used by any Pods.
+</details>
 
 <details>
-<summary>Is a Volume preserved across Container restarts?</summary>
-Yes
-<br></details>
+	<summary>
+		When a Container crashes, kubelet will restart it, but its on-disk files will be lost unless stored on a _____.
+	</summary>
+		Volume
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Managing storage is a distinct problem from managing compute instances. The PersistentVolume subsystem provides an API for users and administrators that abstracts details of how storage is provided from how it is consumed. To do this, we introduce two new API resources: _____ and _____.</span></summary>
-<span style="color: rgb(34, 34, 34);">PersistentVolume&nbsp;</span><span style="color: rgb(34, 34, 34);">
-</span><span style="color: rgb(34, 34, 34);">PersistentVolumeClaim</span><span style="color: rgb(34, 34, 34);">
-</span>
-<br></details>
+	<summary>
+		A PersistentVolume may be provisioned either _____ or dynamically.
+	</summary>
+		statically
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Do PersistentVolumes have a lifecycle dependent on the Pods that use the PV?</span></summary>
-No
-<br></details>
+	<summary>
+		Are VolumeSnapshot, VolumeSnapshotContent, and VolumeSnapshotClass part of the core Kubernetes API? _____
+	</summary>
+		No - they are CustomResourceDefinitions.
+</details>
 
 <details>
-<summary>The two ways that PVs may be provisioned are either _____ or _____.</summary>
-statically or dynamically.
-<br></details>
+	<summary>
+		We delete a PersistentVolume bound to a PersistentVolumeClaim. Is the PersistentVolume deleted immediately? _____
+	</summary>
+		No
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">When none of the static PVs the administrator created match a user's PersistentVolumeClaim, the cluster may try to _____ provision a volume specially for the PVC. This provisioning is based on StorageClasses: the PVC must request a storage class</span><span style="color: rgb(34, 34, 34);">&nbsp;and the administrator must have created and configured that class for dynamic provisioning to occur.</span></summary>
-<span style="color: rgb(34, 34, 34);">dynamically</span>
-<br></details>
+	<summary>
+		If a PersistentVolume was dynamically provisioned for a new PersistentVolumeClaim, the loop will _____ them together.
+	</summary>
+		bind
+</details>
 
 <details>
-<summary>Once bound, PersistentVolumeClaim binds are _____, regardless of how they were bound.&nbsp;</summary>
-exclusive
-<br></details>
+	<summary>
+		If you delete a PersistentVolumeClaim object while a snapshot of it is being taken, its removal is postponed until the snapshot is readyToUse or _____.
+	</summary>
+		aborted
+</details>
 
 <details>
-<summary>Once a user has a claim and that claim is bound, the bound PV belongs to the user for as long as they need it. Users schedule Pods and access their claimed PVs by including a _____&nbsp;section in a Pod's&nbsp;_____&nbsp;block.</summary>
-persistentVolumeClaim
-volumes&nbsp;<code>
-</code>
-<br></details>
+	<summary>
+		"PersistentVolume binds are exclusive. Mounting PersistentVolumeClaims with ""Many"" modes (ROX, RWX) is only possible within one _____."
+	</summary>
+		namespace
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">If an admin deletes a PV that is bound to a PVC, the PV is...</span></summary>
-<span style="color: rgb(34, 34, 34);">not removed immediately.</span>
-<br></details>
+	<summary>
+		PersistentVolumes support two volumeModes: Filesystem (default) and _____.
+	</summary>
+		Block
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource. The reclaim policy for a PersistentVolume tells the cluster what to do with the volume after it has been released of its claim. Currently, volumes can either be _____, _____, _____.</span></summary>
-<span style="color: rgb(34, 34, 34);">Retained, Recycled, Deleted.</span>
-<br></details>
+	<summary>
+		A volume with volumeMode: _____ is mounted into Pods into a directory. If the volume is backed by a block device and the device is empty, Kuberneretes creates a filesystem on the device before mounting it for the first time.
+	</summary>
+		Filesystem
+</details>
 
 <details>
-<summary>The _____&nbsp;reclaim policy allows for manual reclamation of the resource. When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the volume is considered "released". But it is not yet available for another claim because the previous claimant's data remains on the volume.</summary>
-Retain
-<br></details>
+	<summary>
+		In pre-provisioned binding, a _____ will remain unbound until the requested VolumeSnapshotContent object is created.
+	</summary>
+		VolumeSnapshot
+</details>
 
 <details>
-<summary>For volume plugins that support the _____&nbsp;reclaim policy, deletion removes both the PersistentVolume object from Kubernetes, as well as the associated storage asset in the external cloud infrastructure. Volumes that were dynamically provisioned inherit the&nbsp;<a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaim-policy">reclaim policy of their StorageClass</a>, which defaults to&nbsp;_____. The administrator should configure the StorageClass according to users' expectations; otherwise, the PV must be edited or patched after it is created.</summary>
-Delete&nbsp;
-<br></details>
+	<summary>
+		Can Volumes have hard links to other Volumes? _____
+	</summary>
+		No
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">ReadWriteOnce&nbsp;</span></summary>
-<span style="color: rgb(34, 34, 34);">the volume can be mounted as read-write by a single node</span>
-<br></details>
+	<summary>
+		A persistentVolume with no storageClassName can only be bound to _____ that request no storageClassName.
+	</summary>
+		PersistentVolumeClaims
+</details>
 
 <details>
-<summary>Can a volume be mounted using several access modes at a time?&nbsp;</summary>
-No
-<br></details>
+	<summary>
+		A volume has the same lifetime as the _____ that encloses it.
+	</summary>
+		Pod
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A PV can specify _____</span><span style="color: rgb(34, 34, 34);">&nbsp;to define constraints that limit what nodes this volume can be accessed from.&nbsp;</span></summary>
-node affinity
-<br></details>
+	<summary>
+		You can provision a new volume, pre-populated with data from a snapshot, by filling the _____ field in a PersistentVolumeClaim object.
+	</summary>
+		dataSource
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">In Kubernetes, a </span><i>_____&nbsp;</i><span style="color: rgb(34, 34, 34);">represents a snapshot of a volume on a storage system.</span></summary>
-<em>VolumeSnapshot</em>
-<br></details>
+	<summary>
+		_____ and VolumeSnapshotContent Objects are used to provision volume snapshots.
+	</summary>
+		VolumeSnapshot
+</details>
 
 <details>
-<summary>A _____&nbsp;is a snapshot taken from a volume in the cluster that has been provisioned by an administrator. It is a resource in the cluster just like a PersistentVolume is a cluster resource.</summary>
-VolumeSnapshotContent&nbsp;
-<br></details>
+	<summary>
+		"A deleted PersistentVolumeClaim is subject to a reclaim policy. The ""Retain"" policy allows for manual reclamation of resources in the future - the PersistentVolume remains in existence and is considered ""_____"" but unavailable for another claim while the previous claimant's data remains on the volume."
+	</summary>
+		Released
+</details>
 
 <details>
-<summary>_____&nbsp;allows you to specify different attributes belonging to a&nbsp;VolumeSnapshot. These attributes may differ among snapshots taken from the same volume on the storage system and therefore cannot be expressed by using the same&nbsp;StorageClass&nbsp;of a&nbsp;PersistentVolumeClaim.</summary>
-VolumeSnapshotClass&nbsp;
-<br></details>
+	<summary>
+		In pre-provisioned binding, a VolumeSnapshot will remain unbound until the requested _____ object is created.
+	</summary>
+		VolumeSnapshotContent
+</details>
 
 <details>
-<summary>There are two ways snapshots may be provisioned: _____ or _____.</summary>
-pre-provisioned or dynamically provisioned.
-<br></details>
+	<summary>
+		VolumeSnapshot and VolumeSnapshotContent Objects are used to provision _____.
+	</summary>
+		volume snapshots
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">A cluster administrator creates a number of&nbsp;</span><code>VolumeSnapshotContents</code><span style="color: rgb(34, 34, 34);">. They carry the details of the real volume snapshot on the storage system which is available for use by cluster users. They exist in the Kubernetes API and are available for consumption. This is the description of _____ snapshot provisioning.</span></summary>
-pre-provisioned
-<br></details>
+	<summary>
+		PersistentVolumes that are dynamically created by a StorageClass will have a reclaimPolicy defined, which can be either _____ or Retain
+	</summary>
+		Delete
+</details>
 
 <details>
-<summary>Instead of using a pre-existing snapshot, you can request that a snapshot to be _____ taken from a PersistentVolumeClaim. The&nbsp;<a href="https://kubernetes.io/docs/concepts/storage/volume-snapshot-classes/">VolumeSnapshotClass</a>&nbsp;specifies storage provider-specific parameters to use when taking a snapshot.</summary>
-dynamically
-<br></details>
+	<summary>
+		In _____ snapshot provisioning, a cluster administrator creates a number of VolumeSnapshotContents carrying details of the real volume snapshot on the storage system. They exist in the Kubernetes API and are available for consumption.
+	</summary>
+		pre-provisioned
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Users request dynamically provisioned storage by including a _____ in their&nbsp;</span><code>PersistentVolumeClaim</code></summary>
-<span style="color: rgb(34, 34, 34);">.spec.storageClassName</span>
-<br></details>
+	<summary>
+		A _____ of a particular storage class can only be bound to PersistentVolumeClaim requesting that class.
+	</summary>
+		PersistentVolume
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Claims will remain _____ indefinitely if a matching volume does not exist, and will be bound as matching volumes become available.&nbsp;</span></summary>
-unbound
-<br></details>
+	<summary>
+		A PersistentVolume's _____ constraints what nodes the volume can be accessed from.
+	</summary>
+		node affinity
+</details>
 
 <details>
-<summary><span style="color: rgb(34, 34, 34);">Only PVs of the requested class, ones with the same&nbsp;</span>_____&nbsp;<span style="color: rgb(34, 34, 34);">as the PVC, can be bound to the PVC.</span></summary>
-StorageClassName
-<br></details>
+	<summary>
+		Once a PersistentVolumeClaim is bound, its PersistentVolume belongs to the user for as long as they need it. Users schedule Pods and access their claimed PersistentVolumes by including a persistentVolumeClaim section in a Pod's _____ field.
+	</summary>
+		volumes
+</details>
 
 <details>
-<summary>Are volumes namespaced?</summary>
-No
-<br></details>
+	<summary>
+		PersistentVolumes that are dynamically created by a StorageClass will have a reclaimPolicy defined, which can be either Delete or _____
+	</summary>
+		Retain
+</details>
+
+<details>
+	<summary>
+		A volume in _____ access mode can be mounted as read-write by many nodes
+	</summary>
+		ReadWriteMany
+</details>
+
+<details>
+	<summary>
+		PersistentVolumeClaims remain unbound if no matching _____ exists, and will be bound when one becomes available.
+	</summary>
+		volume
+</details>
+
+<details>
+	<summary>
+		A PersistentVolumeClaim to PersistentVolume binding is a bi-directional, one-to-one mapping represented by a _____ field.
+	</summary>
+		ClaimRef
+</details>
+
+<details>
+	<summary>
+		A PersistentVolume's reclaim Policy defines what should be done with it after once released from a a PersistentVolumeClaim. By setting this policy, Volumes may either be Retained, Recycled or _____.
+	</summary>
+		Deleted
+</details>
+
+<details>
+	<summary>
+		Can a volume be mounted using several access modes at a time? _____
+	</summary>
+		No
+</details>
+
+<details>
+	<summary>
+		Mounted directories accessible from inside containers are called _____
+	</summary>
+		Volumes
+</details>
+
+<details>
+	<summary>
+		PersistentVolume deletion is not immediate. It is postponed until _____
+	</summary>
+		the PersistentVolume is no longer bound to a PersistentVolumeClaim.
+</details>
+
+<details>
+	<summary>
+		PersistentVolumes can be bound to a PersistentVolumeClaim if they both have the same _____.
+	</summary>
+		StorageClassName
+</details>
+
+<details>
+	<summary>
+		Is a Volume preserved across Container restarts? _____
+	</summary>
+		Yes
+</details>
+
+<details>
+	<summary>
+		A _____ with no storageClassName can only be bound to PersistentVolumeClaims that request no storageClassName.
+	</summary>
+		persistentVolume
+</details>
+
+<details>
+	<summary>
+		You can request that a snapshot to be dynamically taken from a PersistentVolumeClaim by defining a _____ Object with parameters for the snapshot.
+	</summary>
+		VolumeSnapshotClass
+</details>
+
+<details>
+	<summary>
+		The Kubernetes control plane watches for new PersistentVolumeClaims, and if it has found a matching PersistentVolume it _____ them.
+	</summary>
+		binds
+</details>
+
+<details>
+	<summary>
+		Can you resize an in-use PersistentVolumeClaim? _____.
+	</summary>
+		Yes, via ExpandInUsePersistentVolumes
+</details>
+
