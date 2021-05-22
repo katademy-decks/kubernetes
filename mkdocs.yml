@@ -1,12 +1,13 @@
 site_name: Kubernetes FAQ
 site_url: https://katademy.github.io/kubernetes-faq
 site_author: Icelyn Jennings
-site_description: Kubernetes FAQ. Learn Kubernetes, CKA, CKAD, flashcards, interview questions.
+site_description: Learn Kubernetes, flashcards, CKA, CKAD, interview questions.
 
 repo_url: https://github.com/katademy/kubernetes-faq/
 repo_name: kubernetes-faq
 
 theme:
+  favicon: images/favicon.png
   icon:
     logo: material/kubernetes
   custom_dir: overrides
@@ -32,10 +33,13 @@ extra:
       link: https://github.com/katademy
       name: katademy on GitHub
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/company/katademy/
+      link: https://www.linkedin.com/company/katademy
       name: katademy on LinkedIn
     - icon: fontawesome/brands/patreon
       link: https://patreon.com/icelynjennings
-      name: Icelyn Jennings on Patreon
+      name: icelynjennings on Patreon
+    - icon: fontawesome/brands/paypal
+      link: https://www.paypal.me/icelynjennings
+      name: icelynjennings on PayPal
 
 copyright: "&copy; 2020-2021 Icelyn Jennings"
