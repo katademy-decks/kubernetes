@@ -1,20 +1,15 @@
-# Kubernetes FAQ
+# k8s-faq
 
-Test your Kubernetes knowledge by answering questions of varying difficulty.
+The most in-depth repository for Kubernetes interview questions. Or we aim to be!
 
-### Table of Contents
+Test your knowledge of Kubernetes via flashcards ranging in difficulty from easy to very hard.
 
-1. [Admission](./docs/admission.md)
-1. [Auditing](./docs/auditing.md)
-1. [Authentication](./docs/authentication.md)
-1. [Authorization](./docs/authorization.md)
 1. [Cluster Architecture](./docs/cluster-architecture.md)
-1. [Cluster Security](./docs/cluster-security.md)
-1. [Configuration](./docs/configuration.md)
-1. [Container Security](./docs/container-security.md)
-1. [Deployments](./docs/deployments.md)
+1. [Containers](./docs/containers.md)
+1. [Jobs](./docs/jobs.md)
+1. [Networking](./docs/networking.md)
 1. [Nodes](./docs/nodes.md)
-1. [Pods](./docs/pods.md)
-1. [Services](./docs/services.md)
+1. [Security](./docs/security.md)
 1. [Storage](./docs/storage.md)
-1. [etcd](./docs/etcd.md)
+1. [Topology](./docs/topology.md)
+1. [Workloads](./docs/workloads.md)
