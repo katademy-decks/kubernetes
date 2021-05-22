@@ -14,4 +14,4 @@ Test your knowledge of Kubernetes topics:
 1. [Topology](./topology.md) (20 questions)
 1. [Workloads](./workloads.md) (125 questions)
 
-Support this project by [leaving a Star](https://github.com/katademy/kubernetes-faq/stargazers), following it on [Twitter](https://twitter.com/katademy) or [donating to my Patreon](https://patreon.com/icelynjennings).
+Support this project by [leaving a Star](https://github.com/katademy/kubernetes-faq/stargazers), following it on [Twitter](https://twitter.com/katademy) or [donating on Patreon](https://patreon.com/icelynjennings).
