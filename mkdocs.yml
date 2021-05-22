@@ -7,7 +7,7 @@ repo_url: https://github.com/katademy/kubernetes-faq/
 repo_name: kubernetes-faq
 
 theme:
-  favicon: images/favicon.png
+  favicon: favicon.png
   icon:
     logo: material/kubernetes
   custom_dir: overrides
