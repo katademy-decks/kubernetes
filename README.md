@@ -14,4 +14,6 @@ Test your knowledge of Kubernetes topics:
 1. [Topology](./topology.md)
 1. [Workloads](./workloads.md)
 
+For updates, follow [**@katademy**](https://twitter.com/katademy).
+
 Follow me (**@icelynjennings**) on [Twitter](https://twitter.com/icelynjennings), [GitHub](https://github.com/icelynjennings) or [Patreon](https://patreon.com/icelynjennings).

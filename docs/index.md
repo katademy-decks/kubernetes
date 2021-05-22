@@ -1,6 +1,6 @@
 We aim to be the most comprehensive repository for Kubernetes flashcards and interview questions.
 
-Test your knowledge of Kubernetes via flashcards ranging in difficulty from easy to very hard:
+Test your knowledge of Kubernetes topics:
 
 1. [Cluster Architecture](./cluster-architecture.md)
 1. [Containers](./containers.md)
