@@ -1,4 +1,4 @@
-The most in-depth repository for Kubernetes interview questions. Or we aim to be!
+We aim to be the most comprehensive repository for Kubernetes flashcards and interview questions.
 
 Test your knowledge of Kubernetes via flashcards ranging in difficulty from easy to very hard:
 
@@ -11,3 +11,7 @@ Test your knowledge of Kubernetes via flashcards ranging in difficulty from easy
 1. [Storage](./storage.md)
 1. [Topology](./topology.md)
 1. [Workloads](./workloads.md)
+
+For updates, follow [**@katademy**](https://twitter.com/katademy).
+
+Follow me (**@icelynjennings**) on [Twitter](https://twitter.com/icelynjennings), [GitHub](https://github.com/icelynjennings) or [Patreon](https://patreon.com/icelynjennings).
