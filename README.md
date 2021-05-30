@@ -1,8 +1,10 @@
 # k8s-faq
 
-**Hint: [**View in GitHub Pages!**](https://katademy.github.io/kubernetes-faq)**
+Test your knowledge of Kubernetes. Anki-compatible flashcards can be downloaded [**here**](https://github.com/katademy/kubernetes-faq/releases/latest).
 
-Test your knowledge of:
+## Table of Contents: 
+
+**Hint: [**View in GitHub Pages!**](https://katademy.github.io/kubernetes-faq)**
 
 1. [Cluster Architecture](./docs/cluster-architecture.md) (46 questions)
 1. [Containers](./docs/containers.md) (62 questions)

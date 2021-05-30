@@ -1,6 +1,6 @@
-We aim to be the most comprehensive repository for Kubernetes flashcards and interview questions.
+We aim to be the most comprehensive repository for Kubernetes flashcards and interview questions. All flashcards in this project can be downloaded in Anki format [**here**](https://github.com/katademy/kubernetes-faq/releases/latest).
 
-Test your knowledge of:
+## Table of Contents:
 
 1. [Cluster Architecture](./cluster-architecture.md) (46 questions)
 1. [Containers](./containers.md) (62 questions)
