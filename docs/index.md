@@ -1,4 +1,4 @@
-We aim to be the most comprehensive repository for Kubernetes flashcards and interview questions. All flashcards in this project can be downloaded in Anki format [**here**](https://github.com/katademy/kubernetes-faq/releases/latest).
+We aim to be the most comprehensive repository for Kubernetes flashcards and interview questions. All flashcards in this project can be downloaded in Anki format [**here**](https://github.com/koletyst/kubernetes-faq/releases/latest).
 
 ## Table of Contents:
 
@@ -14,9 +14,7 @@ We aim to be the most comprehensive repository for Kubernetes flashcards and int
 
 #### Like this project?
 
-* [Leave a Star](https://github.com/katademy/kubernetes-faq/stargazers)
-* Follow [@katademy](https://twitter.com/katademy) on Twitter
-* [Donate via PayPal](https://paypal.me/icelynjennings)
-* [Donate via Patreon](https://patreon.com/icelynjennings)
+* [Star it](https://github.com/koletyst/kubernetes-faq/stargazers)
+* Follow [@koletyst](https://twitter.com/koletyst) on Twitter
 
-Saw an error? [Open an Issue](https://github.com/katademy/kubernetes-faq/issues/new)! 
+Saw an error? [Open an Issue](https://github.com/koletyst/kubernetes-faq/issues/new)! 
