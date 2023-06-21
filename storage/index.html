@@ -1,0 +1,1130 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn Kubernetes, flashcards, CKA, CKAD, interview questions.">
+      
+      
+        <meta name="author" content="koletyst">
+      
+      
+        <link rel="canonical" href="https://koletyst.github.io/kubernetes-faq/storage/">
+      
+      
+        <link rel="prev" href="../security/">
+      
+      
+        <link rel="next" href="../topology/">
+      
+      <link rel="icon" href="../favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
+    
+    
+      
+        <title>Storage - Kubernetes FAQ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Kubernetes FAQ" class="md-header__button md-logo" aria-label="Kubernetes FAQ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.95 13.5h-.23c-.18.11-.26.32-.18.5l.86 2.11c.83-.53 1.46-1.32 1.79-2.25l-2.23-.36h-.01m-3.45.29a.415.415 0 0 0-.38-.29h-.08l-2.22.37c.33.92.96 1.7 1.79 2.23l.85-2.07V14c.04-.05.04-.14.04-.21m1.83.81a.378.378 0 0 0-.51-.15c-.07.05-.12.08-.15.15h-.01l-1.09 1.97c.78.26 1.62.31 2.43.12.14-.03.29-.07.43-.12l-1.09-1.97h-.01m3.45-4.57L14.1 11.5l.01.03a.37.37 0 0 0-.04.53c.05.06.11.1.18.12l.01.01 2.17.62c.07-.97-.14-1.95-.65-2.78m-3.11.16c.01.21.18.37.39.36.08 0 .15-.02.21-.05h.01l1.83-1.31a4.45 4.45 0 0 0-2.57-1.24l.13 2.24m-1.94.31c.17.11.4.08.52-.09.05-.06.07-.13.08-.21h.01l.12-2.25c-.15.02-.3.05-.46.08-.8.18-1.54.58-2.12 1.16l1.84 1.31h.01m-.99 1.69c.2-.05.32-.26.26-.46 0-.08-.05-.14-.11-.19v-.01L8.21 10c-.52.86-.74 1.84-.63 2.82l2.16-.62v-.01m1.64.66.62.3.62-.3.15-.67-.43-.53h-.69l-.43.53.16.67m10.89 1.32L20.5 6.5c-.09-.42-.37-.76-.74-.94l-7.17-3.43c-.37-.17-.81-.17-1.19 0L4.24 5.56c-.37.18-.65.52-.74.94l-1.77 7.67c-.05.2-.05.4 0 .59.01.06.03.12.05.18.03.09.08.19.13.27.03.04.05.08.09.11l4.95 6.18c.02 0 .05.04.05.06.1.09.19.16.28.22.12.08.26.14.4.17.11.05.23.05.32.05h8.12c.07 0 .14-.03.2-.05.05-.01.1-.03.14-.04.04-.02.07-.03.11-.05.05-.02.1-.05.15-.08.12-.08.23-.18.33-.28l.15-.2 4.8-5.98c.1-.12.17-.25.22-.38.02-.06.04-.12.05-.18.05-.19.05-.4 0-.59m-7.43 2.99c.02.06.04.12.07.17-.04.08-.06.17-.03.26.12.24.23.46.38.68.08.11.16.23.24.34 0 .03.03.08.04.12.12.2.06.46-.15.59s-.47.05-.59-.15c-.01-.03-.02-.05-.03-.08-.02-.03-.04-.09-.06-.09-.05-.15-.09-.28-.12-.41-.09-.25-.17-.49-.3-.72a.375.375 0 0 0-.21-.14l-.08-.16c-1.29.48-2.7.48-3.97-.01l-.1.18c-.07.01-.14.04-.19.09-.14.24-.24.49-.33.77-.03.13-.07.26-.12.4-.02 0-.04.07-.06.1a.43.43 0 0 1-.81-.29c.01-.03.03-.05.04-.08.04-.03.04-.08.04-.11.09-.12.16-.23.24-.35.16-.21.29-.45.39-.69a.54.54 0 0 0-.03-.25l.07-.18a5.611 5.611 0 0 1-2.47-3.09l-.2.03a.388.388 0 0 0-.23-.09c-.27.05-.51.13-.77.22-.11.06-.24.11-.37.15-.03.01-.07.02-.13.03a.438.438 0 0 1-.54-.27c-.07-.23.04-.47.28-.55.02 0 .05-.01.08-.01v-.01h.01l.11-.02c.14-.04.28-.04.41-.04.26 0 .52-.06.77-.12.08-.05.14-.11.19-.19l.19-.05c-.21-1.36.1-2.73.86-3.87l-.14-.12c0-.09-.03-.18-.08-.25-.2-.17-.41-.32-.64-.45-.12-.06-.24-.13-.36-.21-.02-.02-.06-.05-.08-.07l-.01-.01c-.2-.16-.25-.42-.11-.63.09-.1.21-.15.35-.15.11.01.21.05.3.12l.09.07c.1.09.19.2.28.3.18.19.37.37.58.52.08.04.17.05.26.03l.15.11c.75-.8 1.73-1.36 2.8-1.6.25-.06.52-.1.78-.12l.01-.18a.45.45 0 0 0 .14-.23c.01-.26-.01-.52-.05-.77-.03-.13-.05-.27-.06-.41V5.1c-.02-.24.15-.45.39-.48s.44.15.47.38v.22c-.01.14-.03.28-.06.41-.04.25-.06.51-.05.77.02.1.07.17.14.22l.01.19c1.36.12 2.62.73 3.56 1.72l.16-.12c.09.02.18.01.26-.03.21-.15.41-.33.58-.52.09-.1.18-.2.28-.3.03-.02.07-.06.1-.06.17-.18.44-.18.59 0 .19.16.18.43 0 .6 0 .02-.03.04-.06.06a2.495 2.495 0 0 1-.44.28c-.23.13-.45.28-.64.45-.06.07-.09.15-.08.24l-.16.14a5.44 5.44 0 0 1 .88 3.86l.19.05c.04.08.11.14.19.18.25.07.51.11.77.14h.41c.03.03.08.04.12.05.24.03.4.25.37.49-.05.23-.24.4-.48.37-.03-.01-.07-.01-.07-.02v-.01c-.06 0-.1-.01-.14-.02-.13-.04-.25-.09-.36-.15-.26-.1-.5-.17-.77-.21-.09 0-.17 0-.23.08-.07-.01-.13-.02-.19-.03-.41 1.31-1.31 2.41-2.47 3.11Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kubernetes FAQ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Storage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/koletyst/kubernetes-faq/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kubernetes-faq
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Kubernetes FAQ" class="md-nav__button md-logo" aria-label="Kubernetes FAQ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.95 13.5h-.23c-.18.11-.26.32-.18.5l.86 2.11c.83-.53 1.46-1.32 1.79-2.25l-2.23-.36h-.01m-3.45.29a.415.415 0 0 0-.38-.29h-.08l-2.22.37c.33.92.96 1.7 1.79 2.23l.85-2.07V14c.04-.05.04-.14.04-.21m1.83.81a.378.378 0 0 0-.51-.15c-.07.05-.12.08-.15.15h-.01l-1.09 1.97c.78.26 1.62.31 2.43.12.14-.03.29-.07.43-.12l-1.09-1.97h-.01m3.45-4.57L14.1 11.5l.01.03a.37.37 0 0 0-.04.53c.05.06.11.1.18.12l.01.01 2.17.62c.07-.97-.14-1.95-.65-2.78m-3.11.16c.01.21.18.37.39.36.08 0 .15-.02.21-.05h.01l1.83-1.31a4.45 4.45 0 0 0-2.57-1.24l.13 2.24m-1.94.31c.17.11.4.08.52-.09.05-.06.07-.13.08-.21h.01l.12-2.25c-.15.02-.3.05-.46.08-.8.18-1.54.58-2.12 1.16l1.84 1.31h.01m-.99 1.69c.2-.05.32-.26.26-.46 0-.08-.05-.14-.11-.19v-.01L8.21 10c-.52.86-.74 1.84-.63 2.82l2.16-.62v-.01m1.64.66.62.3.62-.3.15-.67-.43-.53h-.69l-.43.53.16.67m10.89 1.32L20.5 6.5c-.09-.42-.37-.76-.74-.94l-7.17-3.43c-.37-.17-.81-.17-1.19 0L4.24 5.56c-.37.18-.65.52-.74.94l-1.77 7.67c-.05.2-.05.4 0 .59.01.06.03.12.05.18.03.09.08.19.13.27.03.04.05.08.09.11l4.95 6.18c.02 0 .05.04.05.06.1.09.19.16.28.22.12.08.26.14.4.17.11.05.23.05.32.05h8.12c.07 0 .14-.03.2-.05.05-.01.1-.03.14-.04.04-.02.07-.03.11-.05.05-.02.1-.05.15-.08.12-.08.23-.18.33-.28l.15-.2 4.8-5.98c.1-.12.17-.25.22-.38.02-.06.04-.12.05-.18.05-.19.05-.4 0-.59m-7.43 2.99c.02.06.04.12.07.17-.04.08-.06.17-.03.26.12.24.23.46.38.68.08.11.16.23.24.34 0 .03.03.08.04.12.12.2.06.46-.15.59s-.47.05-.59-.15c-.01-.03-.02-.05-.03-.08-.02-.03-.04-.09-.06-.09-.05-.15-.09-.28-.12-.41-.09-.25-.17-.49-.3-.72a.375.375 0 0 0-.21-.14l-.08-.16c-1.29.48-2.7.48-3.97-.01l-.1.18c-.07.01-.14.04-.19.09-.14.24-.24.49-.33.77-.03.13-.07.26-.12.4-.02 0-.04.07-.06.1a.43.43 0 0 1-.81-.29c.01-.03.03-.05.04-.08.04-.03.04-.08.04-.11.09-.12.16-.23.24-.35.16-.21.29-.45.39-.69a.54.54 0 0 0-.03-.25l.07-.18a5.611 5.611 0 0 1-2.47-3.09l-.2.03a.388.388 0 0 0-.23-.09c-.27.05-.51.13-.77.22-.11.06-.24.11-.37.15-.03.01-.07.02-.13.03a.438.438 0 0 1-.54-.27c-.07-.23.04-.47.28-.55.02 0 .05-.01.08-.01v-.01h.01l.11-.02c.14-.04.28-.04.41-.04.26 0 .52-.06.77-.12.08-.05.14-.11.19-.19l.19-.05c-.21-1.36.1-2.73.86-3.87l-.14-.12c0-.09-.03-.18-.08-.25-.2-.17-.41-.32-.64-.45-.12-.06-.24-.13-.36-.21-.02-.02-.06-.05-.08-.07l-.01-.01c-.2-.16-.25-.42-.11-.63.09-.1.21-.15.35-.15.11.01.21.05.3.12l.09.07c.1.09.19.2.28.3.18.19.37.37.58.52.08.04.17.05.26.03l.15.11c.75-.8 1.73-1.36 2.8-1.6.25-.06.52-.1.78-.12l.01-.18a.45.45 0 0 0 .14-.23c.01-.26-.01-.52-.05-.77-.03-.13-.05-.27-.06-.41V5.1c-.02-.24.15-.45.39-.48s.44.15.47.38v.22c-.01.14-.03.28-.06.41-.04.25-.06.51-.05.77.02.1.07.17.14.22l.01.19c1.36.12 2.62.73 3.56 1.72l.16-.12c.09.02.18.01.26-.03.21-.15.41-.33.58-.52.09-.1.18-.2.28-.3.03-.02.07-.06.1-.06.17-.18.44-.18.59 0 .19.16.18.43 0 .6 0 .02-.03.04-.06.06a2.495 2.495 0 0 1-.44.28c-.23.13-.45.28-.64.45-.06.07-.09.15-.08.24l-.16.14a5.44 5.44 0 0 1 .88 3.86l.19.05c.04.08.11.14.19.18.25.07.51.11.77.14h.41c.03.03.08.04.12.05.24.03.4.25.37.49-.05.23-.24.4-.48.37-.03-.01-.07-.01-.07-.02v-.01c-.06 0-.1-.01-.14-.02-.13-.04-.25-.09-.36-.15-.26-.1-.5-.17-.77-.21-.09 0-.17 0-.23.08-.07-.01-.13-.02-.19-.03-.41 1.31-1.31 2.41-2.47 3.11Z"/></svg>
+
+    </a>
+    Kubernetes FAQ
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/koletyst/kubernetes-faq/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kubernetes-faq
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster-architecture/" class="md-nav__link">
+        Cluster architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../containers/" class="md-nav__link">
+        Containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jobs/" class="md-nav__link">
+        Jobs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/" class="md-nav__link">
+        Nodes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Storage
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topology/" class="md-nav__link">
+        Topology
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workloads/" class="md-nav__link">
+        Workloads
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Storage</h1>
+
+<details>
+    <summary>
+        A PersistentVolume's reclaim Policy defines what should be done with it after once released from a a PersistentVolumeClaim. By setting this policy, Volumes may either be _____, Recycled or Deleted.
+    </summary>
+        Retained
+</details>
+
+<details>
+    <summary>
+        _____ is the unique identifier of the volume created on the storage backend and returned by the CSI driver during the volume creation. This field is required for dynamically provisioning a snapshot. It specifies the volume source of the snapshot.
+    </summary>
+        volumeHandle
+</details>
+
+<details>
+    <summary>
+        PersistentVolumes have a specific storage capacity, configured via their _____ attribute.
+    </summary>
+        Capacity
+</details>
+
+<details>
+    <summary>
+        A persistentVolume with no storageClassName can only be bound to PersistentVolumeClaims that request _____.
+    </summary>
+        no storageClassName
+</details>
+
+<details>
+    <summary>
+        Snapshots may be _____ or dynamically provisioned.
+    </summary>
+        pre-provisioned
+</details>
+
+<details>
+    <summary>
+        VolumeSnapshotContents represent resources in the cluster, and _____ represent requests for those resources.
+    </summary>
+        VolumeSnapshots
+</details>
+
+<details>
+    <summary>
+        Can Volumes have hard links to other Volumes? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        A Pod specifies what volumes to provide for its containers in the spec._____ field.
+    </summary>
+        volumes
+</details>
+
+<details>
+    <summary>
+        A volume is just a directory with data accessible by _____ when mounted.
+    </summary>
+        Containers
+</details>
+
+<details>
+    <summary>
+        It is often necessary to share files between Containers in a Pod. _____ objects are designed to solve this problem.
+    </summary>
+        Volume
+</details>
+
+<details>
+    <summary>
+        PersistentVolume and PersistentVolumeClaim Objects are used to provision _____.
+    </summary>
+        volumes
+</details>
+
+<details>
+    <summary>
+        In _____ volume provisioning, a cluster administrator creates a number of PersistentVolumes which carry the details of the real storage, and are available for use by cluster users.
+    </summary>
+        static
+</details>
+
+<details>
+    <summary>
+        If you delete a PersistentVolumeClaim object while a snapshot of it is being taken, its removal is postponed until the snapshot is readyToUse or _____.
+    </summary>
+        aborted
+</details>
+
+<details>
+    <summary>
+        PersistentVolumes that are dynamically created by a StorageClass will have a reclaimPolicy defined, which can be either Delete or _____
+    </summary>
+        Retain
+</details>
+
+<details>
+    <summary>
+        A PersistentVolume of a particular storage class can only be bound to _____ requesting that class.
+    </summary>
+        PersistentVolumeClaim
+</details>
+
+<details>
+    <summary>
+        A volume has the same lifetime as the _____ that encloses it.
+    </summary>
+        Pod
+</details>
+
+<details>
+    <summary>
+        PersistentVolumes support two _____: Filesystem (default) and Block.
+    </summary>
+        volumeModes
+</details>
+
+<details>
+    <summary>
+        VolumeSnapshotClass allows you to specify different attributes belonging to a _____.
+    </summary>
+        VolumeSnapshot
+</details>
+
+<details>
+    <summary>
+        "PersistentVolume binds are exclusive. Mounting PersistentVolumeClaims with ""Many"" modes (ROX, RWX) is only possible within one _____."
+    </summary>
+        namespace
+</details>
+
+<details>
+    <summary>
+        Are PersistentVolume lifecycles dependent on the Pods that use them? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        A volume in _____ access mode can be mounted as read-write by many nodes
+    </summary>
+        ReadWriteMany
+</details>
+
+<details>
+    <summary>
+        Snapshots may be pre-provisioned or _____.
+    </summary>
+        dynamically provisioned
+</details>
+
+<details>
+    <summary>
+        A _____ with no storageClassName can only be bound to PersistentVolumeClaims that request no storageClassName.
+    </summary>
+        persistentVolume
+</details>
+
+<details>
+    <summary>
+        A PersistentVolumeClaim to PersistentVolume binding is a bi-directional, one-to-one mapping represented by a _____ field.
+    </summary>
+        ClaimRef
+</details>
+
+<details>
+    <summary>
+        A PersistentVolumeClaim is in use by a Pod. A user deletes the PersistentVolumeClaim. Is the PersistentVolumeClaim immediately deleted? _____
+    </summary>
+        No - it is postponed until the PersistentVolumeClaim is no longer used by any Pods.
+</details>
+
+<details>
+    <summary>
+        A volume is said to be _____ when the volume has failed its automatic reclamation.
+    </summary>
+        Failed
+</details>
+
+<details>
+    <summary>
+        VolumeSnapshot and _____ Objects are used to provision volume snapshots.
+    </summary>
+        VolumeSnapshotContent
+</details>
+
+<details>
+    <summary>
+        A PersistentVolume may be provisioned either _____ or dynamically.
+    </summary>
+        statically
+</details>
+
+<details>
+    <summary>
+        VolumeSnapshot and VolumeSnapshotContent Objects are used to provision _____.
+    </summary>
+        volume snapshots
+</details>
+
+<details>
+    <summary>
+        A Pod's volumes are _____ after their Pod is deleted.
+    </summary>
+        deleted
+</details>
+
+<details>
+    <summary>
+        A PersistentVolume can have its StorageClass specified by setting the _____ attribute.
+    </summary>
+        storageClassName
+</details>
+
+<details>
+    <summary>
+        If a PersistentVolume was dynamically provisioned for a new PersistentVolumeClaim, the loop will _____ them together.
+    </summary>
+        bind
+</details>
+
+<details>
+    <summary>
+        A volume is said to be _____, when the claim has been deleted, but the resource is not yet reclaimed by the cluster.
+    </summary>
+        Released
+</details>
+
+<details>
+    <summary>
+        A persistentVolume with no storageClassName can only be bound to _____ that request no storageClassName.
+    </summary>
+        PersistentVolumeClaims
+</details>
+
+<details>
+    <summary>
+        PersistentVolumes can be bound to a PersistentVolumeClaim if they both have the same _____.
+    </summary>
+        StorageClassName
+</details>
+
+<details>
+    <summary>
+        "A volume with _____ set to ""Block"" represents a raw block device without a filesystem. These volumes provide Pods with the fastest access, but the application must know how to handle a raw block device."
+    </summary>
+        volumeMode
+</details>
+
+<details>
+    <summary>
+        A Pod uses a PersistentVolume that has a node affinity towards certain nodes. Whcih node will the Pod be scheduled on? _____
+    </summary>
+        The node where the PV is available from.
+</details>
+
+<details>
+    <summary>
+        A _____ Object represents a snapshot of a volume on a storage system.
+    </summary>
+        VolumeSnapshot
+</details>
+
+<details>
+    <summary>
+        _____ represent resources in the cluster, and VolumeSnapshots represent requests for those resources.
+    </summary>
+        VolumeSnapshotContents
+</details>
+
+<details>
+    <summary>
+        "A deleted PersistentVolumeClaim is subject to a reclaim policy. The ""Retain"" policy allows for manual reclamation of resources in the future - the PersistentVolume remains in existence and is considered ""_____"" but unavailable for another claim while the previous claimant's data remains on the volume."
+    </summary>
+        Released
+</details>
+
+<details>
+    <summary>
+        In pre-provisioned binding, a VolumeSnapshot will remain unbound until the requested _____ object is created.
+    </summary>
+        VolumeSnapshotContent
+</details>
+
+<details>
+    <summary>
+        Mounted directories accessible from inside containers are called _____
+    </summary>
+        Volumes
+</details>
+
+<details>
+    <summary>
+        For volume plugins that support the _____ reclaim policy, deletion removes both the PersistentVolume object and the associated storage asset in the external cloud infrastructure. Volumes that were dynamically provisioned inherit the reclaim policy of their storageClass, which defaults to Delete. Administrators should configure the StorageClass according to users' expectations; otherwise, the PV must be edited or patched after it is created.
+    </summary>
+        Delete
+</details>
+
+<details>
+    <summary>
+        When a Container crashes, kubelet will restart it, but its on-disk files will be lost unless stored on a _____.
+    </summary>
+        Volume
+</details>
+
+<details>
+    <summary>
+        A volume is said to be _____ when it is free and not yet bound to a claim.
+    </summary>
+        Available
+</details>
+
+<details>
+    <summary>
+        A _____ specifies what volumes to provide for its containers in the spec.volumes field.
+    </summary>
+        Pod
+</details>
+
+<details>
+    <summary>
+        If you delete a PersistentVolumeClaim object while a snapshot of it is being taken, its removal is postponed until the snapshot is _____ or aborted.
+    </summary>
+        readyToUse
+</details>
+
+<details>
+    <summary>
+        PersistentVolumeClaims remain unbound if no matching _____ exists, and will be bound when one becomes available.
+    </summary>
+        volume
+</details>
+
+<details>
+    <summary>
+        "A deleted PersistentVolumeClaim is subject to a reclaim policy. The ""_____"" policy allows for manual reclamation of resources in the future - the PersistentVolume remains in existence and is considered ""Released"" but unavailable for another claim while the previous claimant's data remains on the volume."
+    </summary>
+        Retain
+</details>
+
+<details>
+    <summary>
+        Is a Volume preserved across Container restarts? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        In pre-provisioned binding, a _____ will remain unbound until the requested VolumeSnapshotContent object is created.
+    </summary>
+        VolumeSnapshot
+</details>
+
+<details>
+    <summary>
+        You can provision a new volume, pre-populated with data from a snapshot, by filling the _____ field in a PersistentVolumeClaim object.
+    </summary>
+        dataSource
+</details>
+
+<details>
+    <summary>
+        Can Volumes mount other volumes? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        "A volume with volumeMode set to ""_____"" represents a raw block device without a filesystem. These volumes provide Pods with the fastest access, but the application must know how to handle a raw block device."
+    </summary>
+        Block
+</details>
+
+<details>
+    <summary>
+        A _____ is just a directory with data accessible by Containers when mounted.
+    </summary>
+        volume
+</details>
+
+<details>
+    <summary>
+        A _____ of a particular storage class can only be bound to PersistentVolumeClaim requesting that class.
+    </summary>
+        PersistentVolume
+</details>
+
+<details>
+    <summary>
+        Are VolumeSnapshot, VolumeSnapshotContent, and VolumeSnapshotClass part of the core Kubernetes API? _____
+    </summary>
+        No - they are CustomResourceDefinitions.
+</details>
+
+<details>
+    <summary>
+        VolumeSnapshot support is only available for _____ drivers.
+    </summary>
+        CSI
+</details>
+
+<details>
+    <summary>
+        PersistentVolume and _____ Objects are used to provision volumes.
+    </summary>
+        PersistentVolumeClaim
+</details>
+
+<details>
+    <summary>
+        A PersistentVolume may be provisioned either statically or _____.
+    </summary>
+        dynamically
+</details>
+
+<details>
+    <summary>
+        You can request that a snapshot to be dynamically taken from a PersistentVolumeClaim by defining a _____ Object with parameters for the snapshot.
+    </summary>
+        VolumeSnapshotClass
+</details>
+
+<details>
+    <summary>
+        The Kubernetes control plane watches for new PersistentVolumeClaims, and if it has found a matching PersistentVolume it _____ them.
+    </summary>
+        binds
+</details>
+
+<details>
+    <summary>
+        A volume with volumeMode: _____ is mounted into Pods into a directory. If the volume is backed by a block device and the device is empty, Kuberneretes creates a filesystem on the device before mounting it for the first time.
+    </summary>
+        Filesystem
+</details>
+
+<details>
+    <summary>
+        A PersistentVolume's _____ Policy defines what should be done with it after once released from a a PersistentVolumeClaim. By setting this policy, Volumes may either be Retained, Recycled or Deleted.
+    </summary>
+        reclaim
+</details>
+
+<details>
+    <summary>
+        A volume in _____ access mode can be mounted as read-write by a single node
+    </summary>
+        ReadWriteOnce
+</details>
+
+<details>
+    <summary>
+        Dynamic volume provisioning is enabled by creating one or more _____ objects for cluster users.
+    </summary>
+        StorageClass
+</details>
+
+<details>
+    <summary>
+        PersistentVolumes support two volumeModes: _____ (default) and Block.
+    </summary>
+        Filesystem
+</details>
+
+<details>
+    <summary>
+        A PersistentVolume's _____ constraints what nodes the volume can be accessed from.
+    </summary>
+        node affinity
+</details>
+
+<details>
+    <summary>
+        _____ allows you to specify different attributes belonging to a VolumeSnapshot.
+    </summary>
+        VolumeSnapshotClass
+</details>
+
+<details>
+    <summary>
+        Once a PersistentVolumeClaim is bound, its PersistentVolume belongs to the user for as long as they need it. Users schedule Pods and access their claimed PersistentVolumes by including a persistentVolumeClaim section in a Pod's _____ field.
+    </summary>
+        volumes
+</details>
+
+<details>
+    <summary>
+        Can a volume be mounted using several access modes at a time? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        PersistentVolumes support two volumeModes: Filesystem (default) and _____.
+    </summary>
+        Block
+</details>
+
+<details>
+    <summary>
+        A _____ object represents a snapshot taken from a volume.
+    </summary>
+        VolumeSnapshotContent
+</details>
+
+<details>
+    <summary>
+        PersistentVolumes that are dynamically created by a StorageClass will have a reclaimPolicy defined, which can be either _____ or Retain
+    </summary>
+        Delete
+</details>
+
+<details>
+    <summary>
+        The Kubernetes control plane watches for new PersistentVolumeClaims, and if it has found a matching _____ it binds them.
+    </summary>
+        PersistentVolume
+</details>
+
+<details>
+    <summary>
+        In static volume provisioning, a cluster administrator creates a number of _____ which carry the details of the real storage, and are available for use by cluster users.
+    </summary>
+        PersistentVolumes
+</details>
+
+<details>
+    <summary>
+        _____ and VolumeSnapshotContent Objects are used to provision volume snapshots.
+    </summary>
+        VolumeSnapshot
+</details>
+
+<details>
+    <summary>
+        We delete a PersistentVolume bound to a PersistentVolumeClaim. Is the PersistentVolume deleted immediately? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        A PersistentVolume's reclaim Policy defines what should be done with it after once released from a a PersistentVolumeClaim. By setting this policy, Volumes may either be Retained, Recycled or _____.
+    </summary>
+        Deleted
+</details>
+
+<details>
+    <summary>
+        A Pod specifies where and how to mount its volumes inside its containers in the .spec.containers[*]._____ field.
+    </summary>
+        volumeMounts
+</details>
+
+<details>
+    <summary>
+        A PersistentVolumeClaim can be expanded if its storageClass has field _____ set to true. To expand it, edit the PersistentVolumeClaim object and specify a larger size. This triggers expansion of the volume that backs the underlying PersistentVolume. A new PersistentVolume is never created to satisfy the claim. Instead, an existing volume is resized.
+    </summary>
+        allowVolumeExpansion
+</details>
+
+<details>
+    <summary>
+        _____ and PersistentVolumeClaim Objects are used to provision volumes.
+    </summary>
+        PersistentVolume
+</details>
+
+<details>
+    <summary>
+        A PersistentVolume's reclaim Policy defines what should be done with it after once released from a a PersistentVolumeClaim. By setting this policy, Volumes may either be Retained, _____ or Deleted.
+    </summary>
+        Recycled
+</details>
+
+<details>
+    <summary>
+        A PersistentVolumeClaim can request a particular storage class by specifying the name of a StorageClass using the attribute _____.
+    </summary>
+        storageClassName
+</details>
+
+<details>
+    <summary>
+        In _____ snapshot provisioning, a cluster administrator creates a number of VolumeSnapshotContents carrying details of the real volume snapshot on the storage system. They exist in the Kubernetes API and are available for consumption.
+    </summary>
+        pre-provisioned
+</details>
+
+<details>
+    <summary>
+        A volume in _____ access mode can be mounted read-only by many nodes
+    </summary>
+        ReadOnlyMany
+</details>
+
+<details>
+    <summary>
+        PersistentVolume deletion is not immediate. It is postponed until _____
+    </summary>
+        the PersistentVolume is no longer bound to a PersistentVolumeClaim.
+</details>
+
+<details>
+    <summary>
+        Can you resize an in-use PersistentVolumeClaim? _____.
+    </summary>
+        Yes, via ExpandInUsePersistentVolumes
+</details>
+
+<details>
+    <summary>
+        When no static PersistentVolume matches a PersistentVolumeClaim, the cluster may try to dynamically provision a volume specially for the PersistentVolumeClaim. The PersistentVolumeClaim must request a _____ with dynamic provisioning configured.
+    </summary>
+        storageClass
+</details>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2020-2023 @koletyst
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/koletyst" target="_blank" rel="noopener" title="koletyst on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/koletyst" target="_blank" rel="noopener" title="koletyst on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/koletyst" target="_blank" rel="noopener" title="koletyst on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a51614de.min.js"></script>
+      
+    
+  </body>
+</html>

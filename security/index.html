@@ -1,0 +1,1872 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn Kubernetes, flashcards, CKA, CKAD, interview questions.">
+      
+      
+        <meta name="author" content="koletyst">
+      
+      
+        <link rel="canonical" href="https://koletyst.github.io/kubernetes-faq/security/">
+      
+      
+        <link rel="prev" href="../nodes/">
+      
+      
+        <link rel="next" href="../storage/">
+      
+      <link rel="icon" href="../favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
+    
+    
+      
+        <title>Security - Kubernetes FAQ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Kubernetes FAQ" class="md-header__button md-logo" aria-label="Kubernetes FAQ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.95 13.5h-.23c-.18.11-.26.32-.18.5l.86 2.11c.83-.53 1.46-1.32 1.79-2.25l-2.23-.36h-.01m-3.45.29a.415.415 0 0 0-.38-.29h-.08l-2.22.37c.33.92.96 1.7 1.79 2.23l.85-2.07V14c.04-.05.04-.14.04-.21m1.83.81a.378.378 0 0 0-.51-.15c-.07.05-.12.08-.15.15h-.01l-1.09 1.97c.78.26 1.62.31 2.43.12.14-.03.29-.07.43-.12l-1.09-1.97h-.01m3.45-4.57L14.1 11.5l.01.03a.37.37 0 0 0-.04.53c.05.06.11.1.18.12l.01.01 2.17.62c.07-.97-.14-1.95-.65-2.78m-3.11.16c.01.21.18.37.39.36.08 0 .15-.02.21-.05h.01l1.83-1.31a4.45 4.45 0 0 0-2.57-1.24l.13 2.24m-1.94.31c.17.11.4.08.52-.09.05-.06.07-.13.08-.21h.01l.12-2.25c-.15.02-.3.05-.46.08-.8.18-1.54.58-2.12 1.16l1.84 1.31h.01m-.99 1.69c.2-.05.32-.26.26-.46 0-.08-.05-.14-.11-.19v-.01L8.21 10c-.52.86-.74 1.84-.63 2.82l2.16-.62v-.01m1.64.66.62.3.62-.3.15-.67-.43-.53h-.69l-.43.53.16.67m10.89 1.32L20.5 6.5c-.09-.42-.37-.76-.74-.94l-7.17-3.43c-.37-.17-.81-.17-1.19 0L4.24 5.56c-.37.18-.65.52-.74.94l-1.77 7.67c-.05.2-.05.4 0 .59.01.06.03.12.05.18.03.09.08.19.13.27.03.04.05.08.09.11l4.95 6.18c.02 0 .05.04.05.06.1.09.19.16.28.22.12.08.26.14.4.17.11.05.23.05.32.05h8.12c.07 0 .14-.03.2-.05.05-.01.1-.03.14-.04.04-.02.07-.03.11-.05.05-.02.1-.05.15-.08.12-.08.23-.18.33-.28l.15-.2 4.8-5.98c.1-.12.17-.25.22-.38.02-.06.04-.12.05-.18.05-.19.05-.4 0-.59m-7.43 2.99c.02.06.04.12.07.17-.04.08-.06.17-.03.26.12.24.23.46.38.68.08.11.16.23.24.34 0 .03.03.08.04.12.12.2.06.46-.15.59s-.47.05-.59-.15c-.01-.03-.02-.05-.03-.08-.02-.03-.04-.09-.06-.09-.05-.15-.09-.28-.12-.41-.09-.25-.17-.49-.3-.72a.375.375 0 0 0-.21-.14l-.08-.16c-1.29.48-2.7.48-3.97-.01l-.1.18c-.07.01-.14.04-.19.09-.14.24-.24.49-.33.77-.03.13-.07.26-.12.4-.02 0-.04.07-.06.1a.43.43 0 0 1-.81-.29c.01-.03.03-.05.04-.08.04-.03.04-.08.04-.11.09-.12.16-.23.24-.35.16-.21.29-.45.39-.69a.54.54 0 0 0-.03-.25l.07-.18a5.611 5.611 0 0 1-2.47-3.09l-.2.03a.388.388 0 0 0-.23-.09c-.27.05-.51.13-.77.22-.11.06-.24.11-.37.15-.03.01-.07.02-.13.03a.438.438 0 0 1-.54-.27c-.07-.23.04-.47.28-.55.02 0 .05-.01.08-.01v-.01h.01l.11-.02c.14-.04.28-.04.41-.04.26 0 .52-.06.77-.12.08-.05.14-.11.19-.19l.19-.05c-.21-1.36.1-2.73.86-3.87l-.14-.12c0-.09-.03-.18-.08-.25-.2-.17-.41-.32-.64-.45-.12-.06-.24-.13-.36-.21-.02-.02-.06-.05-.08-.07l-.01-.01c-.2-.16-.25-.42-.11-.63.09-.1.21-.15.35-.15.11.01.21.05.3.12l.09.07c.1.09.19.2.28.3.18.19.37.37.58.52.08.04.17.05.26.03l.15.11c.75-.8 1.73-1.36 2.8-1.6.25-.06.52-.1.78-.12l.01-.18a.45.45 0 0 0 .14-.23c.01-.26-.01-.52-.05-.77-.03-.13-.05-.27-.06-.41V5.1c-.02-.24.15-.45.39-.48s.44.15.47.38v.22c-.01.14-.03.28-.06.41-.04.25-.06.51-.05.77.02.1.07.17.14.22l.01.19c1.36.12 2.62.73 3.56 1.72l.16-.12c.09.02.18.01.26-.03.21-.15.41-.33.58-.52.09-.1.18-.2.28-.3.03-.02.07-.06.1-.06.17-.18.44-.18.59 0 .19.16.18.43 0 .6 0 .02-.03.04-.06.06a2.495 2.495 0 0 1-.44.28c-.23.13-.45.28-.64.45-.06.07-.09.15-.08.24l-.16.14a5.44 5.44 0 0 1 .88 3.86l.19.05c.04.08.11.14.19.18.25.07.51.11.77.14h.41c.03.03.08.04.12.05.24.03.4.25.37.49-.05.23-.24.4-.48.37-.03-.01-.07-.01-.07-.02v-.01c-.06 0-.1-.01-.14-.02-.13-.04-.25-.09-.36-.15-.26-.1-.5-.17-.77-.21-.09 0-.17 0-.23.08-.07-.01-.13-.02-.19-.03-.41 1.31-1.31 2.41-2.47 3.11Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kubernetes FAQ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Security
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/koletyst/kubernetes-faq/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kubernetes-faq
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Kubernetes FAQ" class="md-nav__button md-logo" aria-label="Kubernetes FAQ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.95 13.5h-.23c-.18.11-.26.32-.18.5l.86 2.11c.83-.53 1.46-1.32 1.79-2.25l-2.23-.36h-.01m-3.45.29a.415.415 0 0 0-.38-.29h-.08l-2.22.37c.33.92.96 1.7 1.79 2.23l.85-2.07V14c.04-.05.04-.14.04-.21m1.83.81a.378.378 0 0 0-.51-.15c-.07.05-.12.08-.15.15h-.01l-1.09 1.97c.78.26 1.62.31 2.43.12.14-.03.29-.07.43-.12l-1.09-1.97h-.01m3.45-4.57L14.1 11.5l.01.03a.37.37 0 0 0-.04.53c.05.06.11.1.18.12l.01.01 2.17.62c.07-.97-.14-1.95-.65-2.78m-3.11.16c.01.21.18.37.39.36.08 0 .15-.02.21-.05h.01l1.83-1.31a4.45 4.45 0 0 0-2.57-1.24l.13 2.24m-1.94.31c.17.11.4.08.52-.09.05-.06.07-.13.08-.21h.01l.12-2.25c-.15.02-.3.05-.46.08-.8.18-1.54.58-2.12 1.16l1.84 1.31h.01m-.99 1.69c.2-.05.32-.26.26-.46 0-.08-.05-.14-.11-.19v-.01L8.21 10c-.52.86-.74 1.84-.63 2.82l2.16-.62v-.01m1.64.66.62.3.62-.3.15-.67-.43-.53h-.69l-.43.53.16.67m10.89 1.32L20.5 6.5c-.09-.42-.37-.76-.74-.94l-7.17-3.43c-.37-.17-.81-.17-1.19 0L4.24 5.56c-.37.18-.65.52-.74.94l-1.77 7.67c-.05.2-.05.4 0 .59.01.06.03.12.05.18.03.09.08.19.13.27.03.04.05.08.09.11l4.95 6.18c.02 0 .05.04.05.06.1.09.19.16.28.22.12.08.26.14.4.17.11.05.23.05.32.05h8.12c.07 0 .14-.03.2-.05.05-.01.1-.03.14-.04.04-.02.07-.03.11-.05.05-.02.1-.05.15-.08.12-.08.23-.18.33-.28l.15-.2 4.8-5.98c.1-.12.17-.25.22-.38.02-.06.04-.12.05-.18.05-.19.05-.4 0-.59m-7.43 2.99c.02.06.04.12.07.17-.04.08-.06.17-.03.26.12.24.23.46.38.68.08.11.16.23.24.34 0 .03.03.08.04.12.12.2.06.46-.15.59s-.47.05-.59-.15c-.01-.03-.02-.05-.03-.08-.02-.03-.04-.09-.06-.09-.05-.15-.09-.28-.12-.41-.09-.25-.17-.49-.3-.72a.375.375 0 0 0-.21-.14l-.08-.16c-1.29.48-2.7.48-3.97-.01l-.1.18c-.07.01-.14.04-.19.09-.14.24-.24.49-.33.77-.03.13-.07.26-.12.4-.02 0-.04.07-.06.1a.43.43 0 0 1-.81-.29c.01-.03.03-.05.04-.08.04-.03.04-.08.04-.11.09-.12.16-.23.24-.35.16-.21.29-.45.39-.69a.54.54 0 0 0-.03-.25l.07-.18a5.611 5.611 0 0 1-2.47-3.09l-.2.03a.388.388 0 0 0-.23-.09c-.27.05-.51.13-.77.22-.11.06-.24.11-.37.15-.03.01-.07.02-.13.03a.438.438 0 0 1-.54-.27c-.07-.23.04-.47.28-.55.02 0 .05-.01.08-.01v-.01h.01l.11-.02c.14-.04.28-.04.41-.04.26 0 .52-.06.77-.12.08-.05.14-.11.19-.19l.19-.05c-.21-1.36.1-2.73.86-3.87l-.14-.12c0-.09-.03-.18-.08-.25-.2-.17-.41-.32-.64-.45-.12-.06-.24-.13-.36-.21-.02-.02-.06-.05-.08-.07l-.01-.01c-.2-.16-.25-.42-.11-.63.09-.1.21-.15.35-.15.11.01.21.05.3.12l.09.07c.1.09.19.2.28.3.18.19.37.37.58.52.08.04.17.05.26.03l.15.11c.75-.8 1.73-1.36 2.8-1.6.25-.06.52-.1.78-.12l.01-.18a.45.45 0 0 0 .14-.23c.01-.26-.01-.52-.05-.77-.03-.13-.05-.27-.06-.41V5.1c-.02-.24.15-.45.39-.48s.44.15.47.38v.22c-.01.14-.03.28-.06.41-.04.25-.06.51-.05.77.02.1.07.17.14.22l.01.19c1.36.12 2.62.73 3.56 1.72l.16-.12c.09.02.18.01.26-.03.21-.15.41-.33.58-.52.09-.1.18-.2.28-.3.03-.02.07-.06.1-.06.17-.18.44-.18.59 0 .19.16.18.43 0 .6 0 .02-.03.04-.06.06a2.495 2.495 0 0 1-.44.28c-.23.13-.45.28-.64.45-.06.07-.09.15-.08.24l-.16.14a5.44 5.44 0 0 1 .88 3.86l.19.05c.04.08.11.14.19.18.25.07.51.11.77.14h.41c.03.03.08.04.12.05.24.03.4.25.37.49-.05.23-.24.4-.48.37-.03-.01-.07-.01-.07-.02v-.01c-.06 0-.1-.01-.14-.02-.13-.04-.25-.09-.36-.15-.26-.1-.5-.17-.77-.21-.09 0-.17 0-.23.08-.07-.01-.13-.02-.19-.03-.41 1.31-1.31 2.41-2.47 3.11Z"/></svg>
+
+    </a>
+    Kubernetes FAQ
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/koletyst/kubernetes-faq/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kubernetes-faq
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster-architecture/" class="md-nav__link">
+        Cluster architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../containers/" class="md-nav__link">
+        Containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jobs/" class="md-nav__link">
+        Jobs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking/" class="md-nav__link">
+        Networking
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodes/" class="md-nav__link">
+        Nodes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Security
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        Storage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topology/" class="md-nav__link">
+        Topology
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workloads/" class="md-nav__link">
+        Workloads
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Security</h1>
+
+<details>
+    <summary>
+        When multiple _____ objects select the same Pod, it becomes restricted to what is allowed by the union of those policies' ingress/egress rules.
+    </summary>
+        NetworkPolicy
+</details>
+
+<details>
+    <summary>
+        A public image registry may be compromised, so it is useful to use _____ registries.
+    </summary>
+        dedicated, private
+</details>
+
+<details>
+    <summary>
+        API requests are tied to either a username, a service account, or are treated as _____.
+    </summary>
+        anonymous requests
+</details>
+
+<details>
+    <summary>
+        A request to kube-apiserver must include the _____ of the requester, the requested action, and the object affected by the action.
+    </summary>
+        username
+</details>
+
+<details>
+    <summary>
+        Can admission controllers set complex defaults for fields? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        _____ are tied to a set of credentials stored as Secrets, which allow Pods to talk to the Kubernetes API.
+    </summary>
+        ServiceAccounts
+</details>
+
+<details>
+    <summary>
+        ServiceAccounts are tied to a set of credentials stored as _____, which allow Pods to talk to the Kubernetes API.
+    </summary>
+        Secrets
+</details>
+
+<details>
+    <summary>
+        "Requests in Kubernetes come with ""usernames"" for access control decisions and logging. But how does Kubernetes define a ""user""? _____"
+    </summary>
+        It doesn't! No concrete representative human ""user"" object exists in Kubernetes.
+</details>
+
+<details>
+    <summary>
+        The default Pod ServiceAccount can be disabled by setting _____
+    </summary>
+        autonomousServiceAccountToken: false
+</details>
+
+<details>
+    <summary>
+        When a request reaches kube-apiserver, it goes through stages: _____, Authorization, Admission Control
+    </summary>
+        Authentication
+</details>
+
+<details>
+    <summary>
+        Kubernetes authorizes API requests at the _____
+    </summary>
+        kube-apiserver
+</details>
+
+<details>
+    <summary>
+        Can network segmentation improve Kubernetes security? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        Does the admission or validation of a request happen first? _____
+    </summary>
+        admission
+</details>
+
+<details>
+    <summary>
+        The default authorization modules that can be used in the API server are _____, RBAC, and Webhook.
+    </summary>
+        ABAC
+</details>
+
+<details>
+    <summary>
+        The Role and _____ Objects contain sets of additive authorization permissions
+    </summary>
+        ClusterRole
+</details>
+
+<details>
+    <summary>
+        Audit policies determine what events are recorded and which _____ persist the records.
+    </summary>
+        backends
+</details>
+
+<details>
+    <summary>
+        Admission Control Modules can modify or _____ requests.
+    </summary>
+        reject
+</details>
+
+<details>
+    <summary>
+        Can _____ help prevent internal denial of service attacks? Yes
+    </summary>
+        ResourceQuotas
+</details>
+
+<details>
+    <summary>
+        A _____ uses labels to specify the groups of pods allowed to communicate with each other, and other network endpoints.
+    </summary>
+        NetworkPolicy
+</details>
+
+<details>
+    <summary>
+        Admission Control Modules can access contents of Kubernetes objects that are being _____ or modified.
+    </summary>
+        created
+</details>
+
+<details>
+    <summary>
+        "Tools like gVisor or _____ can ""sandbox"" Pods on the same host from each other, giving you an extra layer of isolation."
+    </summary>
+        kata containers
+</details>
+
+<details>
+    <summary>
+        Setting securityContext.allowPrivilegeEscalation to _____ makes it harder to escalate privileges inside a Container.
+    </summary>
+        False
+</details>
+
+<details>
+    <summary>
+        Is RBAC enabled for a new cluster by default? _____
+    </summary>
+        No!!!
+</details>
+
+<details>
+    <summary>
+        The _____ audit backend sends events to an external API.
+    </summary>
+        webhook
+</details>
+
+<details>
+    <summary>
+        Pods that do not need to use kube-apiserver should have their _____ disabled.
+    </summary>
+        default ServiceAccount
+</details>
+
+<details>
+    <summary>
+        When _____ starts, it looks for its kubeconfig file and its credentials (normally a TLS key and signed certificate), then retrieves the kube-apiserver URL and attempts to communicate with it.
+    </summary>
+        kubelet
+</details>
+
+<details>
+    <summary>
+        Audit allows cluster administrators to learn about the context of a cluster _____: when it happened, where, who initiated it and what it did.
+    </summary>
+        event
+</details>
+
+<details>
+    <summary>
+        A CertificateSigningRequest's _____ field denotes the recipient that the request is being made to.
+    </summary>
+        spec.signerName
+</details>
+
+<details>
+    <summary>
+        Can attackers remove a NetworkPolicy from within etcd? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        Nodes must be provisioned with valid client credentials and a _____ to connect to kube-apiserver.
+    </summary>
+        public root certificate
+</details>
+
+<details>
+    <summary>
+        Authentication protocols (such as LDAP, SAML, Kerberos, etc) can be integrated into Kubernetes by using an _____ or authenticating webhook.
+    </summary>
+        authenticating proxy
+</details>
+
+<details>
+    <summary>
+        A RoleBinding grants a role's permissions to a set of users, _____ or service accounts.
+    </summary>
+        groups
+</details>
+
+<details>
+    <summary>
+        Can service meshes encrypt in-cluster traffic (and automatically rotate certificates)? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        Restricting access to _____ prevents an attacker from modifying the desired cluster state.
+    </summary>
+        etcd
+</details>
+
+<details>
+    <summary>
+        Are authentication proxies a valid authentication method? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        The default authorization modules that can be used in the API server are ABAC, _____, and Webhook.
+    </summary>
+        RBAC
+</details>
+
+<details>
+    <summary>
+        A NetworkPolicy uses _____ to specify the groups of pods allowed to communicate with each other, and other network endpoints.
+    </summary>
+        labels
+</details>
+
+<details>
+    <summary>
+        "A kubelet's initial bootstrap credentials for TLS can be either authentication file tokens, or _____ tokens."
+    </summary>
+        ""bootstrap""
+</details>
+
+<details>
+    <summary>
+        Can normal users be added to a cluster through an API call? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        You should usually use at least two methods of authentication in your cluster: one for _____ and one for service accounts.
+    </summary>
+        human users
+</details>
+
+<details>
+    <summary>
+        Are Client Certificates a valid authentication module? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        When kubelet starts, it looks for its kubeconfig file and its credentials (normally a TLS key and signed certificate), then retrieves the _____ URL and attempts to communicate with it.
+    </summary>
+        kube-apiserver
+</details>
+
+<details>
+    <summary>
+        The four audit levels are: None - don't log these events. Metadata - log a request's user, timestamp, resource, verb, etc. Request - log event metadata and request body. _____
+    </summary>
+        RequestResponse - log event metadata, request body and response bodies.
+</details>
+
+<details>
+    <summary>
+        Kubernetes authentication examines the incoming HTTP request's headers and _____.
+    </summary>
+        certificate
+</details>
+
+<details>
+    <summary>
+        Does kube-apiserver verify the kubelet's serving certificate by default? _____
+    </summary>
+        No. The connection is subject to MITM attacks by default.
+</details>
+
+<details>
+    <summary>
+        Can attackers manipulate cluster data in etcd, bypassing kube-apiserver completely? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        Does Container/Operating System scanning improve cluster security? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        When multiple NetworkPolicy objects select the same _____, it becomes restricted to what is allowed by the union of those policies' ingress/egress rules.
+    </summary>
+        Pod
+</details>
+
+<details>
+    <summary>
+        A kubelet's kubeconfig requires a certificate to communicate with kube-apiserver. This certificate must be signed by a _____ trusted by kube-apiserver.
+    </summary>
+        Certificate Authority
+</details>
+
+<details>
+    <summary>
+        A _____ object can divide your workloads into network tiers, locking them by default, with the ability specifically allow communication between them, or between their namespaces.
+    </summary>
+        NetworkPolicy
+</details>
+
+<details>
+    <summary>
+        A Certificate Authority _____ and certificate are required to sign kubelet certificates.
+    </summary>
+        key
+</details>
+
+<details>
+    <summary>
+        securityContext allows defining privilege and access controls per Pod or per _____.
+    </summary>
+        Container
+</details>
+
+<details>
+    <summary>
+        Authentication protocols (such as LDAP, SAML, Kerberos, etc) can be integrated into Kubernetes by using an authenticating proxy or _____.
+    </summary>
+        authenticating webhook
+</details>
+
+<details>
+    <summary>
+        _____ are usually stored in the /etc/kubernetes/pki directory.
+    </summary>
+        PKI certificates
+</details>
+
+<details>
+    <summary>
+        By default, Pods in a cluster come with a _____ with permissions allowing it to communicate with kube-apiserver. This should be disabled for Pods that are never expected to need to talk to kube-apiserver, as an attacker could otherwise steal the auth token.
+    </summary>
+        service account
+</details>
+
+<details>
+    <summary>
+        With _____ files, you can organize your clusters, users, contexts, and namespaces.
+    </summary>
+        kubeconfig
+</details>
+
+<details>
+    <summary>
+        Do you need to upload AppArmor profiles to ALL of your Nodes? _____
+    </summary>
+        Yes - since you don't know which Node your Pod may be scheduled to.
+</details>
+
+<details>
+    <summary>
+        The default authorization modules that can be used in the API server are ABAC, RBAC, and _____.
+    </summary>
+        Webhook
+</details>
+
+<details>
+    <summary>
+        To specify which AppArmor profile a Container should run with, specify the profile as an _____ in the Pod's metadata.
+    </summary>
+        annotation
+</details>
+
+<details>
+    <summary>
+        Once created, a CertificateSigningRequest must be _____ before it can be signed.
+    </summary>
+        approved
+</details>
+
+<details>
+    <summary>
+        _____ is a file used to configure access to clusters
+    </summary>
+        kubeconfig
+</details>
+
+<details>
+    <summary>
+        A request was authorized by a single Authorization Module. Does it also get evaluated by other available Authorization Modules before being authorized? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        Are plain, bootstrap and JWT tokens a valid Kubernetes authentication module? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        A CertificateSigningRequest will initially have Pending status. If it meets specific criteria, it will be promoted by the kube-controller-manager to _____ status.
+    </summary>
+        Approved
+</details>
+
+<details>
+    <summary>
+        Does a user need a Role and RoleBinding to access Kubernetes resources? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        A RoleBinding grants a role's permissions to a set of users, groups or _____.
+    </summary>
+        service accounts
+</details>
+
+<details>
+    <summary>
+        Each request on each stage of its execution generates an audit _____, which is then pre-processed according to a certain audit.k8s.io/v1 Policy object and written to a backend.
+    </summary>
+        event
+</details>
+
+<details>
+    <summary>
+        The _____ environment variable holds a list of kubeconfig files
+    </summary>
+        KUBECONFIG
+</details>
+
+<details>
+    <summary>
+        _____ objects require a specific backend running in the cluster that implements them, such as Calico or Flannel.
+    </summary>
+        NetworkPolicy
+</details>
+
+<details>
+    <summary>
+        _____ allows cluster administrators to learn about the context of a cluster event: when it happened, where, who initiated it and what it did.
+    </summary>
+        Audit
+</details>
+
+<details>
+    <summary>
+        A kubelet's kubeconfig file requires a _____ and a cert to connect to kube-apiserver.
+    </summary>
+        key
+</details>
+
+<details>
+    <summary>
+        "The root (""/"") filesystem on containers should be set as read-only via securityContext._____, because an attacker may escalate privileges by editing operating system files."
+    </summary>
+        readOnlyRootFilesystem: true
+</details>
+
+<details>
+    <summary>
+        A RoleBinding grants a role's permissions to a set of _____, groups or service accounts.
+    </summary>
+        users
+</details>
+
+<details>
+    <summary>
+        The _____ and ClusterRole Objects contain sets of additive authorization permissions
+    </summary>
+        Role
+</details>
+
+<details>
+    <summary>
+        Kubernetes requires PKI certificates for _____ over TLS.
+    </summary>
+        authentication
+</details>
+
+<details>
+    <summary>
+        To specify which AppArmor profile a Container should run with, specify the profile as an annotation in the Pod's _____.
+    </summary>
+        metadata
+</details>
+
+<details>
+    <summary>
+        Containers in production should run under a Linux non-root user. This is set in _____ via runAsNonRoot: true
+    </summary>
+        securityContext
+</details>
+
+<details>
+    <summary>
+        A Certificate Authority key and _____ are required to sign kubelet certificates.
+    </summary>
+        certificate
+</details>
+
+<details>
+    <summary>
+        The default _____ that can be used in the API server are ABAC, RBAC, and Webhook.
+    </summary>
+        authorization modules
+</details>
+
+<details>
+    <summary>
+        The four audit levels are: _____ Metadata - log a request's user, timestamp, resource, verb, etc. Request - log event metadata and request body. RequestResponse - log event metadata, request body and response bodies.
+    </summary>
+        None - don't log these events.
+</details>
+
+<details>
+    <summary>
+        ServiceAccounts are tied to a set of credentials stored as Secrets, which allow _____ to talk to the Kubernetes API.
+    </summary>
+        Pods
+</details>
+
+<details>
+    <summary>
+        Once created, a _____ must be approved before it can be signed.
+    </summary>
+        CertificateSigningRequest
+</details>
+
+<details>
+    <summary>
+        You can combine ClusterRoles using an _____
+    </summary>
+        aggregationRule
+</details>
+
+<details>
+    <summary>
+        Audit _____ determine what events are recorded and which backends persist the records.
+    </summary>
+        policies
+</details>
+
+<details>
+    <summary>
+        Is basic auth a valid authentication method? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        _____ is a user-space kernel that can intercept and implement syscalls in userspace, effectively sandboxing the Pod to an environment with low capabilities and restricted seccomp filters.
+    </summary>
+        gVisor
+</details>
+
+<details>
+    <summary>
+        You can secure an Ingress by specifying a Secret that contains a TLS _____ and certificate
+    </summary>
+        private key
+</details>
+
+<details>
+    <summary>
+        Do you need to distribute a key and signed certificate for each kubelet? _____
+    </summary>
+        Yes - ideally unique ones.
+</details>
+
+<details>
+    <summary>
+        CertificateSigningRequest objects include a PEM-encoded PKCS#10 signing request in the spec._____ field.
+    </summary>
+        request
+</details>
+
+<details>
+    <summary>
+        A request to kube-apiserver must include the username of the requester, the requested action, and the _____ affected by the action.
+    </summary>
+        object
+</details>
+
+<details>
+    <summary>
+        Your current, in-use cluster context is stored in the _____ file on your local machine.
+    </summary>
+        kubeconfig
+</details>
+
+<details>
+    <summary>
+        Any request that presents a valid _____ signed by the cluster's Certificate Authority is considered authenticated.
+    </summary>
+        certificate
+</details>
+
+<details>
+    <summary>
+        When an attacker has control of a Kubernetes _____, they may be able to access the cloud provider's user and metadata APIs to exfiltrate credentials of your cloud account.
+    </summary>
+        Node
+</details>
+
+<details>
+    <summary>
+        Any request that presents a valid certificate signed by the cluster's _____ is considered authenticated.
+    </summary>
+        Certificate Authority
+</details>
+
+<details>
+    <summary>
+        The _____ resource type allows a client to ask for an X.509 certificate be issued, based on a signing request.
+    </summary>
+        CertificateSigningRequest
+</details>
+
+<details>
+    <summary>
+        PKI certificates are usually stored in the /etc/kubernetes/_____ directory.
+    </summary>
+        pki
+</details>
+
+<details>
+    <summary>
+        _____ (such as LDAP, SAML, Kerberos, etc) can be integrated into Kubernetes by using an authenticating proxy or authenticating webhook.
+    </summary>
+        Authentication protocols
+</details>
+
+<details>
+    <summary>
+        Do AppArmor profiles have to be manually downloaded into the Node before applying the annotation? _____
+    </summary>
+        Yes - except the container runtime's default AppArmor profile.
+</details>
+
+<details>
+    <summary>
+        The kubelet's _____ flag controls its automatic certificate rotation. It can automatically generate a new key and request a new certificate from the Kubernetes API before the current certificate's expiration.
+    </summary>
+        --rotate-certificates
+</details>
+
+<details>
+    <summary>
+        Can Admission controllers act on requests that connect (proxy) to an object? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        "A kubelet's initial bootstrap credentials for TLS can be either authentication _____ tokens, or ""bootstrap"" tokens."
+    </summary>
+        file
+</details>
+
+<details>
+    <summary>
+        Each request on each stage of its execution generates an audit event, which is then pre-processed according to a certain audit.k8s.io/v1 Policy object and written to a _____.
+    </summary>
+        backend
+</details>
+
+<details>
+    <summary>
+        Each _____ on each stage of its execution generates an audit event, which is then pre-processed according to a certain audit.k8s.io/v1 Policy object and written to a backend.
+    </summary>
+        request
+</details>
+
+<details>
+    <summary>
+        Can Admission controllers act on requests that delete an object? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        A request to kube-apiserver must include the username of the requester, the requested _____, and the object affected by the action.
+    </summary>
+        action
+</details>
+
+<details>
+    <summary>
+        If a request cannot be authenticated, it is _____
+    </summary>
+        rejected with status code 401
+</details>
+
+<details>
+    <summary>
+        _____ objects define rules about what events should be recorded and what data they should include.
+    </summary>
+        audit.k8s.io/v1 kind: Policy
+</details>
+
+<details>
+    <summary>
+        AppArmor profiles are specified per _____
+    </summary>
+        Container
+</details>
+
+<details>
+    <summary>
+        When TLS bootstrapping, the _____ must be able to authenticate as a user with the rights to create and retrieve CertificateSigningRequests
+    </summary>
+        kubelet
+</details>
+
+<details>
+    <summary>
+        etcd should have authentication, be firewalled and _____ at rest.
+    </summary>
+        encrypted
+</details>
+
+<details>
+    <summary>
+        Should you run etcd on dedicated nodes? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        A _____ will initially have Pending status. If it meets specific criteria, it will be promoted by the kube-controller-manager to Approved status.
+    </summary>
+        CertificateSigningRequest
+</details>
+
+<details>
+    <summary>
+        After the request is authenticated as coming from a valid user, the request must then be _____ to check if it's allowed.
+    </summary>
+        authorized
+</details>
+
+<details>
+    <summary>
+        _____ allows defining privilege and access controls per Pod or per Container.
+    </summary>
+        securityContext
+</details>
+
+<details>
+    <summary>
+        If a container has network access to a /metrics endpoint, what does that mean for security? _____
+    </summary>
+        Attackers could potentially find almost everything about the cluster from inside the container by reading cAdvisor/Heapster output at the endpoint.
+</details>
+
+<details>
+    <summary>
+        Groups are a set of strings, each of which indicates _____.
+    </summary>
+        a user's membership
+</details>
+
+<details>
+    <summary>
+        Logstash can be used to collect/distribute Kubernetes audit events from the _____
+    </summary>
+        webhook audit backend
+</details>
+
+<details>
+    <summary>
+        Whenever a kubelet retrieves a new signed certificate from the Kubernetes API it will write it to _____
+    </summary>
+        the disk
+</details>
+
+<details>
+    <summary>
+        The KUBECONFIG environment variable holds _____
+    </summary>
+        a list of kubeconfig files
+</details>
+
+<details>
+    <summary>
+        Once an attacker controls a container, there is risk they might obtain control of the _____ it runs on, and then the internal cluster network.
+    </summary>
+        Node
+</details>
+
+<details>
+    <summary>
+        An attacker may download exploits directly into a container if its Pod has free access to _____.
+    </summary>
+        the Internet
+</details>
+
+<details>
+    <summary>
+        A _____ resource is used to request that a certificate be signed by a denoted signer, after which the request may be approved or denied before finally being signed.
+    </summary>
+        CertificateSigningRequest
+</details>
+
+<details>
+    <summary>
+        Admission Control Modules can access contents of Kubernetes objects that are being created or _____.
+    </summary>
+        modified
+</details>
+
+<details>
+    <summary>
+        In order to approve CertificateSigningRequests, you must allow the _____ to approve them.
+    </summary>
+        kube-controller-manager
+</details>
+
+<details>
+    <summary>
+        Audit logging increases the memory consumption of the _____ because some context required for auditing is stored for each request.
+    </summary>
+        kube-api-server
+</details>
+
+<details>
+    <summary>
+        "Kubernetes determines the _____ of an incoming request from the common name field in the subject field of the certificate (e.g., ""/CN=katademy"")"
+    </summary>
+        username
+</details>
+
+<details>
+    <summary>
+        Admission Control Modules can _____ or reject requests.
+    </summary>
+        modify
+</details>
+
+<details>
+    <summary>
+        Kubernetes authentication examines the incoming HTTP request's _____ and certificate.
+    </summary>
+        headers
+</details>
+
+<details>
+    <summary>
+        Audit records begin their lifecycle inside the _____ Kubernetes component.
+    </summary>
+        kube-apiserver
+</details>
+
+<details>
+    <summary>
+        When a request reaches _____, it goes through stages: Authentication, Authorization, Admission Control
+    </summary>
+        kube-apiserver
+</details>
+
+<details>
+    <summary>
+        When a request reaches kube-apiserver, it goes through stages: Authentication, _____, Admission Control
+    </summary>
+        Authorization
+</details>
+
+<details>
+    <summary>
+        The kube-apiserver should have a _____ restricting it to be accessible only by specific IPs.
+    </summary>
+        firewall
+</details>
+
+<details>
+    <summary>
+        Do you need to distribute a CA certificate to each kubelet? _____
+    </summary>
+        No - only the master nodes where kube-apiserver is running.
+</details>
+
+<details>
+    <summary>
+        _____ persist audit events to an external storage.
+    </summary>
+        Audit backends
+</details>
+
+<details>
+    <summary>
+        The _____ group represents authenticated users.
+    </summary>
+        system:authenticated
+</details>
+
+<details>
+    <summary>
+        A service mesh can trace and profile requests happening inside a cluster. You can then find and disable requests that aren't expected to ever happen, for ex. via a _____.
+    </summary>
+        NetworkPolicy
+</details>
+
+<details>
+    <summary>
+        Any request that presents a valid certificate signed by the cluster's Certificate Authority is considered _____.
+    </summary>
+        authenticated
+</details>
+
+<details>
+    <summary>
+        Can using standardized, base images for all of your Containers improve overall workload security? _____
+    </summary>
+        Yes. If the base image is secured by default, child images will inherit these upgrades.
+</details>
+
+<details>
+    <summary>
+        Should you minimise user privilege inside your containers in production? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        A _____'s spec.signerName field denotes the recipient that the request is being made to.
+    </summary>
+        CertificateSigningRequest
+</details>
+
+<details>
+    <summary>
+        Attackers can break out of the _____ by epxloiting the container runtime, kernel etc.
+    </summary>
+        Container
+</details>
+
+<details>
+    <summary>
+        _____ audit failures might suggest a misconfigured service account, or the presence of an attacker.
+    </summary>
+        RBAC
+</details>
+
+<details>
+    <summary>
+        A request is authorized if an existing policy declares that the user has permissions to complete the requested _____ on the given object.
+    </summary>
+        action
+</details>
+
+<details>
+    <summary>
+        A _____ grants a role's permissions to a set of users, groups or service accounts.
+    </summary>
+        RoleBinding
+</details>
+
+<details>
+    <summary>
+        When multiple NetworkPolicy objects select the same Pod, it becomes restricted to what is allowed by the _____ of those policies' ingress/egress rules.
+    </summary>
+        union
+</details>
+
+<details>
+    <summary>
+        Are service accounts bound to specific namespaces? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        _____ like fluentd can be used to collect/distribute Kubernetes audit events from log files
+    </summary>
+        Log collectors
+</details>
+
+<details>
+    <summary>
+        Can Admission controllers act on requests that read an object? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        When kubelet starts, it looks for its _____ file and its credentials (normally a TLS key and signed certificate), then retrieves the kube-apiserver URL and attempts to communicate with it.
+    </summary>
+        kubeconfig
+</details>
+
+<details>
+    <summary>
+        Audit backends persist audit events to _____.
+    </summary>
+        an external storage
+</details>
+
+<details>
+    <summary>
+        The _____ audit backend writes event to a disk
+    </summary>
+        log
+</details>
+
+<details>
+    <summary>
+        "The root (""/"") filesystem on containers should be set as read-only via securityContext.readOnlyRootFilesystem: true, because _____."
+    </summary>
+        an attacker may escalate privileges by editing operating system files
+</details>
+
+<details>
+    <summary>
+        Does a service mesh make your workloads more isolated by default? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        "Kubernetes determines the username of an incoming request from the common name field in the subject field of the certificate (e.g., ""_____"")"
+    </summary>
+        /CN=katademy
+</details>
+
+<details>
+    <summary>
+        To improve security, you could ideally collect logs from all containers - but especially RBAC _____ logs.
+    </summary>
+        access/deny
+</details>
+
+<details>
+    <summary>
+        Your current, in-use cluster namespace is stored in the _____ file on your local machine.
+    </summary>
+        kubeconfig
+</details>
+
+<details>
+    <summary>
+        Each request on each stage of its execution generates an audit event, which is then pre-processed according to a certain _____ object and written to a backend.
+    </summary>
+        audit.k8s.io/v1 Policy
+</details>
+
+<details>
+    <summary>
+        Pods that need to connect to the apiserver can automatically inject the _____ and valid bearer token into themselves via a service account.
+    </summary>
+        public root certificate
+</details>
+
+<details>
+    <summary>
+        Are passwords a valid Kubernetes authentication module? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        Restricting access to your cluster nodes (especially _____ nodes) can prevent further privilege escalation to your cloud provider platform.
+    </summary>
+        master
+</details>
+
+<details>
+    <summary>
+        Should you be able to freely send network traffic to etcd from the cluster? _____
+    </summary>
+        No
+</details>
+
+<details>
+    <summary>
+        A _____ object can prevent an attacker inside one Pod from running the services of another Pod
+    </summary>
+        NetworkPolicy
+</details>
+
+<details>
+    <summary>
+        Audit logging increases the memory consumption of the kube-api-server because some context required for auditing is stored for each _____.
+    </summary>
+        request
+</details>
+
+<details>
+    <summary>
+        "Potentially insecure Linux _____ (such as ""all"", ""CHOWN"", ""NET_RAW"", ""SETPCAP"") can be disabled via securityContext."
+    </summary>
+        capabilities
+</details>
+
+<details>
+    <summary>
+        The four audit levels are: None - don't log these events. Metadata - log a request's user, timestamp, resource, verb, etc. _____ RequestResponse - log event metadata, request body and response bodies.
+    </summary>
+        Request - log event metadata and request body.
+</details>
+
+<details>
+    <summary>
+        "Potentially insecure Linux capabilities (such as ""all"", ""CHOWN"", ""NET_RAW"", ""SETPCAP"") can be disabled via _____."
+    </summary>
+        securityContext
+</details>
+
+<details>
+    <summary>
+        After the request is _____ as coming from a valid user, the request must then be authorized to check if it's allowed.
+    </summary>
+        authenticated
+</details>
+
+<details>
+    <summary>
+        The four audit levels are: None - don't log these events. _____ Request - log event metadata and request body. RequestResponse - log event metadata, request body and response bodies.
+    </summary>
+        Metadata - log a request's user, timestamp, resource, verb, etc.
+</details>
+
+<details>
+    <summary>
+        An Admission Controller Module rejects a request. What happens to the request? _____
+    </summary>
+        It is immediately rejected.
+</details>
+
+<details>
+    <summary>
+        Setting securityContext._____ to False makes it harder to escalate privileges inside a Container.
+    </summary>
+        allowPrivilegeEscalation
+</details>
+
+<details>
+    <summary>
+        By default, requests to the kubelet's HTTPS endpoint that are not rejected by other configured authentication methods are treated as _____ requests.
+    </summary>
+        anonymous
+</details>
+
+<details>
+    <summary>
+        _____ objects include a PEM-encoded PKCS#10 signing request in the spec.request field.
+    </summary>
+        CertificateSigningRequest
+</details>
+
+<details>
+    <summary>
+        Are bearer tokens a valid authentication method? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        When an event is processed, it's compared against the list of audit.k8s.io/v1/Policy rules in order. The first matching rule sets the _____ of the event.
+    </summary>
+        audit level
+</details>
+
+<details>
+    <summary>
+        A kubelet's kubeconfig file requires a key and a _____ to connect to kube-apiserver.
+    </summary>
+        cert
+</details>
+
+<details>
+    <summary>
+        True or False? Kubernetes automatically its Container Runtime's default seccomp and AppArmor profiles to Pods and Containers. _____
+    </summary>
+        False!!! A Container running on Kubernetes has FEWER restrictions applied to it by default than if it were ran directly on a Container Runtime. Go set them now!
+</details>
+
+<details>
+    <summary>
+        Are client certificates a valid authentication method? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        A CertificateSigningRequest will initially have Pending status. If it meets specific criteria, it will be promoted by the _____ to Approved status.
+    </summary>
+        kube-controller-manager
+</details>
+
+<details>
+    <summary>
+        securityContext allows defining privilege and access controls per _____ or per Container.
+    </summary>
+        Pod
+</details>
+
+<details>
+    <summary>
+        Should you enforce image signing in production? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        Once a _____ selects a particular Pod, that Pod will reject any connections that are not explicitly allowed by it.
+    </summary>
+        NetworkPolicy
+</details>
+
+<details>
+    <summary>
+        Kubernetes requires _____ certificates for authentication over TLS.
+    </summary>
+        PKI
+</details>
+
+<details>
+    <summary>
+        Log collectors like fluentd can be used to collect/distribute Kubernetes audit events from _____
+    </summary>
+        log files
+</details>
+
+<details>
+    <summary>
+        Once Cluster TLS is established, incoming requests can begin the _____ step when trying to communicate to the cluster.
+    </summary>
+        Authentication
+</details>
+
+<details>
+    <summary>
+        Pods that need to connect to the apiserver can automatically inject the public root certificate and valid _____ into themselves via a service account.
+    </summary>
+        bearer token
+</details>
+
+<details>
+    <summary>
+        A request is authorized if an existing policy declares that the user has permissions to complete the requested action on the given _____.
+    </summary>
+        object
+</details>
+
+<details>
+    <summary>
+        Can Admission controllers act on requests that create an object? _____
+    </summary>
+        Yes
+</details>
+
+<details>
+    <summary>
+        When a request reaches kube-apiserver, it goes through stages: Authentication, Authorization, _____
+    </summary>
+        Admission Control
+</details>
+
+<details>
+    <summary>
+        "Tools like _____ or kata containers can ""sandbox"" Pods on the same host from each other, giving you an extra layer of isolation."
+    </summary>
+        gVisor
+</details>
+
+<details>
+    <summary>
+        The kubelet uses _____ for authenticating to the Kubernetes API.
+    </summary>
+        certificates (with 1 year expiration)
+</details>
+
+<details>
+    <summary>
+        You can secure an Ingress by specifying a Secret that contains a TLS private key and _____
+    </summary>
+        certificate
+</details>
+
+<details>
+    <summary>
+        Is admission control's NodeRestriction enabled by default? _____
+    </summary>
+        No!
+</details>
+
+<details>
+    <summary>
+        You should usually use at least two methods of authentication in your cluster: one for human users and one for _____.
+    </summary>
+        service accounts
+</details>
+
+<details>
+    <summary>
+        Containers in production should run under a Linux non-root user. This is set in securityContext via _____
+    </summary>
+        runAsNonRoot: true
+</details>
+
+<details>
+    <summary>
+        Is Kubelet RBAC enabled by default? _____
+    </summary>
+        No!!!
+</details>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2020-2023 @koletyst
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/koletyst" target="_blank" rel="noopener" title="koletyst on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/koletyst" target="_blank" rel="noopener" title="koletyst on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/koletyst" target="_blank" rel="noopener" title="koletyst on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a51614de.min.js"></script>
+      
+    
+  </body>
+</html>
