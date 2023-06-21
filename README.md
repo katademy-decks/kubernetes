@@ -1,10 +1,10 @@
 # k8s-faq
 
-Test your knowledge of Kubernetes. Anki-compatible flashcards can be downloaded [**here**](https://github.com/katademy/kubernetes-faq/releases/latest).
+Test your knowledge of Kubernetes. Anki-compatible flashcards can be downloaded [**here**](https://github.com/koletyst/kubernetes-faq/releases/latest).
 
 ## Table of Contents: 
 
-**Hint: [**View in GitHub Pages!**](https://katademy.github.io/kubernetes-faq)**
+**Hint: [**View in GitHub Pages!**](https://koletyst.github.io/kubernetes-faq)**
 
 1. [Cluster Architecture](./docs/cluster-architecture.md) (46 questions)
 1. [Containers](./docs/containers.md) (62 questions)
@@ -18,7 +18,5 @@ Test your knowledge of Kubernetes. Anki-compatible flashcards can be downloaded 
 
 #### Like this project?
 
-* [Leave a Star](https://github.com/katademy/kubernetes-faq/stargazers)
-* Follow [@katademy](https://twitter.com/katademy) on Twitter
-* [Donate via PayPal](https://paypal.me/icelynjennings)
-* [Donate via Patreon](https://patreon.com/icelynjennings)
+* [Star it](https://github.com/koletyst/kubernetes-faq/stargazers)!
+* Follow [@koletyst](https://twitter.com/koletyst) on Twitter
